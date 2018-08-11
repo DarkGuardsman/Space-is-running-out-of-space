@@ -10,9 +10,9 @@ public class PlayerCollectJunk : MonoBehaviour
     public CollectionArea pickupArea;
     
     //Junk count (size, not individual objects)
-    public int junkCarrySize = 0;
+    public int ropeConnections = 0;
     
-    public int maxJunkCarrySize = 100;
+    public int maxRopeConnections = 10;
     
     //Junk collected
     public List<JunkObjectData> collectedJunk = new List<JunkObjectData>(); 
@@ -20,10 +20,14 @@ public class PlayerCollectJunk : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if(Input.GetButton("Fire2"))
+        if(Input.GetButton("Fire2") && ropeConnections <= maxRopeConnections)
         {
-            collectJunkTimer = collectJunkCooldown;
             CollectJunk();
+        }
+        
+        if(Input.GetButton("Release"))
+        {
+            ReleaseJunk();
         }
         
         foreach(JunkObjectData junkData in collectedJunk)
@@ -54,12 +58,23 @@ public class PlayerCollectJunk : MonoBehaviour
     
     void CollectJunk(JunkObjectData junkData)
     {       
-        junkData.Collect(junkConnectionPoint, ropeConnectionDistance);
+        junkData.AttachRope(junkConnectionPoint, ropeConnectionDistance);
         collectedJunk.Add(junkData);
+        ropeConnections++;
     }
     
     void ReleaseJunk()
     {
-        
+        foreach (JunkObjectData junkData in collectedJunk)
+        {
+            ReleaseJunk(junkData);
+        }
+        collectedJunk.Clear();
+    }
+    
+    void ReleaseJunk(JunkObjectData junkData)
+    { 
+        junkData.ReleaseRope();
+        ropeConnections--;
     }
 }
