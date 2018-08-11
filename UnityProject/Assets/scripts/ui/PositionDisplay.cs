@@ -14,6 +14,7 @@ public class PositionDisplay : UIDisplay
         if(gameController.currentPlayerObject != null)
         {
             Vector3 pos = gameController.currentPlayerObject.transform.position;
+            pos -= gameController.centerOfWorld.position;
             text.text = String.Format("Position: {0:0}x {1:0}y", pos.x, pos.y);
         }		
 	}

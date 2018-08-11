@@ -16,7 +16,6 @@ public class JunkCollector : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        Debug.Log("Update");
 		if(pickupArea.objectsInArea != null)
         {
             for(int i = 0; i < pickupArea.objectsInArea.Count; i++)
