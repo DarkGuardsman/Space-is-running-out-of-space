@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class JunkObjectData : MonoBehaviour 
 {
+    //Size of the junk
     public int size = 1;
+    //Point value of the junk
+    public int pointValue = 1;
+    
+    //Is the junk currently collected by a player
     public bool collected = false;
     
     public SpringJoint2D joint;
     public LineRenderer ropeRenderer;
     public GameObject ropeConnectionPoint;
+    
+    //Used by drop off point to prevent instant collection
+    public int collectTimer = 0;
     
     void Start ()
     {
@@ -27,7 +35,7 @@ public class JunkObjectData : MonoBehaviour
         }
     }
     
-    public void Collect(GameObject junkConnectionPoint, float ropeConnectionDistance)
+    public void AttachRope(GameObject junkConnectionPoint, float ropeConnectionDistance)
     {
         if(!collected)
         {
@@ -46,7 +54,7 @@ public class JunkObjectData : MonoBehaviour
         }
     }
     
-    public void Release()
+    public void ReleaseRope()
     {
         collected = false;
         
