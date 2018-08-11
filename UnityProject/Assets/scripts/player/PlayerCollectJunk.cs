@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAction : MonoBehaviour 
+public class PlayerCollectJunk : MonoBehaviour 
 {
     public float collectJunkCooldown = 1f;
+    public float ropeConnectionDistance = 5;
     
+    public GameObject junkConnectionPoint;
     public CollectionArea pickupArea;
     
     //Junk count (size, not individual objects)
@@ -14,7 +16,7 @@ public class PlayerAction : MonoBehaviour
     public int maxJunkCarrySize = 100;
     
     //Junk collected
-    public List<GameObject> collectedJunk = new List<GameObject>(); 
+    public List<JunkObjectData> collectedJunk = new List<JunkObjectData>(); 
     
     private float collectJunkTimer;
     
@@ -33,11 +35,37 @@ public class PlayerAction : MonoBehaviour
         {
             collectJunkTimer -= Time.deltaTime;
         }
+        
+        foreach(JunkObjectData junkData in collectedJunk)
+        {
+            junkData.joint.attachedRigidbody.velocity *= 0.99f;
+        }
 	}
     
     void CollectJunk()
     {
-        
+        if(pickupArea.objectsInArea != null)
+        {
+            for(int i = pickupArea.objectsInArea.Count - 1; i >= 0; i--)
+            {
+                GameObject gameObject = pickupArea.objectsInArea[i];
+                if(gameObject != null)
+                {
+                    JunkObjectData junkData = gameObject.GetComponent<JunkObjectData>();
+                    if(junkData != null)
+                    {
+                        pickupArea.objectsInArea.Remove(gameObject);
+                        CollectJunk(junkData);
+                    }
+                }
+            }
+        }
+    }
+    
+    void CollectJunk(JunkObjectData junkData)
+    {       
+        junkData.Collect(junkConnectionPoint, ropeConnectionDistance);
+        collectedJunk.Add(junkData);
     }
     
     void ReleaseJunk()

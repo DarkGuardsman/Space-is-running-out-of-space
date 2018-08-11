@@ -14,7 +14,7 @@ public class PositionDisplay : UIDisplay
         if(gameController.currentPlayerObject != null)
         {
             Vector3 pos = gameController.currentPlayerObject.transform.position;
-            text.text = String.Format("Speed: {0:0}x {1:0}y", pos.x, pos.y);
+            text.text = String.Format("Position: {0:0}x {1:0}y", pos.x, pos.y);
         }		
 	}
 }
