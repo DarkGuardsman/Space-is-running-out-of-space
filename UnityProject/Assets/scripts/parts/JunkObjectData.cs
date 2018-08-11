@@ -33,6 +33,11 @@ public class JunkObjectData : MonoBehaviour
             ropeRenderer.SetPosition(0, new Vector2(joint.connectedBody.position.x, joint.connectedBody.position.y) + (Vector2)joint.connectedAnchor);
             ropeRenderer.SetPosition(1, new Vector2(transform.position.x, transform.position.y) + (Vector2)joint.anchor);
         }
+        else
+        {
+            joint.enabled = false;
+            ropeRenderer.enabled = false;     
+        }
     }
     
     public void AttachRope(GameObject junkConnectionPoint, float ropeConnectionDistance)
@@ -50,7 +55,6 @@ public class JunkObjectData : MonoBehaviour
             
             //Render connection            
             ropeRenderer.enabled = true;
-
         }
     }
     

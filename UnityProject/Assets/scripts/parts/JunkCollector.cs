@@ -29,7 +29,7 @@ public class JunkCollector : MonoBehaviour
                         if(junkData.collectTimer++ >= collectionTick)
                         {
                             gameController.AddPoints(junkData.pointValue);
-                            Destroy(gameObject);
+                            gameController.DestroyJunk(gameObject);
                         }
                     }
                 }

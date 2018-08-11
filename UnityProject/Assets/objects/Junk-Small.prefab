@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1438971585180728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.081, y: 2.166, z: 0}
+  m_LocalPosition: {x: -1855.919, y: 2.166, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4227568856073232}
@@ -133,10 +133,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
+  pointValue: 1
   collected: 0
   joint: {fileID: 0}
   ropeRenderer: {fileID: 0}
   ropeConnectionPoint: {fileID: 0}
+  collectTimer: 0
 --- !u!114 &114266201478601458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,7 +171,7 @@ LineRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1438971585180728}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -307,7 +309,7 @@ SpringJoint2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1438971585180728}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 0}
@@ -317,6 +319,6 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 2.4207678
+  m_Distance: 1855.9203
   m_DampingRatio: 0.1
   m_Frequency: 1
