@@ -34,7 +34,9 @@ public class GameController : MonoBehaviour
     public float respawnDelay = 10f;
     
     //Internal timer for respawn
-    private float respawnTimer = 0f;
+    public float respawnTimer = 0f;   
+    
+    public bool gameOver = false;
     
     void Update ()
     {

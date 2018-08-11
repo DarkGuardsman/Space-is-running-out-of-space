@@ -7,8 +7,7 @@ public class InsideWorld : MonoBehaviour
     public GameController gameController;
     public float outOfWorldDelay = 5f;
     
-    public bool isPlayerInside = true;   
-   
+    public bool isPlayerInside = true; 
     
     private float outOfWorldTimer;
     
@@ -20,7 +19,7 @@ public class InsideWorld : MonoBehaviour
     void Update()
     {
         //TODO show danger UI
-        if(!isPlayerInside)
+        if(!isPlayerInside && gameController.currentPlayerObject != null)
         {
             outOfWorldTimer += Time.deltaTime;
             
@@ -33,12 +32,18 @@ public class InsideWorld : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D col)
     {
-        isPlayerInside = true;
-        outOfWorldTimer = 0;
+        if(col.gameObject == gameController.currentPlayerObject)
+        {
+            isPlayerInside = true;
+            outOfWorldTimer = 0;
+        }
     }
     
     void OnTriggerExit2D(Collider2D col)
     {
-        isPlayerInside = false;
+        if(col.gameObject == gameController.currentPlayerObject)
+        {
+            isPlayerInside = false;
+        }
     }
 }
