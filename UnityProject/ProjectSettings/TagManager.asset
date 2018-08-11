@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Bullet
+  - Player
+  - Junk
   - 
   - 
   - 
@@ -41,11 +41,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 244740435
+    locked: 0
   - name: Entity
     uniqueID: 2395847283
     locked: 0
-  - name: Background
-    uniqueID: 244740435
+  - name: Bullet
+    uniqueID: 2941077369
     locked: 0
   - name: Foreground
     uniqueID: 3022556059

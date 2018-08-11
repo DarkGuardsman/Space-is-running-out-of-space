@@ -5,7 +5,11 @@ using UnityEngine;
 public class GameController : MonoBehaviour 
 {
     public GameObject currentPlayerObject;
+    public List<GameObject> junkSpawnedList;
+    
     public int points;
+    
+    public int lives;
     
     public void AddPoints(int p)
     {

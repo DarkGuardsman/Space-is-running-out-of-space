@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour 
 {	
     public float movePower = 10f;
+    public float breakingPower = 0.98f;
     
     private Rigidbody2D rigidBody2D; 
     
@@ -26,5 +27,10 @@ public class PlayerMovement : MonoBehaviour
 
         //Apply force with scale
         rigidBody2D.AddForce (movement * movePower * Time.deltaTime);
+        
+        if(Input.GetButton("Breaks"))
+        {
+            rigidBody2D.velocity = rigidBody2D.velocity * breakingPower;
+        }
     }
 }
