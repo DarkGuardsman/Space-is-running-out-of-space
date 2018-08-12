@@ -12,12 +12,22 @@ public class UIMenu : UIDisplay
     public GameObject confirmExitPanel;
     
     public GameObject playButton;
+    public GameObject restartButton;
     public GameObject resumeButton;
+    public GameObject worldObject;
     
     void Awake ()
     {
         ButtonReturnMain();
         canvus = gameObject.GetComponent<Canvas>();
+    }
+    
+    public override void Start()
+    {
+        base.Start();
+        worldObject.SetActive(false);
+        restartButton.SetActive(false);
+        resumeButton.SetActive(false);
     }
     
     IEnumerator WatchForMenuCancel()
@@ -35,7 +45,9 @@ public class UIMenu : UIDisplay
     public void ButtonPlayGame()
     {
         playButton.SetActive(false);
+        restartButton.SetActive(true);
         resumeButton.SetActive(true);
+        worldObject.SetActive(true);
         uiSwitcher.ButtonResumeGame();
     }
     
