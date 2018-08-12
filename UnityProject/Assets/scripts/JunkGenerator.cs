@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JunkGenerator : MonoBehaviour 
 {
-    public GameObject smallJunkPrefab;
+    public GameObject[] junkPrefabs;
     
     public int maxJunkCount = 100;
     public float spawnDelay = 1f;
@@ -43,7 +43,7 @@ public class JunkGenerator : MonoBehaviour
         float x = Random.Range(-size, size);
         float y = Random.Range(-size, size);
         
-        gameController.SpawnJunk(smallJunkPrefab, x, y);
+        gameController.SpawnJunk(junkPrefabs[(int)Random.Range(0, junkPrefabs.Length - 1)], x, y);
         //TODO select size random
         //TODO set into motion
     }

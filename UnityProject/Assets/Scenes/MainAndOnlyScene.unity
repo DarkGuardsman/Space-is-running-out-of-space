@@ -1795,7 +1795,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 244740435
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: a1892e0ed2ee3094ea46df83a68cc3d5, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.32156864}
   m_FlipX: 0
@@ -7448,8 +7448,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814289952135d4d9ecdefad57358f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallJunkPrefab: {fileID: 1438971585180728, guid: d639674604e4406448ef3d2c19291ba7,
-    type: 2}
+  junkPrefabs:
+  - {fileID: 1438971585180728, guid: d639674604e4406448ef3d2c19291ba7, type: 2}
+  - {fileID: 1725575353989728, guid: 0c3ac22aed4e9a54a900beb368e453b4, type: 2}
+  - {fileID: 1741963030970624, guid: 40d1467075dc5844cab9279bf5de9ac9, type: 2}
+  - {fileID: 1759887656756680, guid: 98c1284ca6e9f5b4883c6f18edc436d6, type: 2}
+  - {fileID: 1771068380592316, guid: 6b4e48b655e8629448a2de7cab6572e0, type: 2}
+  - {fileID: 1049586009139278, guid: 0360dde8b26971041aa999e47b60fe5d, type: 2}
+  - {fileID: 1064173138574024, guid: faa94ba6a8047db42ada54976b0243e7, type: 2}
   maxJunkCount: 100
   spawnDelay: 1
   size: 400
