@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIMenu : UIDisplay 
 {
 	public UISwitcher uiSwitcher;
+    public Canvas canvus;
     
     public GameObject mainUIPanel;
     public GameObject confirmRestartPanel;
@@ -13,13 +14,18 @@ public class UIMenu : UIDisplay
     void Awake ()
     {
         ButtonReturnMain();
+        canvus = gameObject.GetComponent<Canvas>();
     }
     
-    void Update ()
+    IEnumerator WatchForMenuCancel()
     {
-        if(Input.GetButtonDown("Cancel"))
+        while(!mainUIPanel.active)
         {
-            ButtonReturnMain();
+            if(Input.GetButtonDown("Cancel"))
+            {
+                ButtonReturnMain();
+            }
+            yield return null;
         }
     }
     
@@ -36,15 +42,15 @@ public class UIMenu : UIDisplay
     public void ButtonRestart()
     {
         mainUIPanel.SetActive(false);
-        confirmRestartPanel.SetActive(true);        
-        uiSwitcher.disableEscape = true;
+        confirmRestartPanel.SetActive(true); 
+        StartCoroutine(WatchForMenuCancel());
     }
     
     public void ButtonExit()
     {
         mainUIPanel.SetActive(false);
-        confirmExitPanel.SetActive(true);        
-        uiSwitcher.disableEscape = true;
+        confirmExitPanel.SetActive(true);
+        StartCoroutine(WatchForMenuCancel());
     }
     
     public void ButtonConfirmExit()
@@ -62,6 +68,5 @@ public class UIMenu : UIDisplay
         mainUIPanel.SetActive(true);
         confirmRestartPanel.SetActive(false);
         confirmExitPanel.SetActive(false);
-        uiSwitcher.disableEscape = false;
     }
 }

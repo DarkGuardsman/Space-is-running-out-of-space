@@ -2149,6 +2149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
   uiSwitcher: {fileID: 1917603268}
+  canvus: {fileID: 0}
   mainUIPanel: {fileID: 1385747860}
   confirmRestartPanel: {fileID: 1876769915}
   confirmExitPanel: {fileID: 1300215516}
@@ -3739,6 +3740,7 @@ MonoBehaviour:
   respawnDelay: 5
   respawnTimer: 3
   gameOver: 0
+  gameTimeScale: 1
 --- !u!1 &1876769915
 GameObject:
   m_ObjectHideFlags: 0
@@ -3856,7 +3858,7 @@ MonoBehaviour:
   gameController: {fileID: 0}
   gameUI: {fileID: 609778398}
   respawnUI: {fileID: 2118224071}
-  menuUI: {fileID: 909275307}
+  menuUI: {fileID: 909275304}
   optionsUI: {fileID: 0}
   helpUI: {fileID: 0}
   failedUI: {fileID: 0}

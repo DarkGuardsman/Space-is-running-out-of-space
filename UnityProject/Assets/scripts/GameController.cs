@@ -50,6 +50,8 @@ public class GameController : MonoBehaviour
     
     public bool gameOver = false;
     
+    public float gameTimeScale = 1;
+    
     void Start ()
     {
         foreach (GameObject dropLocation in dropOffLocations)

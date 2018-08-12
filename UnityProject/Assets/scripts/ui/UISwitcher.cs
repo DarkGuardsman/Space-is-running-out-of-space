@@ -6,7 +6,7 @@ public class UISwitcher : UIDisplay
 {	
     public Canvas gameUI;
     public Canvas respawnUI;
-    public Canvas menuUI;
+    public UIMenu menuUI;
     public Canvas optionsUI;
     public Canvas helpUI;
     public Canvas failedUI;
@@ -14,55 +14,50 @@ public class UISwitcher : UIDisplay
     public bool showMenu = false;    
     public bool showInfo = false;
     public bool showOptions = false;
-    public bool disableEscape = false;
     
-    private float currentTimeScale;
-    
-	// Update is called once per frame
+    // Update is called once per frame
 	void Update () 
     {
-        //disable all UIs
-        gameUI.enabled = false;
-        respawnUI.enabled = false;
-        menuUI.enabled = false;
-        //optionsUI.enabled = false;
-        //helpUI.enabled = false;
-        //failedUI.enabled = false;
-        
-        currentTimeScale = Time.timeScale;
-        Time.timeScale = 0;
-        
-        if(!disableEscape && Input.GetButtonDown("Cancel"))
+        if(menuUI.mainUIPanel.active && Input.GetButtonDown("Cancel"))
         {
             showMenu = !showMenu;
         }
         
+        //disable all UIs
+        gameUI.enabled = false;
+        respawnUI.enabled = false;
+        menuUI.canvus.enabled = false;
+        //optionsUI.enabled = false;
+        //helpUI.enabled = false;
+        //failedUI.enabled = false;
+        
         //enable desired UI
 		if(showMenu)
         {
-            menuUI.enabled = true;
+            menuUI.canvus.enabled = true;
+            Time.timeScale = 0;
         }
         else if(showOptions)
         {
-            
+            Time.timeScale = 0;
         }
         else if(showInfo)
         {
-            
+            Time.timeScale = 0;
         }
         else if(gameController.gameOver)
         {
-            
+            Time.timeScale = 0;
         }
         else if(gameController.respawnPlayer)
         {
             respawnUI.enabled = true;
-            Time.timeScale = currentTimeScale;
+            Time.timeScale = gameController.gameTimeScale;
         }
         else
         {
             gameUI.enabled = true;
-            Time.timeScale = currentTimeScale;
+            Time.timeScale = gameController.gameTimeScale;
         }
 	}
     
