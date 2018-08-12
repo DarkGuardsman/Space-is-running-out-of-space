@@ -10,5 +10,5 @@ public class UIDisplay : MonoBehaviour {
 	void Start () 
     {
 		gameController = FindObjectOfType<GameController>();
-	}
+	} 
 }

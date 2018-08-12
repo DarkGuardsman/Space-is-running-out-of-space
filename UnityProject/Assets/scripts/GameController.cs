@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Cinemachine;
 
 //Handles game logic
@@ -150,5 +151,10 @@ public class GameController : MonoBehaviour
         //Set location and rotation
         currentPlayerObject.transform.position = respawnPoint.position;
         currentPlayerObject.transform.rotation = respawnPoint.rotation;
+    }
+    
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene ().name);
     }
 }

@@ -12,8 +12,11 @@ public class UISwitcher : UIDisplay
     public Canvas failedUI;
     
     public bool showMenu = false;    
-    public bool showHelp = false;
+    public bool showInfo = false;
     public bool showOptions = false;
+    public bool disableEscape = false;
+    
+    private float currentTimeScale;
     
 	// Update is called once per frame
 	void Update () 
@@ -21,21 +24,29 @@ public class UISwitcher : UIDisplay
         //disable all UIs
         gameUI.enabled = false;
         respawnUI.enabled = false;
-        //menuUI.enabled = false;
+        menuUI.enabled = false;
         //optionsUI.enabled = false;
         //helpUI.enabled = false;
         //failedUI.enabled = false;
         
+        currentTimeScale = Time.timeScale;
+        Time.timeScale = 0;
+        
+        if(!disableEscape && Input.GetButtonDown("Cancel"))
+        {
+            showMenu = !showMenu;
+        }
+        
         //enable desired UI
 		if(showMenu)
         {
-            
+            menuUI.enabled = true;
         }
         else if(showOptions)
         {
             
         }
-        else if(showHelp)
+        else if(showInfo)
         {
             
         }
@@ -46,25 +57,17 @@ public class UISwitcher : UIDisplay
         else if(gameController.respawnPlayer)
         {
             respawnUI.enabled = true;
+            Time.timeScale = currentTimeScale;
         }
         else
         {
             gameUI.enabled = true;
+            Time.timeScale = currentTimeScale;
         }
 	}
     
-    public void ShowMenu()
+    public void ButtonShowMenu()
     {
         showMenu = true;
-    }
-    
-    public void ShowHelp()
-    {
-        showHelp = true;
-    }
-    
-    public void ShowOptions()
-    {
-        showOptions = true;
     }
 }
