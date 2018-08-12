@@ -9,9 +9,7 @@ public class ArrowObjective : UIDisplay
     public SpriteRenderer spriteRenderer;
     
     public float circleSize = 0.5f;
-    public float minScale = 0.3f;
     public float scaleGrowth = 1f;
-    public float maxScale = 1f;
 	
 	// Update is called once per frame
 	void Update () 
@@ -70,7 +68,7 @@ public class ArrowObjective : UIDisplay
             transform.localPosition = pos;
             
             //Scale based on distance
-            float scale = minScale + (maxScale - Mathf.Min(distance * scaleGrowth, maxScale));
+            float scale = playerOptions.arrowMinScale + (playerOptions.arrowMaxScale - Mathf.Min(distance * scaleGrowth, playerOptions.arrowMaxScale));
             transform.localScale = new Vector3( scale, scale, 1);
         }
 	}

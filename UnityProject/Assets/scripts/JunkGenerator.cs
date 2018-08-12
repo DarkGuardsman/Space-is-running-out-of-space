@@ -6,12 +6,12 @@ public class JunkGenerator : MonoBehaviour
 {
     public GameObject[] junkPrefabs;
     
-    public int maxJunkCount = 100;
     public float spawnDelay = 1f;
     
     public float size = 20f;
     
 	private GameController gameController;
+    private PlayerOptions playerOptions;
     
     private float spawnTimer;
     
@@ -19,12 +19,13 @@ public class JunkGenerator : MonoBehaviour
 	void Start () 
     {
 		gameController = FindObjectOfType<GameController>();
+        playerOptions = FindObjectOfType<PlayerOptions>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        if(gameController.junkSpawnedList.Count <= maxJunkCount)
+        if(gameController.junkSpawnedList.Count < playerOptions.maxJunkSpawn)
         {
             if(spawnTimer <= 0)
             {
