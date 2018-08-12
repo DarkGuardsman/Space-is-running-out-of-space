@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 120099242832977002}
   - component: {fileID: 231637159860270074}
   - component: {fileID: 68157112165080718}
+  - component: {fileID: 114353820632636960}
   m_Layer: 10
   m_Name: Junk-Small (3)
   m_TagString: Untagged
@@ -161,6 +162,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!114 &114353820632636960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759887656756680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fefca3495182f1648a89e16dcd99594e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedLimit: {x: 8, y: 8}
 --- !u!114 &114616898439095008
 MonoBehaviour:
   m_ObjectHideFlags: 1

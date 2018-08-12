@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 120679967796791502}
   - component: {fileID: 231244965560082022}
   - component: {fileID: 68045809149943578}
+  - component: {fileID: 114949856637136458}
   m_Layer: 10
   m_Name: Junk-Small
   m_TagString: Untagged
@@ -171,6 +172,18 @@ MonoBehaviour:
   health: -1
   maxHealth: 10
   dead: 0
+--- !u!114 &114949856637136458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438971585180728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fefca3495182f1648a89e16dcd99594e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedLimit: {x: 8, y: 8}
 --- !u!120 &120679967796791502
 LineRenderer:
   m_ObjectHideFlags: 1
