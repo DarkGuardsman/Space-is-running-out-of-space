@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
     }
     
     void Update ()
-    {
+    {        
         if(respawnPlayer)
         {
             if(respawnTimer >= respawnDelay)
@@ -72,6 +72,10 @@ public class GameController : MonoBehaviour
             {
                 respawnTimer += Time.deltaTime;
             }
+        }
+        else if(currentPlayerObject == null)
+        {
+            respawnPlayer = true;
         }
     }
     
@@ -123,14 +127,14 @@ public class GameController : MonoBehaviour
     public void KillPlayer()
     {
         Destroy(currentPlayerObject);
+        currentPlayerObject = null;
         OnPlayerDeath();
     }
     
     public void OnPlayerDeath()
     {
         lives--;
-        //TODO show death UI
-        //TODO count down to respawn
+        respawnPlayer = true;
     }
     
     public void SpawnPlayer()

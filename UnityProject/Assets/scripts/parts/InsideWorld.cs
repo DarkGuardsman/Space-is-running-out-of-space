@@ -26,6 +26,7 @@ public class InsideWorld : MonoBehaviour
             if(outOfWorldTimer >= outOfWorldDelay)
             {
                 gameController.KillPlayer();
+                outOfWorldTimer = -2;
             }
         }
     }
