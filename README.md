@@ -1,3 +1,10 @@
+# Links
+
+LDJAM 42 Page: https://ldjam.com/events/ludum-dare/42/$109142
+
+Dare Info: https://ldjam.com/events/ludum-dare/42/placeholder/ludum-dare-42s-theme-running-out-of-space
+
+
 # Hook
 
 Space is running out of space.
