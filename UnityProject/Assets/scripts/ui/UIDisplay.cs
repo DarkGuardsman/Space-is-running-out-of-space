@@ -7,7 +7,7 @@ public class UIDisplay : MonoBehaviour {
 	public GameController gameController;
     
 	// Use this for initialization
-	void Start () 
+	public virtual void Start () 
     {
 		gameController = FindObjectOfType<GameController>();
 	} 

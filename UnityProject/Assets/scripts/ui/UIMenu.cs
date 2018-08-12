@@ -11,6 +11,9 @@ public class UIMenu : UIDisplay
     public GameObject confirmRestartPanel;
     public GameObject confirmExitPanel;
     
+    public GameObject playButton;
+    public GameObject resumeButton;
+    
     void Awake ()
     {
         ButtonReturnMain();
@@ -27,6 +30,13 @@ public class UIMenu : UIDisplay
             }
             yield return null;
         }
+    }    
+    
+    public void ButtonPlayGame()
+    {
+        playButton.SetActive(false);
+        resumeButton.SetActive(true);
+        uiSwitcher.ButtonResumeGame();
     }
     
     public void ButtonShowInfo()
