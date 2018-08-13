@@ -4,25 +4,47 @@ using UnityEngine;
 
 public class CollisionDamage : MonoBehaviour 
 {    
-    public float damage = 1; 
+    public float minDamage = 1f;
+    public float maxDamage = 5f;
     
-    void OnCollisionEnter2D(Collision2D col)
+    public float collisionMinSpeed = 1f;
+    public float collisionMaxSpeed = 10f;
+    
+    void OnCollisionEnter2D(Collision2D collision)
     {   
-        DamageData damageData = col.gameObject.GetComponent<DamageData>();
+        //Ignore low speed impacts
+        float collisionSpeed = collision.relativeVelocity.magnitude;
+        
+        //Only harm if we hit a damage entity
+        DamageData damageData = collision.gameObject.GetComponent<DamageData>();
         if (damageData != null) 
         {
-            onHit(damageData);
-        }            
-        onHit(col.gameObject);
+            //Trigger damage impact
+            onHit(damageData, collisionSpeed);
+        }  
+
+        //Trigger normal impact
+        onHit(collision.gameObject, collisionSpeed);
     }
     
-    protected virtual void onHit(GameObject gameObject)
+    protected virtual void onHit(GameObject gameObject, float collisionSpeed)
     {
         
     }
     
-    protected virtual void onHit(DamageData damageData)
+    protected virtual void onHit(DamageData damageData, float collisionSpeed)
     {
-         damageData.Attack(damage, gameObject);
+        collisionSpeed = Mathf.Abs(collisionSpeed);
+        if(collisionSpeed > collisionMinSpeed)
+        {            
+            //Attack entity
+            damageData.Attack(ScaleDamageForSpeed(collisionSpeed), gameObject);
+        }
+    }
+    
+    //Scale damage to speed
+    protected float ScaleDamageForSpeed(float collisionSpeed)
+    {
+        return minDamage + ((collisionSpeed / collisionMaxSpeed) * (maxDamage - minDamage));
     }
 }
