@@ -10385,7 +10385,7 @@ MonoBehaviour:
   arrowMaxScale: 1
   cameraZoom: 8
   zoomSpeed: 0.1
-  maxJunkSpawn: 100
+  maxJunkSpawn: 1000
   enableEffects: 1
   enableShipTrail: 1
   enableBulletTrail: 1
