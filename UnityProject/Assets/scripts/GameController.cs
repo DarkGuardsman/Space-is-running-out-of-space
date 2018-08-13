@@ -85,13 +85,32 @@ public class GameController : MonoBehaviour
         GameObject junkObject = (GameObject)Instantiate(prefab);
         
         //Set position
-        junkObject.transform.position = centerOfWorld.position + new Vector3(x, y, 0);
+        junkObject.transform.position = ToGamePosition(x, y);
         
         //Track
         junkSpawnedList.Add(junkObject);
         
         //Generator arrow
-        GenerateArrow(junkObject, arrowPrefabJunk);
+        GenerateArrow(junkObject, arrowPrefabJunk);        
+        
+        //TODO scale random
+        //TODO color random
+        //TODO set into motion with random direction and rotation
+        //TODO set to destroy or bounce if goes out of map
+    }
+    
+    public Vector3 ToGamePosition(float x, float y)
+    {
+        return centerOfWorld.position + new Vector3(x, y, 0);
+    }
+    
+    public bool IsInView(float x, float y)
+    {
+        //Convert target position to camera space
+        Vector3 pos = Camera.main.WorldToViewportPoint(ToGamePosition(x, y));
+        
+        //Check if visible
+        return pos.x >= 0.0f && pos.x <= 1.0f && pos.y >= 0.0f && pos.y <= 1.0f;
     }
     
     public void GenerateArrow(GameObject gameObject, GameObject arrowPrefab)
