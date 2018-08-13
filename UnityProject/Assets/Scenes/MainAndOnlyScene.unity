@@ -900,6 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   text: {fileID: 139866961}
 --- !u!1 &151610919
 GameObject:
@@ -1871,6 +1872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   text: {fileID: 350904322}
 --- !u!1 &403766750
 GameObject:
@@ -3417,6 +3419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   text: {fileID: 677581846}
 --- !u!114 &677581846
 MonoBehaviour:
@@ -3862,8 +3865,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 515}
-  m_SizeDelta: {x: 800, y: 80}
+  m_AnchoredPosition: {x: 0, y: 532}
+  m_SizeDelta: {x: 900, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &771422111
 MonoBehaviour:
@@ -3897,8 +3900,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Controls and resolutions settings can be found on the start up dialog that
-    runs before the game launches. '
+  m_Text: Keybinds, controls, and resolutions settings can be found on the launcher
+    dialog that runs before the game. In the future this will be included in the game.
 --- !u!222 &771422112
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4506,6 +4509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   uiSwitcher: {fileID: 1917603268}
   canvus: {fileID: 0}
   mainUIPanel: {fileID: 1385747860}
@@ -5618,6 +5622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   minArrowSizeSlider: {fileID: 336477921}
   maxArrowSizeSlider: {fileID: 77598391}
   maxJunkCountSlider: {fileID: 740806103}
@@ -8065,6 +8070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   text: {fileID: 1738554724}
 --- !u!1 &1764115242
 GameObject:
@@ -9110,6 +9116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   gameUI: {fileID: 609778398}
   respawnUI: {fileID: 2118224071}
   menuUI: {fileID: 909275304}
@@ -9293,6 +9300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   text: {fileID: 1951666170}
 --- !u!1 &1977728798
 GameObject:
@@ -9660,6 +9668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   text: {fileID: 1992600983}
 --- !u!1 &2011555217
 GameObject:
@@ -9753,7 +9762,6 @@ MonoBehaviour:
   - {fileID: 1771068380592316, guid: 6b4e48b655e8629448a2de7cab6572e0, type: 2}
   - {fileID: 1049586009139278, guid: 0360dde8b26971041aa999e47b60fe5d, type: 2}
   - {fileID: 1064173138574024, guid: faa94ba6a8047db42ada54976b0243e7, type: 2}
-  maxJunkCount: 100
   spawnDelay: 1
   size: 400
 --- !u!1 &2018920479
@@ -10044,6 +10052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   respawnTimerText: {fileID: 2145774804}
 --- !u!1 &2121511886
 GameObject:
