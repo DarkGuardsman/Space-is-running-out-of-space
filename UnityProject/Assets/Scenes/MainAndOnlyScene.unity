@@ -1179,7 +1179,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'GOAL: clear space by collecting scrap'
+  m_Text: 'GOAL: clear space by collecting junk with your drone'
 --- !u!222 &163951039
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5557,7 +5557,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: '"Fire 2" to collect junk
 
-    by attaching to ship'
+    by attaching to drone'
 --- !u!222 &1116015391
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8388,11 +8388,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'WASD or Arrows to move
+  m_Text: 'WASD/Arrows keys to move
 
     mouse to aim
 
-    space bar to slow'
+    space bar to slow
+
+    scroll wheel to change zoom'
 --- !u!222 &1766048733
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9562,7 +9564,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Icon in front of ship \nwill light up when in range"
+  m_Text: "Icon in front of drone \nwill display when in range"
 --- !u!222 &1977728801
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10219,7 +10221,7 @@ Canvas:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2118224067}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
