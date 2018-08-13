@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114574144274994562}
   - component: {fileID: 114422647095177078}
   - component: {fileID: 114293391830277810}
+  - component: {fileID: 114094267328805130}
   m_Layer: 10
   m_Name: Junk-Small (6)
   m_TagString: Untagged
@@ -142,6 +143,18 @@ MonoBehaviour:
   ropeRenderer: {fileID: 0}
   ropeConnectionPoint: {fileID: 0}
   collectTimer: 0
+--- !u!114 &114094267328805130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064173138574024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a51f991ce936643a0b9981c3ba5d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 0.2
 --- !u!114 &114126026641708026
 MonoBehaviour:
   m_ObjectHideFlags: 1

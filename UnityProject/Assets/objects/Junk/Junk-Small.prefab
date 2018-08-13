@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114949856637136458}
   - component: {fileID: 61690698801983136}
   - component: {fileID: 114850905215623514}
+  - component: {fileID: 114509883576646084}
   m_Layer: 10
   m_Name: Junk-Small
   m_TagString: Untagged
@@ -156,6 +157,18 @@ MonoBehaviour:
   maxDamage: 5
   collisionMinSpeed: 1
   collisionMaxSpeed: 10
+--- !u!114 &114509883576646084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438971585180728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a51f991ce936643a0b9981c3ba5d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 0.2
 --- !u!114 &114698277654335182
 MonoBehaviour:
   m_ObjectHideFlags: 1

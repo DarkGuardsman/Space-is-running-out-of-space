@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114107949487847148}
   - component: {fileID: 61029048209926282}
   - component: {fileID: 114031880329447300}
+  - component: {fileID: 114654550355176306}
   m_Layer: 10
   m_Name: Junk-Small (3)
   m_TagString: Untagged
@@ -211,6 +212,18 @@ MonoBehaviour:
   destroyOnDeath: 1
   prefabToSpawnOnDeath: {fileID: 1457989415167500, guid: 4dd126d07eef47243b3d5a4042ca09d3,
     type: 2}
+--- !u!114 &114654550355176306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759887656756680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a51f991ce936643a0b9981c3ba5d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 0.2
 --- !u!120 &120099242832977002
 LineRenderer:
   m_ObjectHideFlags: 1
