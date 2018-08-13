@@ -18,3 +18,10 @@ For those that live in the orbital junk fields, we call it home. A place that ex
 # Game
 
 "Space is running out of space" is a 2D top-down arcade game. The player pilots a drone to clear and collect junk in the orbital fields. The goal is to collect as much junk as possible. While at the same time prevent it from building up to crush nearby stations. 
+
+# Credits
+
+* LemADEC for providing excellent feedback and suggestions
+* Graugger for play testing and encouraging development
+* Poke for sparking the idea to make this game
+* My brother for providing a negative but important criticism base line
