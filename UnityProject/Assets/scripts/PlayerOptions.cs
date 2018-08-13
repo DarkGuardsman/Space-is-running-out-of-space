@@ -53,8 +53,8 @@ public class PlayerOptions : MonoBehaviour
         }
         if(PlayerPrefs.HasKey("cameraZoom"))
         {
-            cameraZoom = PlayerPrefs.GetFloat("cameraZoom");
-            Debug.Log("PlayerOptions: Camera Zoom -> " + maxJunkSpawn);
+            //cameraZoom = PlayerPrefs.GetFloat("cameraZoom");
+            //Debug.Log("PlayerOptions: Camera Zoom -> " + maxJunkSpawn);
         }
         
         enableEffects = GetBool("enableEffects", enableEffects);
@@ -68,7 +68,7 @@ public class PlayerOptions : MonoBehaviour
         PlayerPrefs.SetFloat("arrowMinScale", arrowMinScale);
         PlayerPrefs.SetFloat("arrowMaxScale", arrowMaxScale);
         PlayerPrefs.SetInt("maxJunkSpawn", maxJunkSpawn);
-        PlayerPrefs.SetFloat("cameraZoom", cameraZoom);
+        //PlayerPrefs.SetFloat("cameraZoom", cameraZoom);
         
         SetBool("enableEffects", enableEffects);
         SetBool("enableShipTrail", enableShipTrail);
