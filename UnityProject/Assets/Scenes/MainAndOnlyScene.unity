@@ -6979,7 +6979,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Limit of 10 ropes
+  m_Text: Limit of 10 beams
 --- !u!222 &1490324103
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8925,6 +8925,7 @@ GameObject:
   - component: {fileID: 1857346945}
   - component: {fileID: 1857346946}
   - component: {fileID: 1857346947}
+  - component: {fileID: 1857346948}
   m_Layer: 0
   m_Name: GameDataStuff
   m_TagString: Untagged
@@ -8994,7 +8995,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowMinScale: 0.3
   arrowMaxScale: 1
+  cameraZoom: 8
   maxJunkSpawn: 100
+--- !u!114 &1857346948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1857346944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be82b0b4de2e2bb4f873877bbf03eeb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minZoom: 5
+  maxZoom: 20
 --- !u!1 &1876769915
 GameObject:
   m_ObjectHideFlags: 0
