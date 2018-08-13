@@ -5,18 +5,24 @@ using UnityEngine;
 public class EnableCollectionSprite : MonoBehaviour 
 {
     public CollectionArea pickupArea;
-    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer[] spriteRenderers;
 	
 	// Update is called once per frame
 	void Update () 
     {
 		if(pickupArea.objectsInArea.Count > 0)
         {
-            spriteRenderer.enabled = true; 
+            foreach(SpriteRenderer spriteRenderer in spriteRenderers)
+            {
+                spriteRenderer.enabled = true; 
+            }
         }
         else
         {
-            spriteRenderer.enabled = false; 
+            foreach(SpriteRenderer spriteRenderer in spriteRenderers)
+            {
+                spriteRenderer.enabled = false; 
+            }
         }
 	}
 }
