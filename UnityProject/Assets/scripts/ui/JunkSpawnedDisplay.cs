@@ -13,7 +13,7 @@ public class JunkSpawnedDisplay : UIDisplay
     {
         if(gameController.junkSpawnedList != null)
         {
-            text.text = String.Format("Objects: {0:0}", gameController.junkSpawnedList.Count);
+            text.text = String.Format("Scrap in Area: {0:0}", gameController.junkSpawnedList.Count);
         }		
 	}
 }

@@ -113,8 +113,13 @@ public class GameController : MonoBehaviour
     
     public bool IsInView(float x, float y)
     {
+        return IsInView(ToGamePosition(x, y));
+    }
+    
+    public bool IsInView(Vector3 position)
+    {
         //Convert target position to camera space
-        Vector3 pos = Camera.main.WorldToViewportPoint(ToGamePosition(x, y));
+        Vector3 pos = Camera.main.WorldToViewportPoint(position);
         
         //Check if visible
         return pos.x >= 0.0f && pos.x <= 1.0f && pos.y >= 0.0f && pos.y <= 1.0f;

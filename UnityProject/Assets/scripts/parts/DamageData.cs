@@ -47,7 +47,11 @@ public class DamageData : MonoBehaviour
     
     protected virtual void OnDeath()
     {
-        if(prefabToSpawnOnDeath != null)
+        if(prefabToSpawnOnDeath != null 
+        //Do not spawn if effects are off
+        && FindObjectOfType<PlayerOptions>().enableEffects 
+        //Do not spawn if not in camera view
+        && FindObjectOfType<GameController>().IsInView(transform.position))
         {
             Instantiate(prefabToSpawnOnDeath, transform.position, transform.rotation);
         }

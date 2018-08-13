@@ -29,11 +29,17 @@ public class CollisionDamage : MonoBehaviour
         onHit(collision.gameObject, collisionSpeed);
         
         //Spawn effects for collision
-        if(collisionSpawnPrefab != null)
+        if(collisionSpawnPrefab != null && FindObjectOfType<PlayerOptions>().enableEffects)
         {
             foreach (ContactPoint2D hit in collision.contacts)
             {
-                Instantiate(collisionSpawnPrefab, new Vector3(hit.point.x, hit.point.y, 0), Quaternion.identity); //TODO see if we can get a rotation vector
+                Vector3 point = new Vector3(hit.point.x, hit.point.y, 0);
+                
+                //Only spawn if the player will see it
+                if(FindObjectOfType<GameController>().IsInView(point))
+                {
+                    Instantiate(collisionSpawnPrefab, point, Quaternion.identity); //TODO see if we can get a rotation vector
+                }
             }
         }
     }

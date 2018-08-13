@@ -14,6 +14,10 @@ public class UIOptions : UIDisplay
     public InputField maxArrowSizeInput;
     public InputField maxJunkCountInput;  
     
+    public Toggle enableEffectsToggle;
+    public Toggle enableDroneTrailToggle;
+    public Toggle enableBulletTrailToggle;
+    
     public float minAllowArrowMaxSize = 1f;
     public float maxAllowedArrowMaxSize = 3f;
     
@@ -22,6 +26,14 @@ public class UIOptions : UIDisplay
     
     public int minJunkSpawn = 20;
     public int maxJunkSpawn = 1000;
+    
+    public override void Start()
+    {
+        base.Start();
+        enableEffectsToggle.isOn = playerOptions.enableEffects;
+        enableDroneTrailToggle.isOn = playerOptions.enableShipTrail;
+        enableBulletTrailToggle.isOn = playerOptions.enableBulletTrail;       
+    }
     
     void FixedUpdate()
     {
@@ -35,6 +47,11 @@ public class UIOptions : UIDisplay
         playerOptions.arrowMinScale = float.Parse(minArrowSizeInput.text);
         playerOptions.arrowMaxScale = float.Parse(maxArrowSizeInput.text);
         playerOptions.maxJunkSpawn = int.Parse(maxJunkCountInput.text);
+        
+        playerOptions.enableEffects = enableEffectsToggle.isOn;
+        playerOptions.enableShipTrail = enableDroneTrailToggle.isOn;
+        playerOptions.enableBulletTrail = enableBulletTrailToggle.isOn;        
+        
         playerOptions.SaveOptions();
     }
     

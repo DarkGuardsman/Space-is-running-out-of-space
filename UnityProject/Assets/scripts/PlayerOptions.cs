@@ -5,11 +5,16 @@ using Cinemachine;
 
 public class PlayerOptions : MonoBehaviour 
 {
-	public float arrowMinScale;
-    public float arrowMaxScale;
+	public float arrowMinScale = 0.3f;
+    public float arrowMaxScale = 3f;
+    
     public float cameraZoom = 8f;
     public float zoomSpeed = 0.1f;
-    public int maxJunkSpawn;
+    public int maxJunkSpawn = 1000;
+    
+    public bool enableEffects = true;
+    public bool enableShipTrail = true;
+    public bool enableBulletTrail = true;
     
     private GameController gameController;
     private CinemachineVirtualCamera cinemachineCamera;
@@ -51,6 +56,10 @@ public class PlayerOptions : MonoBehaviour
             cameraZoom = PlayerPrefs.GetFloat("cameraZoom");
             Debug.Log("PlayerOptions: Camera Zoom -> " + maxJunkSpawn);
         }
+        
+        enableEffects = GetBool("enableEffects", enableEffects);
+        enableShipTrail = GetBool("enableShipTrail", enableShipTrail);
+        enableBulletTrail = GetBool("enableBulletTrail", enableBulletTrail);
 	}	
 	
 	public void SaveOptions () 
@@ -61,6 +70,10 @@ public class PlayerOptions : MonoBehaviour
         PlayerPrefs.SetInt("maxJunkSpawn", maxJunkSpawn);
         PlayerPrefs.SetFloat("cameraZoom", cameraZoom);
         
+        SetBool("enableEffects", enableEffects);
+        SetBool("enableShipTrail", enableShipTrail);
+        SetBool("enableBulletTrail", enableBulletTrail);
+        
         //Update options, needed for option menu save button
         ApplyOptions();
 	}
@@ -69,5 +82,19 @@ public class PlayerOptions : MonoBehaviour
     {
         //Update settings
         cinemachineCamera.m_Lens.OrthographicSize = cameraZoom;
+    }
+    
+    bool GetBool(string key, bool defaultValue)
+    {
+        if(PlayerPrefs.HasKey(key))
+        {
+            return PlayerPrefs.GetInt(key) == 1 ? true : false;
+        }
+        return defaultValue;
+    }
+    
+    void SetBool(string key, bool value)
+    {
+        PlayerPrefs.SetInt(key, value ? 1 : 0);
     }
 }

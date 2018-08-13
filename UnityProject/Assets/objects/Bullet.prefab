@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4879149837279112}
   - component: {fileID: 212049854612349270}
   - component: {fileID: 96911258357506172}
+  - component: {fileID: 114014290687008274}
   m_Layer: 8
   m_Name: New Sprite
   m_TagString: Untagged
@@ -209,6 +210,19 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 1
   m_Emitting: 1
+--- !u!114 &114014290687008274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1604457413857438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ebca6e712dcdc46ab2cb07497e9890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOptions: {fileID: 0}
+  trailRenderer: {fileID: 96911258357506172}
 --- !u!114 &114171736447271814
 MonoBehaviour:
   m_ObjectHideFlags: 1

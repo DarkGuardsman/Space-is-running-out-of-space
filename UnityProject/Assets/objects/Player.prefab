@@ -124,6 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4008450296586202}
   - component: {fileID: 96362608549492280}
+  - component: {fileID: 114578348098193406}
   m_Layer: 9
   m_Name: Trail
   m_TagString: Untagged
@@ -599,6 +600,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movePower: 10000
   breakingPower: 0.98
+--- !u!114 &114578348098193406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635568545015824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc950b54293366f449aea5d4833d2459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOptions: {fileID: 0}
+  trailRenderer: {fileID: 96362608549492280}
 --- !u!114 &114681889482983848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -641,8 +655,8 @@ MonoBehaviour:
   ropeConnectionDistance: 1.3
   junkConnectionPoint: {fileID: 1341565321669552}
   pickupArea: {fileID: 114681889482983848}
-  ropeConnections: 0
-  maxRopeConnections: 10
+  currentLoad: 0
+  maxLoad: 10
   collectedJunk: []
 --- !u!212 &212399192185267064
 SpriteRenderer:
