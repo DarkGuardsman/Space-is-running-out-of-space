@@ -45,7 +45,7 @@ public class UISwitcher : UIDisplay
         menuUI.canvus.enabled = false;
         optionsUI.enabled = false;
         helpUI.enabled = false;
-        //failedUI.enabled = false;
+        failedUI.enabled = false;
         
         //enable desired UI
 		
@@ -66,7 +66,8 @@ public class UISwitcher : UIDisplay
         }
         else if(gameController.gameOver)
         {
-            Time.timeScale = 0;
+            failedUI.enabled = true;
+            Time.timeScale = gameController.gameTimeScale;
         }
         else if(gameController.respawnPlayer)
         {

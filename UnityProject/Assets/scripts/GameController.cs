@@ -63,19 +63,36 @@ public class GameController : MonoBehaviour
     }
     
     void Update ()
-    {        
-        if(respawnPlayer)
+    {   
+        if(currentPlayerObject == null)
         {
-            if(respawnTimer >= respawnDelay)
+            if(respawnPlayer)
             {
-                SpawnPlayer();
+                if(respawnTimer >= respawnDelay)
+                {
+                    SpawnPlayer();
+                    lives--;
+                }
+                else
+                {
+                    respawnTimer += Time.deltaTime;
+                }
             }
-            else
+            else if(lives <= 0)
             {
-                respawnTimer += Time.deltaTime;
+                gameOver = true;
+                if(respawnTimer >= respawnDelay)
+                {
+                    RestartLevel();
+                }
+                else
+                {
+                    respawnTimer += Time.deltaTime;
+                }
             }
         }
-        else if(currentPlayerObject == null)
+        
+        if(currentPlayerObject == null && lives > 0)
         {
             respawnPlayer = true;
         }
