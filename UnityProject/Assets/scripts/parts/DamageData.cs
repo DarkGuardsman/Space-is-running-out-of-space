@@ -8,9 +8,12 @@ public class DamageData : MonoBehaviour
     public float maxHealth = 10f;
     
     public bool dead = false;
+    public bool destroyOnDeath = true;
+    
+    public GameObject prefabToSpawnOnDeath;
     
 	// Use this for initialization
-	void Start () 
+	public virtual void Start () 
     {
 		if(health <= 0)
         {
@@ -20,16 +23,33 @@ public class DamageData : MonoBehaviour
     
     public void Attack(float damage, GameObject source)
     {
+        Debug.Log("DamageData: Object hit with '" + damage + "' damage from source '" + source +"'");
         health -= damage;
         
         if(health <= 0)
         {
-            OnDeath();
+            SetDead();
         }
     }
     
-    void OnDeath()
+    public void SetDead()
     {
+        Debug.Log("DamageData: Setting host dead '" + gameObject + "'");
         dead = true;
+         
+        OnDeath();
+        
+        if(destroyOnDeath)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    protected virtual void OnDeath()
+    {
+        if(prefabToSpawnOnDeath != null)
+        {
+            Instantiate(prefabToSpawnOnDeath, transform.position, transform.rotation);
+        }
     }
 }

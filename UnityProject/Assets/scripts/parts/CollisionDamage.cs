@@ -37,8 +37,10 @@ public class CollisionDamage : MonoBehaviour
         collisionSpeed = Mathf.Abs(collisionSpeed);
         if(collisionSpeed > collisionMinSpeed)
         {            
+            float damage = ScaleDamageForSpeed(collisionSpeed);
+            Debug.Log("CollisionDamage: Impacting '" + damageData.gameObject + "' for '" + damage +"' damage points");
             //Attack entity
-            damageData.Attack(ScaleDamageForSpeed(collisionSpeed), gameObject);
+            damageData.Attack(damage, gameObject);
         }
     }
     

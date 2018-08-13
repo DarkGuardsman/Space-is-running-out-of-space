@@ -81,11 +81,16 @@ public class GameController : MonoBehaviour
     
     public void SpawnJunk(GameObject prefab, float x, float y)
     {
+        SpawnJunk(prefab, ToGamePosition(x, y));
+    }
+    
+    public void SpawnJunk(GameObject prefab, Vector3 position)
+    {
         //Create
         GameObject junkObject = (GameObject)Instantiate(prefab);
         
         //Set position
-        junkObject.transform.position = ToGamePosition(x, y);
+        junkObject.transform.position = position;
         
         //Track
         junkSpawnedList.Add(junkObject);

@@ -36,13 +36,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4159802709023094}
   - component: {fileID: 114210289290948758}
-  - component: {fileID: 114092969706805512}
   - component: {fileID: 114843860606082442}
   - component: {fileID: 50232647673913952}
   - component: {fileID: 120470872121191816}
   - component: {fileID: 231322368720238510}
   - component: {fileID: 68695019515113796}
   - component: {fileID: 114359424108712906}
+  - component: {fileID: 114516773306899128}
   m_Layer: 10
   m_Name: Junk-Small (4)
   m_TagString: Untagged
@@ -133,20 +133,6 @@ EdgeCollider2D:
   - {x: -0.022141933, y: 0.3930881}
   - {x: 0.11723995, y: 0.34434384}
   - {x: 0.20915794, y: 0.28940699}
---- !u!114 &114092969706805512
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1771068380592316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56df528ec292a8e44bcb1a6c9a7ac72d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: -1
-  maxHealth: 10
-  dead: 0
 --- !u!114 &114210289290948758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,6 +163,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedLimit: {x: 8, y: 8}
+--- !u!114 &114516773306899128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771068380592316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c5e325b8366194ba8a73d0c0db4a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: -1
+  maxHealth: 5
+  dead: 0
+  destroyOnDeath: 1
+  prefabToSpawnOnDeath: {fileID: 1457989415167500, guid: 4dd126d07eef47243b3d5a4042ca09d3,
+    type: 2}
+  junkToSpawn: 2
+  junkPrefab: {fileID: 1438971585180728, guid: d639674604e4406448ef3d2c19291ba7, type: 2}
 --- !u!114 &114843860606082442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,7 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7290d7b2e1ff8a044a4e1b58a71b60bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  minDamage: 1
+  maxDamage: 5
+  collisionMinSpeed: 2
+  collisionMaxSpeed: 10
 --- !u!120 &120470872121191816
 LineRenderer:
   m_ObjectHideFlags: 1

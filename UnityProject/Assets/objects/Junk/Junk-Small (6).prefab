@@ -20,13 +20,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4706610722947488}
   - component: {fileID: 114089980474928634}
-  - component: {fileID: 114822907815609814}
   - component: {fileID: 114197853186968772}
   - component: {fileID: 50983073218505896}
   - component: {fileID: 120407251312115478}
   - component: {fileID: 231882111728617730}
   - component: {fileID: 61703174656420514}
   - component: {fileID: 114126026641708026}
+  - component: {fileID: 114574144274994562}
   m_Layer: 10
   m_Name: Junk-Small (6)
   m_TagString: Untagged
@@ -163,8 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7290d7b2e1ff8a044a4e1b58a71b60bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
---- !u!114 &114822907815609814
+  minDamage: 1
+  maxDamage: 20
+  collisionMinSpeed: 2
+  collisionMaxSpeed: 10
+--- !u!114 &114574144274994562
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,12 +175,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1064173138574024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56df528ec292a8e44bcb1a6c9a7ac72d, type: 3}
+  m_Script: {fileID: 11500000, guid: c1c5e325b8366194ba8a73d0c0db4a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: -1
-  maxHealth: 10
+  maxHealth: 5
   dead: 0
+  destroyOnDeath: 1
+  prefabToSpawnOnDeath: {fileID: 1457989415167500, guid: 4dd126d07eef47243b3d5a4042ca09d3,
+    type: 2}
+  junkToSpawn: 5
+  junkPrefab: {fileID: 1741963030970624, guid: 40d1467075dc5844cab9279bf5de9ac9, type: 2}
 --- !u!120 &120407251312115478
 LineRenderer:
   m_ObjectHideFlags: 1

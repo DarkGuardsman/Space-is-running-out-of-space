@@ -142,8 +142,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: -1
-  maxHealth: 10
+  maxHealth: 3
   dead: 0
+  destroyOnDeath: 1
+  prefabToSpawnOnDeath: {fileID: 1457989415167500, guid: 4dd126d07eef47243b3d5a4042ca09d3,
+    type: 2}
 --- !u!114 &114378299124915480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,7 +188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7290d7b2e1ff8a044a4e1b58a71b60bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  minDamage: 1
+  maxDamage: 5
+  collisionMinSpeed: 1
+  collisionMaxSpeed: 10
 --- !u!120 &120345807529406882
 LineRenderer:
   m_ObjectHideFlags: 1

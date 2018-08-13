@@ -9,7 +9,10 @@ public class Bullet : CollisionDamage
     
 	protected override void onHit(DamageData damageData, float collisionSpeed)
     {
-        damageData.Attack(ScaleDamageForSpeed(collisionSpeed), shooter);
+        float damage = ScaleDamageForSpeed(collisionSpeed);
+        Debug.Log("Bullet: Impacting '" + damageData.gameObject + "' for '" + damage +"' damage points");
+        
+        damageData.Attack(damage, shooter);
     }
     
     protected override void onHit(GameObject objectHit, float collisionSpeed)

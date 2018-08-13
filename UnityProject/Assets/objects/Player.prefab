@@ -540,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponCooldown: 0.5
   destroyBulletTimer: 2
-  firingForce: 500
+  firingForce: 50
   ship: {fileID: 1341565321669552}
   bulletExit: {fileID: 4354062894456246}
   bulletPrefab: {fileID: 1217689499348578, guid: 2cc16503e42ae9d4dbc55c0bc7334c48,
@@ -571,6 +571,8 @@ MonoBehaviour:
   health: -1
   maxHealth: 100
   dead: 0
+  destroyOnDeath: 1
+  prefabToSpawnOnDeath: {fileID: 0}
 --- !u!114 &114446707692702112
 MonoBehaviour:
   m_ObjectHideFlags: 1

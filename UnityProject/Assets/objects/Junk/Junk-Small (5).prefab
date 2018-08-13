@@ -20,13 +20,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4572174138698932}
   - component: {fileID: 114987941852677816}
-  - component: {fileID: 114098930023260032}
   - component: {fileID: 114938108656008708}
   - component: {fileID: 50452375505847050}
   - component: {fileID: 120161792891874458}
   - component: {fileID: 231179190744630272}
   - component: {fileID: 68596841788481506}
   - component: {fileID: 114835681992345548}
+  - component: {fileID: 114308396427160352}
   m_Layer: 10
   m_Name: Junk-Small (5)
   m_TagString: Untagged
@@ -133,7 +133,7 @@ EdgeCollider2D:
   - {x: 0.0644598, y: 0.3930881}
   - {x: 0.24629307, y: 0.3867955}
   - {x: 0.3212309, y: 0.36072573}
---- !u!114 &114098930023260032
+--- !u!114 &114308396427160352
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,12 +141,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1049586009139278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56df528ec292a8e44bcb1a6c9a7ac72d, type: 3}
+  m_Script: {fileID: 11500000, guid: c1c5e325b8366194ba8a73d0c0db4a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: -1
-  maxHealth: 10
+  maxHealth: 5
   dead: 0
+  destroyOnDeath: 1
+  prefabToSpawnOnDeath: {fileID: 1457989415167500, guid: 4dd126d07eef47243b3d5a4042ca09d3,
+    type: 2}
+  junkToSpawn: 2
+  junkPrefab: {fileID: 1741963030970624, guid: 40d1467075dc5844cab9279bf5de9ac9, type: 2}
 --- !u!114 &114835681992345548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,7 +175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7290d7b2e1ff8a044a4e1b58a71b60bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  minDamage: 1
+  maxDamage: 5
+  collisionMinSpeed: 2
+  collisionMaxSpeed: 10
 --- !u!114 &114987941852677816
 MonoBehaviour:
   m_ObjectHideFlags: 1
