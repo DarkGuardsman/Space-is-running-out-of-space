@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 783876659}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 8
@@ -2701,7 +2701,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1857, y: -0.00000047683716, z: -10}
+  m_LocalPosition: {x: -1857, y: 0.36000037, z: -10.042518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 111856156}
@@ -3513,15 +3513,15 @@ MonoBehaviour:
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
-  m_ScreenX: 0.49999988
-  m_ScreenY: 0.49999997
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.18611124
-  m_DeadZoneHeight: 0.3288402
+  m_DeadZoneWidth: 0.2
+  m_DeadZoneHeight: 0.2
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneWidth: 0.7
+  m_SoftZoneHeight: 0.7
   m_BiasX: 0
   m_BiasY: 0
   m_GroupFramingMode: 2
@@ -5556,7 +5556,7 @@ Canvas:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1128482928}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -8996,6 +8996,7 @@ MonoBehaviour:
   arrowMinScale: 0.3
   arrowMaxScale: 1
   cameraZoom: 8
+  zoomSpeed: 0.1
   maxJunkSpawn: 100
 --- !u!114 &1857346948
 MonoBehaviour:
