@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114126026641708026}
   - component: {fileID: 114574144274994562}
   - component: {fileID: 114422647095177078}
+  - component: {fileID: 114293391830277810}
   m_Layer: 10
   m_Name: Junk-Small (6)
   m_TagString: Untagged
@@ -168,6 +169,18 @@ MonoBehaviour:
   maxDamage: 20
   collisionMinSpeed: 2
   collisionMaxSpeed: 10
+--- !u!114 &114293391830277810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064173138574024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f36eaeedbe1d974b8047df82eba2343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkDelay: 5
 --- !u!114 &114422647095177078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,7 +209,7 @@ MonoBehaviour:
   maxHealth: 5
   dead: 0
   destroyOnDeath: 1
-  prefabToSpawnOnDeath: {fileID: 1457989415167500, guid: 4dd126d07eef47243b3d5a4042ca09d3,
+  prefabToSpawnOnDeath: {fileID: 1706201796912966, guid: 82c52a991e09ffa49bce942c1b19803b,
     type: 2}
   junkToSpawn: 5
   junkPrefab: {fileID: 1741963030970624, guid: 40d1467075dc5844cab9279bf5de9ac9, type: 2}

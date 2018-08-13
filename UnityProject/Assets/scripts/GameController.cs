@@ -7,6 +7,8 @@ using Cinemachine;
 //Handles game logic
 public class GameController : MonoBehaviour 
 {
+    public float sizeOfWorld = 250f;
+    
     //Object to spawn for the player
     public GameObject playerPrefab;
     //Prefab for direction arrows

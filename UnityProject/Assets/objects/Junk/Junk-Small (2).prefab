@@ -41,9 +41,10 @@ GameObject:
   - component: {fileID: 50838599473155148}
   - component: {fileID: 120253116257425260}
   - component: {fileID: 231133555579869846}
-  - component: {fileID: 68295587070894040}
   - component: {fileID: 114246604284801280}
   - component: {fileID: 114172664207555826}
+  - component: {fileID: 61143736097522498}
+  - component: {fileID: 114162346814301942}
   m_Layer: 10
   m_Name: Junk-Small (2)
   m_TagString: Untagged
@@ -71,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1741963030970624}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1863.2911, y: 1.6880971, z: 0}
+  m_LocalPosition: {x: -1856.7874, y: 2.9422877, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4202022959555466}
@@ -98,8 +99,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!68 &68295587070894040
-EdgeCollider2D:
+--- !u!61 &61143736097522498
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -110,29 +111,19 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.005859375, y: 0.0038905144}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.70043945, y: 0.7510071}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.2607944, y: 0.43238133}
-  - {x: 0.38684773, y: 0.39106774}
-  - {x: 0.37957597, y: 0.28737167}
-  - {x: 0.41027927, y: 0.045414396}
-  - {x: 0.41877985, y: -0.22426255}
-  - {x: 0.42364168, y: -0.35982612}
-  - {x: 0.36401463, y: -0.4078231}
-  - {x: 0.21257997, y: -0.43802214}
-  - {x: -0.021600723, y: -0.4171576}
-  - {x: -0.36955595, y: -0.3842845}
-  - {x: -0.36122465, y: -0.06834831}
-  - {x: -0.43927145, y: 0.14511412}
-  - {x: -0.4295311, y: 0.23290144}
-  - {x: -0.42487288, y: 0.3836433}
-  - {x: -0.36037636, y: 0.4008772}
-  - {x: -0.24753785, y: 0.40368}
-  - {x: -0.19073653, y: 0.3959522}
-  - {x: -0.13445115, y: 0.44993544}
-  - {x: 0.07874489, y: 0.45256174}
-  - {x: 0.26550937, y: 0.43238145}
 --- !u!114 &114113426747074824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,6 +142,18 @@ MonoBehaviour:
   ropeRenderer: {fileID: 0}
   ropeConnectionPoint: {fileID: 0}
   collectTimer: 0
+--- !u!114 &114162346814301942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1741963030970624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f36eaeedbe1d974b8047df82eba2343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkDelay: 5
 --- !u!114 &114172664207555826
 MonoBehaviour:
   m_ObjectHideFlags: 1

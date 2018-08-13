@@ -24,10 +24,11 @@ GameObject:
   - component: {fileID: 50452375505847050}
   - component: {fileID: 120161792891874458}
   - component: {fileID: 231179190744630272}
-  - component: {fileID: 68596841788481506}
   - component: {fileID: 114835681992345548}
   - component: {fileID: 114308396427160352}
   - component: {fileID: 114523150683918282}
+  - component: {fileID: 61628433282013290}
+  - component: {fileID: 114153604009516064}
   m_Layer: 10
   m_Name: Junk-Small (5)
   m_TagString: Untagged
@@ -71,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1049586009139278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1852.758, y: -11.075518, z: 0}
+  m_LocalPosition: {x: -1856.2904, y: 3.0649269, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4139166683774826}
@@ -98,8 +99,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!68 &68596841788481506
-EdgeCollider2D:
+--- !u!61 &61628433282013290
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -110,30 +111,31 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.538, y: 0}
+  m_Offset: {x: -0.01928711, y: 0.010545731}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.706543, y: 0.71878195}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.3229456, y: 0.36135662}
-  - {x: 0.34760332, y: 0.28279498}
-  - {x: 0.34645748, y: 0.13863651}
-  - {x: 0.34290934, y: -0.042281553}
-  - {x: 0.36245203, y: -0.35693336}
-  - {x: 0.30085182, y: -0.37567973}
-  - {x: 0.21142769, y: -0.37364513}
-  - {x: 0.09261227, y: -0.3854343}
-  - {x: -0.16555405, y: -0.38081902}
-  - {x: -0.39788055, y: -0.3764671}
-  - {x: -0.8004923, y: -0.39413843}
-  - {x: -1.3652248, y: -0.41990474}
-  - {x: -1.420907, y: -0.35617307}
-  - {x: -1.4427338, y: 0.13240008}
-  - {x: -1.3935566, y: 0.38423485}
-  - {x: -0.7772026, y: 0.3838027}
-  - {x: -0.21856213, y: 0.3871988}
-  - {x: -0.009666443, y: 0.42087203}
-  - {x: 0.0644598, y: 0.3930881}
-  - {x: 0.24629307, y: 0.3867955}
-  - {x: 0.3212309, y: 0.36072573}
+--- !u!114 &114153604009516064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1049586009139278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f36eaeedbe1d974b8047df82eba2343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkDelay: 5
 --- !u!114 &114308396427160352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +151,7 @@ MonoBehaviour:
   maxHealth: 5
   dead: 0
   destroyOnDeath: 1
-  prefabToSpawnOnDeath: {fileID: 1457989415167500, guid: 4dd126d07eef47243b3d5a4042ca09d3,
+  prefabToSpawnOnDeath: {fileID: 1706201796912966, guid: 82c52a991e09ffa49bce942c1b19803b,
     type: 2}
   junkToSpawn: 2
   junkPrefab: {fileID: 1741963030970624, guid: 40d1467075dc5844cab9279bf5de9ac9, type: 2}
