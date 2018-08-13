@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114254144246675028}
   - component: {fileID: 61742880113362628}
   - component: {fileID: 114761544938431056}
+  - component: {fileID: 114805010265248122}
   m_Layer: 10
   m_Name: Junk-Small (4)
   m_TagString: Untagged
@@ -149,6 +150,7 @@ MonoBehaviour:
   ropeRenderer: {fileID: 0}
   ropeConnectionPoint: {fileID: 0}
   damageData: {fileID: 0}
+  rigidbody2D: {fileID: 0}
   collectTimer: 0
 --- !u!114 &114254144246675028
 MonoBehaviour:
@@ -206,6 +208,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkDelay: 5
+--- !u!114 &114805010265248122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771068380592316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408f6d9770ccc51479c70f9c6c34ab8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers:
+  - {fileID: 212526853826351052}
+  red: 100
+  green: 100
+  blue: 100
+  alpha: 0
 --- !u!114 &114843860606082442
 MonoBehaviour:
   m_ObjectHideFlags: 1
