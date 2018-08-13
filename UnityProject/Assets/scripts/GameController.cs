@@ -95,6 +95,7 @@ public class GameController : MonoBehaviour
         if(currentPlayerObject == null && lives > 0)
         {
             respawnPlayer = true;
+            cinemachineCamera.Follow = centerOfWorld;
         }
     }
     
