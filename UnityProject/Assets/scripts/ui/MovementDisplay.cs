@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //Updated UI text field with current speed data
-public class SpeedDisplay : UIDisplay 
+public class MovementDisplay : UIDisplay 
 {
     public Text text;
     
@@ -23,7 +23,7 @@ public class SpeedDisplay : UIDisplay
             else
             {
                 Vector3 velocity = rigidBody2D.velocity;
-                text.text = String.Format("Speed: {0:0}", Mathf.Abs(velocity.magnitude));
+                text.text = String.Format("Heading: {0:0}x {1:0}y", velocity.x, velocity.y);
             }
         }		
 	}
