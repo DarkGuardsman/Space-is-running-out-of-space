@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 231637159860270074}
   - component: {fileID: 68157112165080718}
   - component: {fileID: 114353820632636960}
+  - component: {fileID: 114107949487847148}
   m_Layer: 10
   m_Name: Junk-Small (3)
   m_TagString: Untagged
@@ -70,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1759887656756680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.28, y: 0, z: 0}
+  m_LocalPosition: {x: -1864.1077, y: -4.6662774, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4190640905276214}
@@ -88,7 +89,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 1
@@ -150,6 +151,19 @@ MonoBehaviour:
   ropeRenderer: {fileID: 0}
   ropeConnectionPoint: {fileID: 0}
   collectTimer: 0
+--- !u!114 &114107949487847148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759887656756680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c32d7c8d1d44b45876d1d46a238053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomMovementEnergy: 100
+  randomRotationEnergy: 5
 --- !u!114 &114113924353104404
 MonoBehaviour:
   m_ObjectHideFlags: 1
