@@ -26,6 +26,7 @@ public class JunkObjectData : MonoBehaviour
     public LineRenderer ropeRenderer;
     public GameObject ropeConnectionPoint;
     public DamageData damageData;
+    public Rigidbody2D rigidbody2D;
     
     //Used by drop off point to prevent instant collection
     public int collectTimer = 0;
@@ -33,13 +34,29 @@ public class JunkObjectData : MonoBehaviour
     private int prevSize;
     private float prevHealth;
     
+    private float mass;
+    
     void Start ()
     {
+        //Get objects
         joint = gameObject.GetComponent<SpringJoint2D>();
         ropeRenderer = gameObject.GetComponent<LineRenderer>();
         damageData = gameObject.GetComponent<DamageData>();
+        rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         
+        //collect data
+        mass = rigidbody2D.mass;
+        
+        //Randomize starting size
         currentSize = minSize + Random.Range(0, maxSize - minSize);
+        float sizeScale = (currentSize / (float)maxSize);
+        
+        //Update health to match size
+        damageData.maxHealth = sizeScale * damageData.maxHealth;
+        damageData.health = damageData.maxHealth;
+        
+        //Update mass to match size
+        rigidbody2D.mass = sizeScale * mass;
     }
     
     void Update ()
@@ -69,6 +86,8 @@ public class JunkObjectData : MonoBehaviour
         {
             float hpPercentage = damageData.health / damageData.maxHealth;
             float sizeScale = (float)currentSize / (float) maxSize;
+            
+            rigidbody2D.mass = sizeScale * mass;
             
             if(scaleWithDamage)
             {
