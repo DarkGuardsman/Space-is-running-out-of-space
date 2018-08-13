@@ -45,6 +45,6 @@ public class CollisionDamage : MonoBehaviour
     //Scale damage to speed
     protected float ScaleDamageForSpeed(float collisionSpeed)
     {
-        return minDamage + ((collisionSpeed / collisionMaxSpeed) * (maxDamage - minDamage));
+        return minDamage + (Mathf.Min(1, collisionSpeed / collisionMaxSpeed) * (maxDamage - minDamage));
     }
 }
