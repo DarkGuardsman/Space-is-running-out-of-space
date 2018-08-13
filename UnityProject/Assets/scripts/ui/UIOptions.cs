@@ -23,15 +23,6 @@ public class UIOptions : UIDisplay
     public int minJunkSpawn = 20;
     public int maxJunkSpawn = 1000;
     
-    private PlayerOptions playerOptions;
-    
-	// Use this for initialization
-	public override void Start () 
-    {
-		base.Start();
-        playerOptions = FindObjectOfType<PlayerOptions>();
-    }
-    
     void FixedUpdate()
     {
         minArrowSizeSlider.value = Mathf.Min(1, (playerOptions.arrowMinScale - minAllowArrowMinSize) / (maxAllowedArrowMinSize - minAllowArrowMinSize));
