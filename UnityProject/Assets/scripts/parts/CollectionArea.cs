@@ -11,7 +11,11 @@ public class CollectionArea : MonoBehaviour
     {
         if(other.gameObject.layer == layerToCheck)
         {
-            objectsInArea.Add(other.gameObject);
+            JunkObjectData junkData = other.gameObject.GetComponent<JunkObjectData>();
+            if(junkData != null)
+            {
+                objectsInArea.Add(other.gameObject);
+            }
         }
     }
     
