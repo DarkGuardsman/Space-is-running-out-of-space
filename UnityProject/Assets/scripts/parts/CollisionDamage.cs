@@ -10,6 +10,8 @@ public class CollisionDamage : MonoBehaviour
     public float collisionMinSpeed = 1f;
     public float collisionMaxSpeed = 10f;
     
+    public GameObject collisionSpawnPrefab;
+    
     void OnCollisionEnter2D(Collision2D collision)
     {   
         //Ignore low speed impacts
@@ -25,6 +27,15 @@ public class CollisionDamage : MonoBehaviour
 
         //Trigger normal impact
         onHit(collision.gameObject, collisionSpeed);
+        
+        //Spawn effects for collision
+        if(collisionSpawnPrefab != null)
+        {
+            foreach (ContactPoint2D hit in collision.contacts)
+            {
+                Instantiate(collisionSpawnPrefab, new Vector3(hit.point.x, hit.point.y, 0), Quaternion.identity); //TODO see if we can get a rotation vector
+            }
+        }
     }
     
     protected virtual void onHit(GameObject gameObject, float collisionSpeed)

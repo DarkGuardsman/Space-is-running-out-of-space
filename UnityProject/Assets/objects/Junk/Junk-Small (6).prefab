@@ -29,7 +29,6 @@ GameObject:
   - component: {fileID: 114574144274994562}
   - component: {fileID: 114422647095177078}
   - component: {fileID: 114293391830277810}
-  - component: {fileID: 114094267328805130}
   m_Layer: 10
   m_Name: Junk-Small (6)
   m_TagString: Untagged
@@ -136,25 +135,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9da947dfc9eb5e40843824fab384b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 4
+  scaleWithSize: 0
+  scaleWithDamage: 1
+  minSize: 3
+  currentSize: 4
+  maxSize: 4
+  scaleFactor: 1
+  minScale: 0.5
+  maxScale: 2
   pointValue: 7
   collected: 0
   joint: {fileID: 0}
   ropeRenderer: {fileID: 0}
   ropeConnectionPoint: {fileID: 0}
+  damageData: {fileID: 0}
   collectTimer: 0
---- !u!114 &114094267328805130
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1064173138574024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51a51f991ce936643a0b9981c3ba5d13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scale: 0.2
 --- !u!114 &114126026641708026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,9 +174,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDamage: 1
-  maxDamage: 20
+  maxDamage: 4
   collisionMinSpeed: 2
   collisionMaxSpeed: 10
+  collisionSpawnPrefab: {fileID: 1971044156993510, guid: 5f2f3f3f815f5604788dae74d12c8161,
+    type: 2}
 --- !u!114 &114293391830277810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: -1
-  maxHealth: 5
+  maxHealth: 40
   dead: 0
   destroyOnDeath: 1
   prefabToSpawnOnDeath: {fileID: 1706201796912966, guid: 82c52a991e09ffa49bce942c1b19803b,

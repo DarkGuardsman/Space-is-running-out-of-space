@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class JunkObjectData : MonoBehaviour 
 {
-    //Size of the junk
-    public int size = 1;
+    public bool scaleWithSize = true;
+    public bool scaleWithDamage = true;
+     //Size of the junk
+    public int minSize = 1;
+    public int currentSize = 1;
+    public int maxSize = 3;   
+    
+    public float scaleFactor = 1f;
+    
+    public float minScale = 0.5f;
+    public float maxScale = 2f;
+   
     //Point value of the junk
     public int pointValue = 1;
     
@@ -15,17 +25,30 @@ public class JunkObjectData : MonoBehaviour
     public SpringJoint2D joint;
     public LineRenderer ropeRenderer;
     public GameObject ropeConnectionPoint;
+    public DamageData damageData;
     
     //Used by drop off point to prevent instant collection
     public int collectTimer = 0;
+    
+    private int prevSize;
+    private float prevHealth;
     
     void Start ()
     {
         joint = gameObject.GetComponent<SpringJoint2D>();
         ropeRenderer = gameObject.GetComponent<LineRenderer>();
+        damageData = gameObject.GetComponent<DamageData>();
+        
+        currentSize = minSize + Random.Range(0, maxSize - minSize);
     }
     
     void Update ()
+    {
+        ScaleJunk();
+        UpdateConnections();        
+    }
+    
+    void UpdateConnections()
     {
         if(collected && ropeConnectionPoint != null)
         {            
@@ -37,6 +60,43 @@ public class JunkObjectData : MonoBehaviour
         {
             joint.enabled = false;
             ropeRenderer.enabled = false;     
+        }
+    }
+    
+    void ScaleJunk()
+    {
+        if((scaleWithSize || scaleWithDamage) && (prevSize != transform.localScale.x || prevHealth != damageData.health))
+        {
+            float hpPercentage = damageData.health / damageData.maxHealth;
+            float sizeScale = (float)currentSize / (float) maxSize;
+            
+            if(scaleWithDamage)
+            {
+                //Update size
+                currentSize = minSize + (int)Mathf.Floor(((maxSize - minSize) * hpPercentage));
+                
+                //Slightly increase size scale to match % missing hp
+                sizeScale += (currentSize % (float)maxSize) * hpPercentage;
+                
+                //if size scale disabled but no hp scale, set scale to hp
+                if(!scaleWithSize)
+                {
+                    sizeScale = hpPercentage;
+                }
+            }  
+            
+            //Clamp
+            sizeScale = Mathf.Max(minScale, sizeScale);
+            sizeScale = Mathf.Min(maxScale, sizeScale);
+            
+            sizeScale *= scaleFactor;
+            
+            //Set new scale
+            transform.localScale = new Vector3(sizeScale, sizeScale, sizeScale);
+            
+            //Save values
+            prevSize = currentSize;
+            prevHealth = damageData.health;
         }
     }
     

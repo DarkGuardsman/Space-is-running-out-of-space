@@ -9,62 +9,61 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1693028729564648}
+  m_RootGameObject: {fileID: 1609915085909756}
   m_IsPrefabAsset: 1
---- !u!1 &1693028729564648
+--- !u!1 &1609915085909756
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4258885535851076}
-  - component: {fileID: 212004078048503468}
-  - component: {fileID: 114146631838693690}
+  - component: {fileID: 4932429120973404}
+  - component: {fileID: 212499089284881658}
+  - component: {fileID: 114833547061027630}
   m_Layer: 0
-  m_Name: UI-ArrowJunk
+  m_Name: UI-ArrowHome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4258885535851076
+--- !u!4 &4932429120973404
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1693028729564648}
+  m_GameObject: {fileID: 1609915085909756}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1853.3824, y: -5.876592, z: 10}
+  m_LocalPosition: {x: -1853.122, y: -5.4076, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114146631838693690
+--- !u!114 &114833547061027630
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1693028729564648}
+  m_GameObject: {fileID: 1609915085909756}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c62fc34cf58713448982472d6771b766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  playerOptions: {fileID: 0}
   aimTarget: {fileID: 0}
-  spriteRenderer: {fileID: 212004078048503468}
-  circleSize: 0.48
-  minScale: 0.5
+  spriteRenderer: {fileID: 212499089284881658}
+  circleSize: 0.49
   scaleGrowth: 0.01
-  maxScale: 1
---- !u!212 &212004078048503468
+--- !u!212 &212499089284881658
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1693028729564648}
+  m_GameObject: {fileID: 1609915085909756}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -95,7 +94,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4d9276dad76c84e49a287aa203d7dd5e, type: 3}
-  m_Color: {r: 1, g: 0.15694982, b: 0, a: 0.7921569}
+  m_Color: {r: 0.36320752, g: 1, b: 0.9804948, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

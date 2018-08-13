@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 114107949487847148}
   - component: {fileID: 61029048209926282}
   - component: {fileID: 114031880329447300}
-  - component: {fileID: 114654550355176306}
   m_Layer: 10
   m_Name: Junk-Small (3)
   m_TagString: Untagged
@@ -148,12 +147,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9da947dfc9eb5e40843824fab384b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 1
+  scaleWithSize: 0
+  scaleWithDamage: 1
+  minSize: 1
+  currentSize: 2
+  maxSize: 2
+  scaleFactor: 1
+  minScale: 0.5
+  maxScale: 2
   pointValue: 1
   collected: 0
   joint: {fileID: 0}
   ropeRenderer: {fileID: 0}
   ropeConnectionPoint: {fileID: 0}
+  damageData: {fileID: 0}
   collectTimer: 0
 --- !u!114 &114107949487847148
 MonoBehaviour:
@@ -180,9 +187,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDamage: 1
-  maxDamage: 5
-  collisionMinSpeed: 1
+  maxDamage: 2
+  collisionMinSpeed: 2
   collisionMaxSpeed: 10
+  collisionSpawnPrefab: {fileID: 1971044156993510, guid: 5f2f3f3f815f5604788dae74d12c8161,
+    type: 2}
 --- !u!114 &114353820632636960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,23 +216,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: -1
-  maxHealth: 3
+  maxHealth: 10
   dead: 0
   destroyOnDeath: 1
   prefabToSpawnOnDeath: {fileID: 1457989415167500, guid: 4dd126d07eef47243b3d5a4042ca09d3,
     type: 2}
---- !u!114 &114654550355176306
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1759887656756680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51a51f991ce936643a0b9981c3ba5d13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scale: 0.2
 --- !u!120 &120099242832977002
 LineRenderer:
   m_ObjectHideFlags: 1

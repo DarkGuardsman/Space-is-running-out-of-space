@@ -10,9 +10,9 @@ public class PlayerCollectJunk : MonoBehaviour
     public CollectionArea pickupArea;
     
     //Junk count (size, not individual objects)
-    public int ropeConnections = 0;
+    public int currentLoad = 0;
     
-    public int maxRopeConnections = 10;
+    public int maxLoad = 10;
     
     //Junk collected
     public List<JunkObjectData> collectedJunk = new List<JunkObjectData>(); 
@@ -20,7 +20,7 @@ public class PlayerCollectJunk : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if(Input.GetButton("Fire2") && ropeConnections <= maxRopeConnections)
+        if(Input.GetButton("Fire2") && currentLoad <= maxLoad)
         {
             CollectJunk();
         }
@@ -30,9 +30,19 @@ public class PlayerCollectJunk : MonoBehaviour
             ReleaseJunk();
         }
         
-        foreach(JunkObjectData junkData in collectedJunk)
+        currentLoad = 0;
+        for(int i = collectedJunk.Count - 1; i >= 0; i--)
         {
-            junkData.joint.attachedRigidbody.velocity *= 0.99f;
+            JunkObjectData junkData = collectedJunk[i];
+            if(junkData != null)
+            {
+                junkData.joint.attachedRigidbody.velocity *= 0.99f;
+                currentLoad += junkData.currentSize;
+            }
+            else
+            {
+                collectedJunk.Remove(junkData);
+            }
         }
 	}
     
@@ -58,23 +68,37 @@ public class PlayerCollectJunk : MonoBehaviour
     
     void CollectJunk(JunkObjectData junkData)
     {       
+        //Tell junk to attach
         junkData.AttachRope(junkConnectionPoint, ropeConnectionDistance);
+        
+        //Add to list
         collectedJunk.Add(junkData);
-        ropeConnections++;
+        
+        //Count up load
+        currentLoad += junkData.currentSize;
     }
     
     void ReleaseJunk()
     {
+        //Release each junk entry
         foreach (JunkObjectData junkData in collectedJunk)
         {
             ReleaseJunk(junkData);
         }
+        
+        //Clear list
         collectedJunk.Clear();
+        
+        //Reset value, include seperate from decrementer in ReleaseJunk in case size changes
+        currentLoad = 0;
     }
     
     void ReleaseJunk(JunkObjectData junkData)
     { 
+        //Tell junk to release
         junkData.ReleaseRope();
-        ropeConnections--;
+        
+        //Decrease load counter
+        currentLoad -= junkData.currentSize;
     }
 }

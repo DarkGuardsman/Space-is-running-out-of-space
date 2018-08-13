@@ -20,7 +20,7 @@ public class LoadDisplay : UIDisplay
             }
             else
             {
-                text.text = String.Format("Load: {0}/{1}", junkCollector.ropeConnections, junkCollector.maxRopeConnections);
+                text.text = String.Format("Load: {0}/{1}", junkCollector.currentLoad, junkCollector.maxLoad);
             }
         }		
 	}

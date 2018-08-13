@@ -224,6 +224,8 @@ MonoBehaviour:
   maxDamage: 1
   collisionMinSpeed: 1
   collisionMaxSpeed: 3
+  collisionSpawnPrefab: {fileID: 1397676421310580, guid: 9e6a9ffd226b6384f905a9d260314849,
+    type: 2}
   shooter: {fileID: 0}
   destroyOnHit: 1
 --- !u!212 &212049854612349270
