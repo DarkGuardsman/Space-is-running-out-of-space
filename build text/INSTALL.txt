@@ -1,0 +1,3 @@
+According to the unity page there are no requirements
+
+However, it has been noted that is may use DirectX, .net, and Microsoft Visual Redistributed. So if you have problems running the game try installing or updating these frameworks.

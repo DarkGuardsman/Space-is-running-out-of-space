@@ -28,14 +28,14 @@ class MakeBuilds : MonoBehaviour
         Directory.CreateDirectory(path);
 
         // Build windows
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/" + runName + ".x32.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/" + runName + ".x86_64.exe", BuildTarget.StandaloneWindows64, BuildOptions.None);
+        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/windows/" + runName + ".x32.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
+        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/windows/" + runName + ".x86_64.exe", BuildTarget.StandaloneWindows64, BuildOptions.None);
         
         // Build linux
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/" + runName + "_linux", BuildTarget.StandaloneLinuxUniversal, BuildOptions.None);
+        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/linux/" + runName, BuildTarget.StandaloneLinuxUniversal, BuildOptions.None);
         
         // Build Mac... questionable at best :P
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/" + runName + "_osx", BuildTarget.StandaloneOSX, BuildOptions.None);
+        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/osx/" + runName, BuildTarget.StandaloneOSX, BuildOptions.None);
         
 
         MoveFiles(path);
@@ -50,8 +50,8 @@ class MakeBuilds : MonoBehaviour
         string path = EditorUtility.SaveFolderPanel("Choose export location", EditorApplication.applicationPath + "/../", "");
 
         // Build player.
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/" + runName + "_32.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/" + runName + "_64.exe", BuildTarget.StandaloneWindows64, BuildOptions.None);
+        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/windows/" + runName + ".x32.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
+        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/windows/" + runName + ".x86_64.exe", BuildTarget.StandaloneWindows64, BuildOptions.None);
 
         MoveFiles(path);
     }
