@@ -6686,8 +6686,8 @@ MonoBehaviour:
   maxAllowedArrowMaxSize: 3
   minAllowArrowMinSize: 0.3
   maxAllowedArrowMinSize: 1
-  minJunkSpawn: 20
-  maxJunkSpawn: 1000
+  minJunkSpawn: 100
+  maxJunkSpawn: 4000
 --- !u!114 &1135234809
 MonoBehaviour:
   m_ObjectHideFlags: 0
