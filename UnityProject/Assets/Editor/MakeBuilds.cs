@@ -1,6 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using System;
 using System.IO;
+using System.IO.Compression;
 
 
 //to be used on the command line:
@@ -10,6 +12,8 @@ class MakeBuilds : MonoBehaviour
 {
     public const string scene = "Assets/Scenes/MainAndOnlyScene.unity";
     public const string runName = "Game";
+    public const string gameName = "Space_is_running_out_of_space";
+    public const string version = "0.2.3";
     
     [MenuItem("Build/All")]
     public static void BuildAll()
@@ -28,32 +32,26 @@ class MakeBuilds : MonoBehaviour
         Directory.CreateDirectory(path);
 
         // Build windows
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/windows/" + runName + ".x32.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/windows/" + runName + ".x86_64.exe", BuildTarget.StandaloneWindows64, BuildOptions.None);
+        Build(BuildTarget.StandaloneWindows, path, "windows_32", ".exe");
+        Build(BuildTarget.StandaloneWindows64, path, "windows_64", ".exe");
         
         // Build linux
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/linux/" + runName, BuildTarget.StandaloneLinuxUniversal, BuildOptions.None);
+        Build(BuildTarget.StandaloneLinuxUniversal, path, "linux", "");
         
-        // Build Mac... questionable at best :P
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/osx/" + runName, BuildTarget.StandaloneOSX, BuildOptions.None);
-        
-
-        MoveFiles(path);
+        // Build Mac... questionable at best :P      
+        Build(BuildTarget.StandaloneOSX, path, "osx", "");
     }
     
-    [MenuItem("Build/Windows")]
-    public static void BuildWindows()
+    public static void Build(BuildTarget buildTarget, string path, string type, string sufix)
     {
-        Debug.Log("Building windows version of game");
-        
-        // Get filename.
-        string path = EditorUtility.SaveFolderPanel("Choose export location", EditorApplication.applicationPath + "/../", "");
-
-        // Build player.
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/windows/" + runName + ".x32.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
-        BuildPipeline.BuildPlayer(new string[] {scene}, path + "/windows/" + runName + ".x86_64.exe", BuildTarget.StandaloneWindows64, BuildOptions.None);
-
-        MoveFiles(path);
+        string folder = path + "/" + gameName + "_v" + version + "_" + type + "/";
+        BuildPipeline.BuildPlayer(new string[] {scene}, folder + runName + sufix, buildTarget, BuildOptions.None);
+        MoveFiles(folder);
+    }
+    
+    public static void ZipFile(string path, string type)
+    {
+        //TODO
     }
     
     public static void MoveFiles(string path)
