@@ -17,8 +17,8 @@ public class PlayerOptionData
     public bool enableEffects = true;
     public bool enableShipTrail = true;
     public bool enableBulletTrail = true;
-    public bool enabledShipBasedMovement = true;	
-    public bool enabledMouseAim = true;	
+    public bool enableShipBasedMovement = true;	
+    public bool enableMouseAim = true;	
     
     public void CopyInto(PlayerOptionData data)
     {
@@ -33,7 +33,7 @@ public class PlayerOptionData
         data.enableEffects = enableEffects;
         data.enableShipTrail = enableShipTrail;
         data.enableBulletTrail = enableBulletTrail;
-        data.enabledShipBasedMovement = enabledShipBasedMovement;
-        data.enabledMouseAim = enabledMouseAim;
+        data.enableShipBasedMovement = enableShipBasedMovement;
+        data.enableMouseAim = enableMouseAim;
     }
 }
