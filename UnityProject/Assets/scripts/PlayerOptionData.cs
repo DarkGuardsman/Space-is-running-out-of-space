@@ -18,6 +18,7 @@ public class PlayerOptionData
     public bool enableShipTrail = true;
     public bool enableBulletTrail = true;
     public bool enabledShipBasedMovement = true;	
+    public bool enabledMouseAim = true;	
     
     public void CopyInto(PlayerOptionData data)
     {
@@ -33,5 +34,6 @@ public class PlayerOptionData
         data.enableShipTrail = enableShipTrail;
         data.enableBulletTrail = enableBulletTrail;
         data.enabledShipBasedMovement = enabledShipBasedMovement;
+        data.enabledMouseAim = enabledMouseAim;
     }
 }

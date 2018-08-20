@@ -20,6 +20,7 @@ public class UIOptions : UIDisplay
     public Toggle enableDroneTrailToggle;
     public Toggle enableBulletTrailToggle;
     public Toggle enableShipMovementToggle;
+    public Toggle enableMouseAimToggle;
     
     public float minAllowArrowMaxSize = 1f;
     public float maxAllowedArrowMaxSize = 3f;
@@ -42,6 +43,7 @@ public class UIOptions : UIDisplay
         enableDroneTrailToggle.isOn = playerOptions.currentSettings.enableShipTrail;
         enableBulletTrailToggle.isOn = playerOptions.currentSettings.enableBulletTrail;
         enableShipMovementToggle.isOn = playerOptions.currentSettings.enabledShipBasedMovement;
+        enableMouseAimToggle.isOn = playerOptions.currentSettings.enabledMouseAim;
         
         minArrowSizeSlider.value = Mathf.Min(1, (playerOptions.currentSettings.arrowMinScale - minAllowArrowMinSize) / (maxAllowedArrowMinSize - minAllowArrowMinSize));
         maxArrowSizeSlider.value = Mathf.Min(1, (playerOptions.currentSettings.arrowMaxScale - minAllowArrowMaxSize) / (maxAllowedArrowMaxSize - minAllowArrowMaxSize));
@@ -71,7 +73,8 @@ public class UIOptions : UIDisplay
         playerOptions.currentSettings.enableEffects = enableEffectsToggle.isOn;
         playerOptions.currentSettings.enableShipTrail = enableDroneTrailToggle.isOn;
         playerOptions.currentSettings.enableBulletTrail = enableBulletTrailToggle.isOn;      
-        playerOptions.currentSettings.enabledShipBasedMovement = enableShipMovementToggle.isOn;             
+        playerOptions.currentSettings.enabledShipBasedMovement = enableShipMovementToggle.isOn;    
+        playerOptions.currentSettings.enabledMouseAim = enableMouseAimToggle.isOn;           
         
         playerOptions.SaveOptions();
     }
