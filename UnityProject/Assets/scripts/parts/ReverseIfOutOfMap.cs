@@ -9,6 +9,9 @@ public class ReverseIfOutOfMap : MonoBehaviour
     
     private float checkTimer;
     
+    private bool isOutOfMap = false;
+    private bool isBouncing = false;
+    
 	// Use this for initialization
 	void Awake () 
     {
@@ -30,13 +33,24 @@ public class ReverseIfOutOfMap : MonoBehaviour
                 float distance = Mathf.Abs(Vector3.Distance(center, transform.position));
                 
                 //If outside map reverse motion
-                if(distance > gameController.sizeOfWorld)
+                isOutOfMap = distance > gameController.sizeOfWorld;
+                if(isOutOfMap)
                 {
-                    Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
-                    if(rb != null)
+                    //Only bounce once to prevent getting stuck on edge
+                    if(!isBouncing)
                     {
-                        rb.velocity = -rb.velocity;
+                        isBouncing = true;
+                        Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+                        if(rb != null)
+                        {
+                            rb.velocity = -rb.velocity;
+                        }
                     }
+                }
+                //Once inside map again, reset bounce state
+                else
+                {
+                    isBouncing = false;
                 }
             }
             else
