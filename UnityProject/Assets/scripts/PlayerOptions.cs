@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System.IO;
 
 public class PlayerOptions : MonoBehaviour 
-{    
-    public PlayerOptionData currentSettings = new PlayerOptionData();
+{        
+    public PlayerOptionData currentSettings = new PlayerOptionData(); //TODO save as JSON instead of player prefs
     public PlayerOptionData defaultSettings = new PlayerOptionData();
     
     private GameController gameController;
     private CinemachineVirtualCamera cinemachineCamera;
+    public DataSaveHandler dataSaveHandler;
     
     // Use this for initialization
 	void Start () 
     {
 		gameController = FindObjectOfType<GameController>();
         cinemachineCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        dataSaveHandler = FindObjectOfType<DataSaveHandler>();
 
         ApplyOptions();
 	}
@@ -27,48 +30,62 @@ public class PlayerOptions : MonoBehaviour
     
 	public void LoadOptions () 
     {
-        Debug.Log("PlayerOptions: Loading player prefs");
-        if(PlayerPrefs.HasKey("arrowMinScale"))
-        {
-            currentSettings.arrowMinScale = PlayerPrefs.GetFloat("arrowMinScale");
-            Debug.Log("PlayerOptions: Arrow Min -> " + currentSettings.arrowMinScale);
-        }
-        if(PlayerPrefs.HasKey("arrowMaxScale"))
-        {
-            currentSettings.arrowMaxScale = PlayerPrefs.GetFloat("arrowMaxScale");
-            Debug.Log("PlayerOptions: Arrow Max -> " + currentSettings.arrowMaxScale);
-        }
-        if(PlayerPrefs.HasKey("maxJunkSpawn"))
-        {
-            currentSettings.maxJunkSpawn = PlayerPrefs.GetInt("maxJunkSpawn");
-            Debug.Log("PlayerOptions: Junk Count -> " + currentSettings.maxJunkSpawn);
-        }
-        if(PlayerPrefs.HasKey("cameraZoom"))
-        {
-            //cameraZoom = PlayerPrefs.GetFloat("cameraZoom");
-            //Debug.Log("PlayerOptions: Camera Zoom -> " + maxJunkSpawn);
-        }
-        
-        currentSettings.enableEffects = GetBool("enableEffects", currentSettings.enableEffects);
-        currentSettings.enableShipTrail = GetBool("enableShipTrail", currentSettings.enableShipTrail);
-        currentSettings.enableBulletTrail = GetBool("enableBulletTrail", currentSettings.enableBulletTrail);
+        Debug.Log("PlayerOptions: Loading player settings");
+        LoadFromDisc();
 	}	
 	
 	public void SaveOptions () 
     {
-        Debug.Log("PlayerOptions: Saving player prefs");
-        PlayerPrefs.SetFloat("arrowMinScale", currentSettings.arrowMinScale);
-        PlayerPrefs.SetFloat("arrowMaxScale", currentSettings.arrowMaxScale);
-        PlayerPrefs.SetInt("maxJunkSpawn", currentSettings.maxJunkSpawn);
-        //PlayerPrefs.SetFloat("cameraZoom", cameraZoom);
-        
-        SetBool("enableEffects", currentSettings.enableEffects);
-        SetBool("enableShipTrail", currentSettings.enableShipTrail);
-        SetBool("enableBulletTrail", currentSettings.enableBulletTrail);
+        Debug.Log("PlayerOptions: Saving player settings");
+        SaveToDisc();
         
         //Update options, needed for option menu save button
         ApplyOptions();
 	}
+    
+    //Loads game data
+    public void LoadFromDisc()
+    {
+        //Create folder
+        string saveFolder = dataSaveHandler.getMainFolder();
+        if(!File.Exists(saveFolder))
+        {
+            Directory.CreateDirectory(saveFolder); 
+        }
+        
+        //Find save
+        string filePath = dataSaveHandler.getPlayerSettingsFile();        
+        if (File.Exists (filePath)) 
+        {
+            //Read JSON
+            string dataAsJson = File.ReadAllText (filePath);
+            
+            //Convert JSON to data object
+            currentSettings = JsonUtility.FromJson<PlayerOptionData> (dataAsJson);
+        } 
+        else 
+        {
+            currentSettings = new PlayerOptionData();
+            defaultSettings.CopyInto(currentSettings);
+        }
+    }
+    
+    //Saves game data
+    public void SaveToDisc()
+    {
+        //Create folder
+        string saveFolder = dataSaveHandler.getMainFolder();
+        if(!File.Exists(saveFolder))
+        {
+            Directory.CreateDirectory(saveFolder); 
+        }
+        
+        //Convert to JSON
+        string dataAsJson = JsonUtility.ToJson (currentSettings, true);
+        
+        //Save data
+        File.WriteAllText (dataSaveHandler.getPlayerSettingsFile(), dataAsJson);
+    }
     
     public void ApplyOptions()
     {

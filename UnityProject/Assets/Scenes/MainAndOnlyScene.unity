@@ -11194,6 +11194,7 @@ GameObject:
   - component: {fileID: 1857346946}
   - component: {fileID: 1857346947}
   - component: {fileID: 1857346948}
+  - component: {fileID: 1857346949}
   m_Layer: 0
   m_Name: GameDataStuff
   m_TagString: Untagged
@@ -11271,8 +11272,8 @@ MonoBehaviour:
     enableEffects: 1
     enableShipTrail: 1
     enableBulletTrail: 1
-    enabledShipBasedMovement: 1
-    enabledMouseAim: 1
+    enableShipBasedMovement: 1
+    enableMouseAim: 1
   defaultSettings:
     arrowMinScale: 0.3
     arrowMaxScale: 3
@@ -11282,8 +11283,9 @@ MonoBehaviour:
     enableEffects: 1
     enableShipTrail: 1
     enableBulletTrail: 1
-    enabledShipBasedMovement: 1
-    enabledMouseAim: 1
+    enableShipBasedMovement: 1
+    enableMouseAim: 1
+  dataSaveHandler: {fileID: 1857346949}
 --- !u!114 &1857346948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11297,6 +11299,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minZoom: 5
   maxZoom: 20
+--- !u!114 &1857346949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1857346944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2220904a16f95204984c357339c5140a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doSaveGameData: 0
+  doLoadGameData: 1
+  gameSavePath: /saves/
+  gameSaveName: save
+  playerSettingsName: player_settings
 --- !u!1 &1876769915
 GameObject:
   m_ObjectHideFlags: 0
