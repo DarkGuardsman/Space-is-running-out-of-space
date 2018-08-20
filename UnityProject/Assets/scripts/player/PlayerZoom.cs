@@ -27,7 +27,7 @@ public class PlayerZoom : MonoBehaviour
         float zoom = Input.GetAxis("Zoom");
         
         //Do zoom
-        cinemachineCamera.m_Lens.OrthographicSize -= playerOptions.zoomSpeed * zoom;
+        cinemachineCamera.m_Lens.OrthographicSize -= playerOptions.currentSettings.zoomSpeed * zoom;
         
         //Clamp
         if(cinemachineCamera.m_Lens.OrthographicSize > maxZoom)

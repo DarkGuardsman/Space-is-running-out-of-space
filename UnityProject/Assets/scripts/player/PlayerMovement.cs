@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     public float movePower = 10f;
     public float breakingPower = 0.98f;
     
-    private Rigidbody2D rigidBody2D; 
+    private Rigidbody2D rigidBody2D;
+    private PlayerOptions playerOptions;    
     
     void Start()
     {
         rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
+        playerOptions = FindObjectOfType<PlayerOptions>();
     }
     
 	// Update is called once per frame
@@ -22,11 +24,29 @@ public class PlayerMovement : MonoBehaviour
         float moveHorizontal = Input.GetAxis ("Horizontal");
         float moveVertical = Input.GetAxis ("Vertical");
         
-        //Convert to vector 2
-        Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
+        //Get force scale for frame
+        float moveForce = movePower * Time.deltaTime;
 
-        //Apply force with scale
-        rigidBody2D.AddForce (movement * movePower * Time.deltaTime);
+        //Switch movement mode based on settings
+        if(playerOptions.currentSettings.enabledShipBasedMovement)
+        {
+            //Forwards/backwards movement
+            rigidBody2D.AddForce (transform.up * moveForce * moveVertical);
+            
+            //Left/Right movement
+            rigidBody2D.AddForce (transform.right * moveForce * moveHorizontal);
+        }
+        else
+        {
+            //Convert to vector 2
+            Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
+        
+            //Apply speed over time
+            movement *= moveForce;
+            
+            //Apply
+            rigidBody2D.AddForce (movement);
+        }
         
         if(Input.GetButton("Breaks"))
         {

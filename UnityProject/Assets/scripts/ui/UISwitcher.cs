@@ -7,7 +7,7 @@ public class UISwitcher : UIDisplay
     public Canvas gameUI;
     public Canvas respawnUI;
     public UIMenu menuUI;
-    public Canvas optionsUI;
+    public UIOptions optionsUI;
     public Canvas helpUI;
     public Canvas failedUI;
     
@@ -43,7 +43,7 @@ public class UISwitcher : UIDisplay
         gameUI.enabled = false;
         respawnUI.enabled = false;
         menuUI.canvus.enabled = false;
-        optionsUI.enabled = false;
+        optionsUI.canvus.enabled = false;
         helpUI.enabled = false;
         failedUI.enabled = false;
         
@@ -52,7 +52,7 @@ public class UISwitcher : UIDisplay
         if(showOptions)
         {
             Time.timeScale = 0;
-            optionsUI.enabled = true;
+            optionsUI.canvus.enabled = true;
         }
         else if(showInfo)
         {

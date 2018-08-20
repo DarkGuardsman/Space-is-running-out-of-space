@@ -68,7 +68,7 @@ public class ArrowObjective : UIDisplay
             transform.localPosition = pos;
             
             //Scale based on distance
-            float scale = playerOptions.arrowMinScale + (playerOptions.arrowMaxScale - Mathf.Min(distance * scaleGrowth, playerOptions.arrowMaxScale));
+            float scale = playerOptions.currentSettings.arrowMinScale + (playerOptions.currentSettings.arrowMaxScale - Mathf.Min(distance * scaleGrowth, playerOptions.currentSettings.arrowMaxScale));
             transform.localScale = new Vector3( scale, scale, 1);
         }
 	}

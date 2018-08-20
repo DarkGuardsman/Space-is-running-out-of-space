@@ -49,7 +49,7 @@ public class DamageData : MonoBehaviour
     {
         if(prefabToSpawnOnDeath != null 
         //Do not spawn if effects are off
-        && FindObjectOfType<PlayerOptions>().enableEffects 
+        && FindObjectOfType<PlayerOptions>().currentSettings.enableEffects 
         //Do not spawn if not in camera view
         && FindObjectOfType<GameController>().IsInView(transform.position))
         {

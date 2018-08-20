@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIOptions : UIDisplay 
 {
+    public Canvas canvus;
+    
     public Slider minArrowSizeSlider;
     public Slider maxArrowSizeSlider;
     public Slider maxJunkCountSlider;    
@@ -17,6 +19,7 @@ public class UIOptions : UIDisplay
     public Toggle enableEffectsToggle;
     public Toggle enableDroneTrailToggle;
     public Toggle enableBulletTrailToggle;
+    public Toggle enableShipMovementToggle;
     
     public float minAllowArrowMaxSize = 1f;
     public float maxAllowedArrowMaxSize = 3f;
@@ -27,32 +30,56 @@ public class UIOptions : UIDisplay
     public int minJunkSpawn = 20;
     public int maxJunkSpawn = 1000;
     
-    public override void Start()
-    {
-        base.Start();
-        enableEffectsToggle.isOn = playerOptions.enableEffects;
-        enableDroneTrailToggle.isOn = playerOptions.enableShipTrail;
-        enableBulletTrailToggle.isOn = playerOptions.enableBulletTrail;       
+    void Awake ()
+    {       
+        canvus = gameObject.GetComponent<Canvas>();
     }
     
-    void FixedUpdate()
+    //Load options from data into UI elements
+    public void LoadOptions()
     {
-        minArrowSizeSlider.value = Mathf.Min(1, (playerOptions.arrowMinScale - minAllowArrowMinSize) / (maxAllowedArrowMinSize - minAllowArrowMinSize));
-        maxArrowSizeSlider.value = Mathf.Min(1, (playerOptions.arrowMaxScale - minAllowArrowMaxSize) / (maxAllowedArrowMaxSize - minAllowArrowMaxSize));
-        maxJunkCountSlider.value = Mathf.Min(1, (((float)playerOptions.maxJunkSpawn) - minJunkSpawn) / (maxJunkSpawn - minJunkSpawn));
-	}
+        enableEffectsToggle.isOn = playerOptions.currentSettings.enableEffects;
+        enableDroneTrailToggle.isOn = playerOptions.currentSettings.enableShipTrail;
+        enableBulletTrailToggle.isOn = playerOptions.currentSettings.enableBulletTrail;
+        enableShipMovementToggle.isOn = playerOptions.currentSettings.enabledShipBasedMovement;
+        
+        minArrowSizeSlider.value = Mathf.Min(1, (playerOptions.currentSettings.arrowMinScale - minAllowArrowMinSize) / (maxAllowedArrowMinSize - minAllowArrowMinSize));
+        maxArrowSizeSlider.value = Mathf.Min(1, (playerOptions.currentSettings.arrowMaxScale - minAllowArrowMaxSize) / (maxAllowedArrowMaxSize - minAllowArrowMaxSize));
+        maxJunkCountSlider.value = Mathf.Min(1, (((float)playerOptions.currentSettings.maxJunkSpawn) - minJunkSpawn) / (maxJunkSpawn - minJunkSpawn));    
+
+        minArrowSizeInput.text = String.Format("{0}", playerOptions.currentSettings.arrowMinScale);
+        maxArrowSizeInput.text = String.Format("{0}", playerOptions.currentSettings.arrowMaxScale);
+        maxJunkCountInput.text = String.Format("{0:0}", playerOptions.currentSettings.maxJunkSpawn);        
+    }
+    
+    public void ButtonApply()
+    {
+        SaveSettings();
+    }
     
     public void ButtonSave()
     {
-        playerOptions.arrowMinScale = float.Parse(minArrowSizeInput.text);
-        playerOptions.arrowMaxScale = float.Parse(maxArrowSizeInput.text);
-        playerOptions.maxJunkSpawn = int.Parse(maxJunkCountInput.text);
+        SaveSettings();
+    }
+    
+    public void SaveSettings()
+    {
+        playerOptions.currentSettings.arrowMinScale = float.Parse(minArrowSizeInput.text);
+        playerOptions.currentSettings.arrowMaxScale = float.Parse(maxArrowSizeInput.text);
+        playerOptions.currentSettings.maxJunkSpawn = int.Parse(maxJunkCountInput.text);
         
-        playerOptions.enableEffects = enableEffectsToggle.isOn;
-        playerOptions.enableShipTrail = enableDroneTrailToggle.isOn;
-        playerOptions.enableBulletTrail = enableBulletTrailToggle.isOn;        
+        playerOptions.currentSettings.enableEffects = enableEffectsToggle.isOn;
+        playerOptions.currentSettings.enableShipTrail = enableDroneTrailToggle.isOn;
+        playerOptions.currentSettings.enableBulletTrail = enableBulletTrailToggle.isOn;      
+        playerOptions.currentSettings.enabledShipBasedMovement = enableShipMovementToggle.isOn;             
         
         playerOptions.SaveOptions();
+    }
+    
+    public void ButtonResetDefaults()
+    {
+        playerOptions.defaultSettings.CopyInto(playerOptions.currentSettings);
+        LoadOptions();
     }
     
     public void OnSliderChanged()

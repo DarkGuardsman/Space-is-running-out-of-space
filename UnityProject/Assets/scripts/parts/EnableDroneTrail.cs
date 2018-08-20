@@ -16,6 +16,6 @@ public class EnableDroneTrail : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-		trailRenderer.enabled = playerOptions.enableShipTrail;
+		trailRenderer.enabled = playerOptions.currentSettings.enableShipTrail;
 	}
 }

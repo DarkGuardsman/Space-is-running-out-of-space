@@ -4,18 +4,9 @@ using UnityEngine;
 using Cinemachine;
 
 public class PlayerOptions : MonoBehaviour 
-{
-	public float arrowMinScale = 0.3f;
-    public float arrowMaxScale = 3f;
-    
-    public float cameraZoom = 8f;
-    public float zoomSpeed = 0.1f;
-    public int maxJunkSpawn = 1000;
-    
-    public bool enableEffects = true;
-    public bool enableShipTrail = true;
-    public bool enableBulletTrail = true;
-    public bool shipBasedMovement = true;
+{    
+    public PlayerOptionData currentSettings = new PlayerOptionData();
+    public PlayerOptionData defaultSettings = new PlayerOptionData();
     
     private GameController gameController;
     private CinemachineVirtualCamera cinemachineCamera;
@@ -39,18 +30,18 @@ public class PlayerOptions : MonoBehaviour
         Debug.Log("PlayerOptions: Loading player prefs");
         if(PlayerPrefs.HasKey("arrowMinScale"))
         {
-            arrowMinScale = PlayerPrefs.GetFloat("arrowMinScale");
-            Debug.Log("PlayerOptions: Arrow Min -> " + arrowMinScale);
+            currentSettings.arrowMinScale = PlayerPrefs.GetFloat("arrowMinScale");
+            Debug.Log("PlayerOptions: Arrow Min -> " + currentSettings.arrowMinScale);
         }
         if(PlayerPrefs.HasKey("arrowMaxScale"))
         {
-            arrowMaxScale = PlayerPrefs.GetFloat("arrowMaxScale");
-            Debug.Log("PlayerOptions: Arrow Max -> " + arrowMaxScale);
+            currentSettings.arrowMaxScale = PlayerPrefs.GetFloat("arrowMaxScale");
+            Debug.Log("PlayerOptions: Arrow Max -> " + currentSettings.arrowMaxScale);
         }
         if(PlayerPrefs.HasKey("maxJunkSpawn"))
         {
-            maxJunkSpawn = PlayerPrefs.GetInt("maxJunkSpawn");
-            Debug.Log("PlayerOptions: Junk Count -> " + maxJunkSpawn);
+            currentSettings.maxJunkSpawn = PlayerPrefs.GetInt("maxJunkSpawn");
+            Debug.Log("PlayerOptions: Junk Count -> " + currentSettings.maxJunkSpawn);
         }
         if(PlayerPrefs.HasKey("cameraZoom"))
         {
@@ -58,22 +49,22 @@ public class PlayerOptions : MonoBehaviour
             //Debug.Log("PlayerOptions: Camera Zoom -> " + maxJunkSpawn);
         }
         
-        enableEffects = GetBool("enableEffects", enableEffects);
-        enableShipTrail = GetBool("enableShipTrail", enableShipTrail);
-        enableBulletTrail = GetBool("enableBulletTrail", enableBulletTrail);
+        currentSettings.enableEffects = GetBool("enableEffects", currentSettings.enableEffects);
+        currentSettings.enableShipTrail = GetBool("enableShipTrail", currentSettings.enableShipTrail);
+        currentSettings.enableBulletTrail = GetBool("enableBulletTrail", currentSettings.enableBulletTrail);
 	}	
 	
 	public void SaveOptions () 
     {
         Debug.Log("PlayerOptions: Saving player prefs");
-        PlayerPrefs.SetFloat("arrowMinScale", arrowMinScale);
-        PlayerPrefs.SetFloat("arrowMaxScale", arrowMaxScale);
-        PlayerPrefs.SetInt("maxJunkSpawn", maxJunkSpawn);
+        PlayerPrefs.SetFloat("arrowMinScale", currentSettings.arrowMinScale);
+        PlayerPrefs.SetFloat("arrowMaxScale", currentSettings.arrowMaxScale);
+        PlayerPrefs.SetInt("maxJunkSpawn", currentSettings.maxJunkSpawn);
         //PlayerPrefs.SetFloat("cameraZoom", cameraZoom);
         
-        SetBool("enableEffects", enableEffects);
-        SetBool("enableShipTrail", enableShipTrail);
-        SetBool("enableBulletTrail", enableBulletTrail);
+        SetBool("enableEffects", currentSettings.enableEffects);
+        SetBool("enableShipTrail", currentSettings.enableShipTrail);
+        SetBool("enableBulletTrail", currentSettings.enableBulletTrail);
         
         //Update options, needed for option menu save button
         ApplyOptions();
@@ -82,7 +73,7 @@ public class PlayerOptions : MonoBehaviour
     public void ApplyOptions()
     {
         //Update settings
-        cinemachineCamera.m_Lens.OrthographicSize = cameraZoom;
+        cinemachineCamera.m_Lens.OrthographicSize = currentSettings.cameraZoom;
     }
     
     bool GetBool(string key, bool defaultValue)

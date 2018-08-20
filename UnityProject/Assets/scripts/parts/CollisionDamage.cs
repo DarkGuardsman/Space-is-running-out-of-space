@@ -29,7 +29,7 @@ public class CollisionDamage : MonoBehaviour
         onHit(collision.gameObject, collisionSpeed);
         
         //Spawn effects for collision
-        if(collisionSpawnPrefab != null && FindObjectOfType<PlayerOptions>().enableEffects)
+        if(collisionSpawnPrefab != null && FindObjectOfType<PlayerOptions>().currentSettings.enableEffects)
         {
             foreach (ContactPoint2D hit in collision.contacts)
             {

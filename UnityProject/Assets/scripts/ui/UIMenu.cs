@@ -59,6 +59,7 @@ public class UIMenu : UIDisplay
     public void ButtonShowOptions()
     {
         uiSwitcher.showOptions = true;
+        uiSwitcher.optionsUI.LoadOptions();
     }
     
     public void ButtonRestart()

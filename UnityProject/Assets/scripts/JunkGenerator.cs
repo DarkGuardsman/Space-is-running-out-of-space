@@ -31,7 +31,7 @@ public class JunkGenerator : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if(gameController.junkSpawnedList.Count < playerOptions.maxJunkSpawn)
+        if(gameController.junkSpawnedList.Count < playerOptions.currentSettings.maxJunkSpawn)
         {
             if(spawnTimer <= 0)
             {               

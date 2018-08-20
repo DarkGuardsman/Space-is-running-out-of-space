@@ -16,6 +16,6 @@ public class EnableBulletTrail : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-		trailRenderer.enabled = playerOptions.enableBulletTrail;
+		trailRenderer.enabled = playerOptions.currentSettings.enableBulletTrail;
 	}
 }
