@@ -15,6 +15,7 @@ public class PlayerOptions : MonoBehaviour
     public bool enableEffects = true;
     public bool enableShipTrail = true;
     public bool enableBulletTrail = true;
+    public bool shipBasedMovement = true;
     
     private GameController gameController;
     private CinemachineVirtualCamera cinemachineCamera;

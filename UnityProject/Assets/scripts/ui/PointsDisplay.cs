@@ -11,6 +11,6 @@ public class PointsDisplay : UIDisplay
     
 	void FixedUpdate () 
     {
-        text.text = String.Format("Points: {0:0}", gameController.points);
+        text.text = String.Format("Credits: ${0:0}", gameController.points);
 	}
 }

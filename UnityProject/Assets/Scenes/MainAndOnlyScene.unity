@@ -2270,7 +2270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Points: 20'
+  m_Text: 'Credits: $2000'
 --- !u!222 &350904323
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10389,6 +10389,7 @@ MonoBehaviour:
   enableEffects: 1
   enableShipTrail: 1
   enableBulletTrail: 1
+  shipBasedMovement: 1
 --- !u!114 &1857346948
 MonoBehaviour:
   m_ObjectHideFlags: 0
