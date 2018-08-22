@@ -95,11 +95,25 @@ public class PlayerInputManager : MonoBehaviour
                     //Assign key
                     if(assignPrimaryKey)
                     {
-                        assignAction.primary = keyCode;
+                        if(keyCode == KeyCode.Escape)
+                        {
+                            assignAction.primary = KeyCode.None;
+                        }
+                        else
+                        {
+                            assignAction.primary = keyCode;
+                        }
                     }
                     else
                     {
-                        assignAction.secondary = keyCode;
+                       if(keyCode == KeyCode.Escape)
+                        {
+                            assignAction.secondary = KeyCode.None;
+                        }
+                        else
+                        {
+                            assignAction.secondary = keyCode;
+                        }
                     }
                     
                     //TODO save change
