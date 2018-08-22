@@ -21,4 +21,9 @@ public class InputAction
     {
         return Input.GetKey(primary) || Input.GetKey(secondary);
     }
+    
+    public InputAction Copy()
+    {
+        return new InputAction(displayName, primary, secondary);
+    }
 }

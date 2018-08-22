@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,11 @@ using UnityEngine;
 public class PlayerInputManager : MonoBehaviour 
 {
     //Singleton for input managment
-    public static PlayerInputManager instance;  
+    public static PlayerInputManager instance;
 
     //Reference object for action keys
-    public InputActionHolder inputActions = new InputActionHolder(); 
+    public InputActionHolder currentInputActions = new InputActionHolder(); 
+    public InputActionHolder defaultInputActions = new InputActionHolder(); 
     
     //List of action keys (mainly used for UI)
     public List<InputAction> actionList = new List<InputAction>();	
@@ -20,6 +22,14 @@ public class PlayerInputManager : MonoBehaviour
     public bool assignPrimaryKey = false;
     //Input action (key) being assigned
     public InputAction assignAction;
+    
+    private DataSaveHandler dataSaveHandler;
+    
+    // Use this for initialization
+	void Start () 
+    {
+        dataSaveHandler = FindObjectOfType<DataSaveHandler>();
+	}
     
 	void Awake () 
     {
@@ -42,20 +52,26 @@ public class PlayerInputManager : MonoBehaviour
     //Called to load action inputs and player settings
     void LoadKeys()
     {
+        //Load from disc
+        LoadFromDisc();
+        
+        //Fix any issues with loaded key set
+        currentInputActions.CheckForIssues(defaultInputActions);
+        
         //Build action key list
         actionList.Clear();
-        actionList.Add(inputActions.up);
-        actionList.Add(inputActions.down);
-        actionList.Add(inputActions.left);
-        actionList.Add(inputActions.right);	
-        actionList.Add(inputActions.slow);    
-        actionList.Add(inputActions.rotateLeft);
-        actionList.Add(inputActions.rotateRight);    
-        actionList.Add(inputActions.release);
-        actionList.Add(inputActions.hook);    
-        actionList.Add(inputActions.shoot);    
-        actionList.Add(inputActions.zoomIn);
-        actionList.Add(inputActions.zoomOut);
+        actionList.Add(currentInputActions.up);
+        actionList.Add(currentInputActions.down);
+        actionList.Add(currentInputActions.left);
+        actionList.Add(currentInputActions.right);	
+        actionList.Add(currentInputActions.slow);    
+        actionList.Add(currentInputActions.rotateLeft);
+        actionList.Add(currentInputActions.rotateRight);    
+        actionList.Add(currentInputActions.release);
+        actionList.Add(currentInputActions.hook);    
+        actionList.Add(currentInputActions.shoot);    
+        actionList.Add(currentInputActions.zoomIn);
+        actionList.Add(currentInputActions.zoomOut);
     }
 	
 	// Update is called once per frame
@@ -91,4 +107,47 @@ public class PlayerInputManager : MonoBehaviour
             }
         }
 	}
+    
+    //Loads game data
+    public void LoadFromDisc()
+    {
+        //Create folder
+        string saveFolder = dataSaveHandler.getMainFolder();
+        if(!File.Exists(saveFolder))
+        {
+            Directory.CreateDirectory(saveFolder); 
+        }
+        
+        //Find save
+        string filePath = dataSaveHandler.getPlayerControlsFile();        
+        if (File.Exists (filePath)) 
+        {
+            //Read JSON
+            string dataAsJson = File.ReadAllText (filePath);
+            
+            //Convert JSON to data object
+            currentInputActions = JsonUtility.FromJson<InputActionHolder> (dataAsJson);
+        } 
+        else 
+        {
+            currentInputActions = new InputActionHolder();
+        }
+    }
+    
+    //Saves game data
+    public void SaveToDisc()
+    {
+        //Create folder
+        string saveFolder = dataSaveHandler.getMainFolder();
+        if(!File.Exists(saveFolder))
+        {
+            Directory.CreateDirectory(saveFolder); 
+        }
+        
+        //Convert to JSON
+        string dataAsJson = JsonUtility.ToJson (currentInputActions, true);
+        
+        //Save data
+        File.WriteAllText (dataSaveHandler.getPlayerControlsFile(), dataAsJson);
+    }
 }

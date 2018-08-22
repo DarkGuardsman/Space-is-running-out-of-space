@@ -27,4 +27,63 @@ public class InputActionHolder
     public InputAction zoomOut = new InputAction("zoomOut", KeyCode.Minus, KeyCode.None);
     
     //Make sure to add new actions to PlayerInputManager list
+    
+    //Copies keybinds into other holder
+    public void CopyInto(InputActionHolder holder)
+    {
+        holder.up = up.Copy();
+        holder.down = down.Copy();
+        holder.left = left.Copy();
+        holder.right = right.Copy();
+	
+        holder.slow = slow.Copy();
+    
+        holder.rotateLeft = rotateLeft.Copy();
+        holder.rotateRight = rotateRight.Copy();
+    
+        holder.release = release.Copy();
+        holder.hook = hook.Copy();
+    
+        holder.shoot = shoot.Copy();
+    
+        holder.zoomIn = zoomIn.Copy();
+        holder.zoomOut = zoomOut.Copy();
+    }
+    
+    public void CheckForIssues(InputActionHolder defaultSettings)
+    {
+        up = CheckForIssues(up, defaultSettings.up);
+        down = CheckForIssues(down, defaultSettings.down);
+        left = CheckForIssues(left, defaultSettings.left);
+        right = CheckForIssues(right, defaultSettings.right);
+	
+        slow = CheckForIssues(slow, defaultSettings.slow);
+    
+        rotateLeft = CheckForIssues(rotateLeft, defaultSettings.rotateLeft);
+        rotateRight = CheckForIssues(rotateRight, defaultSettings.rotateRight);
+    
+        release = CheckForIssues(release, defaultSettings.release);
+        hook = CheckForIssues(hook, defaultSettings.hook);
+    
+        shoot = CheckForIssues(shoot, defaultSettings.shoot);
+    
+        zoomIn = CheckForIssues(zoomIn, defaultSettings.zoomIn);
+        zoomOut = CheckForIssues(zoomOut, defaultSettings.zoomOut);
+    }
+    
+    InputAction CheckForIssues(InputAction currentInput, InputAction defaultInput)
+    {
+        //Check for null
+        if(currentInput == null)
+        {
+            return defaultInput.Copy();
+        }
+        
+        //Force name
+        currentInput.displayName = defaultInput.displayName;
+        
+        //TODO check keys?
+        
+        return currentInput;
+    }
 }

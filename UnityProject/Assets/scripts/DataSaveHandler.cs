@@ -16,8 +16,11 @@ public class DataSaveHandler : MonoBehaviour
     //File to save the game data
     public string gameSaveName = "save";
     
-     //File to save the game data
+    //File to save general settings
     public string playerSettingsName = "player_settings";
+    
+    //File to save keybinds
+    public string playerControlsName = "player_controls";
     
 	// Update is called once per frame
 	void FixedUpdate()
@@ -57,5 +60,11 @@ public class DataSaveHandler : MonoBehaviour
     public string getPlayerSettingsFile()
     {
         return getMainFolder() + "/" + playerSettingsName + ".json";
+    }
+    
+    //File to save game data
+    public string getPlayerControlsFile()
+    {
+        return getMainFolder() + "/" + playerControlsName + ".json";
     }
 }
