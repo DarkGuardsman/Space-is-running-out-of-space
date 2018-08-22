@@ -6,7 +6,7 @@ using System.IO;
 
 public class PlayerOptions : MonoBehaviour 
 {        
-    public PlayerOptionData currentSettings = new PlayerOptionData(); //TODO save as JSON instead of player prefs
+    public PlayerOptionData currentSettings = new PlayerOptionData();
     public PlayerOptionData defaultSettings = new PlayerOptionData();
     
     private GameController gameController;
