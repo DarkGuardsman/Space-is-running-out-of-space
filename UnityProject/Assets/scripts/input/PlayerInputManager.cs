@@ -23,12 +23,10 @@ public class PlayerInputManager : MonoBehaviour
     //Input action (key) being assigned
     public InputAction assignAction;
     
-    private DataSaveHandler dataSaveHandler;
-    
     // Use this for initialization
 	void Start () 
     {
-        dataSaveHandler = FindObjectOfType<DataSaveHandler>();
+        
 	}
     
 	void Awake () 
@@ -126,25 +124,23 @@ public class PlayerInputManager : MonoBehaviour
     public void LoadFromDisc()
     {
         //Create folder
-        string saveFolder = dataSaveHandler.getMainFolder();
-        if(!File.Exists(saveFolder))
-        {
-            Directory.CreateDirectory(saveFolder); 
-        }
-        
-        //Find save
-        string filePath = dataSaveHandler.getPlayerControlsFile();        
-        if (File.Exists (filePath)) 
-        {
-            //Read JSON
-            string dataAsJson = File.ReadAllText (filePath);
-            
-            //Convert JSON to data object
-            currentInputActions = JsonUtility.FromJson<InputActionHolder> (dataAsJson);
-        } 
-        else 
-        {
-            currentInputActions = new InputActionHolder();
+        string saveFolder = DataSaveHandler.getMainFolder();
+        if(File.Exists(saveFolder))
+        {        
+            //Find save
+            string filePath = DataSaveHandler.getPlayerControlsFile();        
+            if (File.Exists (filePath)) 
+            {
+                //Read JSON
+                string dataAsJson = File.ReadAllText (filePath);
+                
+                //Convert JSON to data object
+                currentInputActions = JsonUtility.FromJson<InputActionHolder> (dataAsJson);
+            } 
+            else 
+            {
+                currentInputActions = new InputActionHolder();
+            }
         }
     }
     
@@ -152,7 +148,7 @@ public class PlayerInputManager : MonoBehaviour
     public void SaveToDisc()
     {
         //Create folder
-        string saveFolder = dataSaveHandler.getMainFolder();
+        string saveFolder = DataSaveHandler.getMainFolder();
         if(!File.Exists(saveFolder))
         {
             Directory.CreateDirectory(saveFolder); 
@@ -162,6 +158,6 @@ public class PlayerInputManager : MonoBehaviour
         string dataAsJson = JsonUtility.ToJson (currentInputActions, true);
         
         //Save data
-        File.WriteAllText (dataSaveHandler.getPlayerControlsFile(), dataAsJson);
+        File.WriteAllText (DataSaveHandler.getPlayerControlsFile(), dataAsJson);
     }
 }

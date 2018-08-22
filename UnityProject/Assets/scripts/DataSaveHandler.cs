@@ -4,23 +4,25 @@ using UnityEngine;
 using System.IO;
 
 public class DataSaveHandler : MonoBehaviour 
-{
+{   
+    //Path to save data to
+    public const string gameSavePath = "/saves/";    
+    
+    //File to save general settings
+    public const string playerSettingsName = "player_settings";
+    
+    //File to save keybinds
+    public const string playerControlsName = "player_controls";
+    
+    ///-------------------------------------------
+    
     //Trigger to save game data
     public bool doSaveGameData = false;
     //Trigger to load game data
-    public bool doLoadGameData = true;
-    
-    //Path to save data to
-    public string gameSavePath = "/saves/";
+    public bool doLoadGameData = true;    
     
     //File to save the game data
     public string gameSaveName = "save";
-    
-    //File to save general settings
-    public string playerSettingsName = "player_settings";
-    
-    //File to save keybinds
-    public string playerControlsName = "player_controls";
     
 	// Update is called once per frame
 	void FixedUpdate()
@@ -35,20 +37,7 @@ public class DataSaveHandler : MonoBehaviour
             doSaveGameData = false;
             //saveGameData();
         }
-	}
-    
-    //Folder to save all data
-    public string getSaveFolder()
-    {
-        return getMainFolder() + gameSavePath;
-    }
-    
-     //Folder to save all data
-    public string getMainFolder()
-    {
-        //saves to on windows -> Users/[Username]/AppData/LocalLow/[CompanyName]/[GameName]
-        return Application.persistentDataPath;
-    } 
+	}   
     
     //File to save game data
     public string getSaveFile()
@@ -56,14 +45,29 @@ public class DataSaveHandler : MonoBehaviour
         return getSaveFolder() + gameSaveName + ".json";
     }
     
+    ///-------------------------------------------
+    
+    //Folder to save all data
+    public static string getSaveFolder()
+    {
+        return getMainFolder() + gameSavePath;
+    }
+    
+     //Folder to save all data
+    public static string getMainFolder()
+    {
+        //saves to on windows -> Users/[Username]/AppData/LocalLow/[CompanyName]/[GameName]
+        return Application.persistentDataPath;
+    } 
+    
     //File to save game data
-    public string getPlayerSettingsFile()
+    public static string getPlayerSettingsFile()
     {
         return getMainFolder() + "/" + playerSettingsName + ".json";
     }
     
     //File to save game data
-    public string getPlayerControlsFile()
+    public static string getPlayerControlsFile()
     {
         return getMainFolder() + "/" + playerControlsName + ".json";
     }

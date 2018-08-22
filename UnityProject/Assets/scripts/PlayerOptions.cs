@@ -11,14 +11,12 @@ public class PlayerOptions : MonoBehaviour
     
     private GameController gameController;
     private CinemachineVirtualCamera cinemachineCamera;
-    public DataSaveHandler dataSaveHandler;
     
     // Use this for initialization
 	void Start () 
     {
 		gameController = FindObjectOfType<GameController>();
         cinemachineCamera = FindObjectOfType<CinemachineVirtualCamera>();
-        dataSaveHandler = FindObjectOfType<DataSaveHandler>();
 
         ApplyOptions();
 	}
@@ -47,14 +45,14 @@ public class PlayerOptions : MonoBehaviour
     public void LoadFromDisc()
     {
         //Create folder
-        string saveFolder = dataSaveHandler.getMainFolder();
+        string saveFolder = DataSaveHandler.getMainFolder();
         if(!File.Exists(saveFolder))
         {
             Directory.CreateDirectory(saveFolder); 
         }
         
         //Find save
-        string filePath = dataSaveHandler.getPlayerSettingsFile();        
+        string filePath = DataSaveHandler.getPlayerSettingsFile();        
         if (File.Exists (filePath)) 
         {
             //Read JSON
@@ -74,7 +72,7 @@ public class PlayerOptions : MonoBehaviour
     public void SaveToDisc()
     {
         //Create folder
-        string saveFolder = dataSaveHandler.getMainFolder();
+        string saveFolder = DataSaveHandler.getMainFolder();
         if(!File.Exists(saveFolder))
         {
             Directory.CreateDirectory(saveFolder); 
@@ -84,7 +82,7 @@ public class PlayerOptions : MonoBehaviour
         string dataAsJson = JsonUtility.ToJson (currentSettings, true);
         
         //Save data
-        File.WriteAllText (dataSaveHandler.getPlayerSettingsFile(), dataAsJson);
+        File.WriteAllText (DataSaveHandler.getPlayerSettingsFile(), dataAsJson);
     }
     
     public void ApplyOptions()
