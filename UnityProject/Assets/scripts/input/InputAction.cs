@@ -26,4 +26,22 @@ public class InputAction
     {
         return new InputAction(displayName, primary, secondary);
     }
+    
+    public string GetPrimaryText()
+    {
+        if(primary == null || primary == KeyCode.None)
+        {
+            return "";
+        }
+        return primary.ToString();
+    }
+    
+    public string GetSecondaryText()
+    {
+        if(secondary == null || secondary == KeyCode.None)
+        {
+            return "";
+        }
+        return secondary.ToString();
+    }
 }

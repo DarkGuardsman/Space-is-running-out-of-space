@@ -9,6 +9,8 @@ public class UIOptionViewSwitcher : MonoBehaviour
     public GameObject graphicsPanel;
     public GameObject soundPanel;
     
+    public UIKeyBindTable keyBindTable;
+    
     public bool showGeneral = true;
     public bool showControl = false;
     public bool showGraphic = false;
@@ -39,7 +41,12 @@ public class UIOptionViewSwitcher : MonoBehaviour
     
     public void ShowControl()
     {
-        HideAll();
+        HideAll();        
+        if(!showControl)
+        {
+            keyBindTable.DestroyEntries(); //TODO instead of destroy remap
+            keyBindTable.GenerateEntries();            
+        }
         showControl = true;
         Debug.Log("OptionsUI: Switch to controls view");
     }
