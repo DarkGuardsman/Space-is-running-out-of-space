@@ -61,10 +61,10 @@ public class PlayerInputManager : MonoBehaviour
         actionList.Add(currentInputActions.up);
         actionList.Add(currentInputActions.down);
         actionList.Add(currentInputActions.left);
-        actionList.Add(currentInputActions.right);	
-        actionList.Add(currentInputActions.slow);    
+        actionList.Add(currentInputActions.right);
         actionList.Add(currentInputActions.rotateLeft);
         actionList.Add(currentInputActions.rotateRight);    
+        actionList.Add(currentInputActions.slow);    
         actionList.Add(currentInputActions.release);
         actionList.Add(currentInputActions.hook);    
         actionList.Add(currentInputActions.shoot);    

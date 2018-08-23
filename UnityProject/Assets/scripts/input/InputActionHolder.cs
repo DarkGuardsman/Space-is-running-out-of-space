@@ -12,16 +12,16 @@ public class InputActionHolder
     public InputAction down = new InputAction("down", KeyCode.S, KeyCode.DownArrow);
     public InputAction left = new InputAction("left", KeyCode.A, KeyCode.LeftArrow);
     public InputAction right = new InputAction("right", KeyCode.D, KeyCode.RightArrow);
-	
-    public InputAction slow = new InputAction("slow", KeyCode.Space, KeyCode.None);
     
     public InputAction rotateLeft = new InputAction("rotateLeft", KeyCode.Q, KeyCode.None);
     public InputAction rotateRight = new InputAction("rotateRight", KeyCode.E, KeyCode.None);
     
+    public InputAction slow = new InputAction("slow", KeyCode.Space, KeyCode.None);
+    
     public InputAction release = new InputAction("release", KeyCode.R, KeyCode.Mouse3);
     public InputAction hook = new InputAction("hook", KeyCode.F, KeyCode.Mouse1);
     
-    public InputAction shoot = new InputAction("hook", KeyCode.C, KeyCode.Mouse2);
+    public InputAction shoot = new InputAction("shoot", KeyCode.C, KeyCode.Mouse2);
     
     public InputAction zoomIn = new InputAction("zoomIn", KeyCode.Plus, KeyCode.None);
     public InputAction zoomOut = new InputAction("zoomOut", KeyCode.Minus, KeyCode.None);
