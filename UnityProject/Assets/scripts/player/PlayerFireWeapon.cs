@@ -21,7 +21,7 @@ public class PlayerFireWeapon : PlayerControls
     {
         if(weaponTimer <= 0)
         {
-            if(Input.GetButton("Fire1"))
+            if(ShouldFire())
             {
                 weaponTimer = weaponCooldown;
                 FireWeapon();
@@ -32,6 +32,11 @@ public class PlayerFireWeapon : PlayerControls
             weaponTimer -= Time.deltaTime;
         }
 	}
+    
+    bool ShouldFire()
+    {
+        return inputManager.getInputActions().shoot.IsKeyDown() || Input.GetButton("Fire1");
+    }
     
     void FireWeapon ()
     {

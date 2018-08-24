@@ -18,10 +18,10 @@ public class InputActionHolder
     
     public InputAction slow = new InputAction("slow", KeyCode.Space, KeyCode.None);
     
-    public InputAction release = new InputAction("release", KeyCode.R, KeyCode.Mouse3);
+    public InputAction release = new InputAction("release", KeyCode.R, KeyCode.Mouse2);
     public InputAction hook = new InputAction("hook", KeyCode.F, KeyCode.Mouse1);
     
-    public InputAction shoot = new InputAction("shoot", KeyCode.C, KeyCode.Mouse2);
+    public InputAction shoot = new InputAction("shoot", KeyCode.C, KeyCode.Mouse0);
     
     public InputAction zoomIn = new InputAction("zoomIn", KeyCode.Plus, KeyCode.None);
     public InputAction zoomOut = new InputAction("zoomOut", KeyCode.Minus, KeyCode.None);

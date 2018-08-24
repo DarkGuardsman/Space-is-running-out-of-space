@@ -6077,58 +6077,107 @@ MonoBehaviour:
   currentInputActions:
     up:
       displayName: up
+      primary: 119
+      secondary: 273
     down:
       displayName: down
+      primary: 115
+      secondary: 274
     left:
       displayName: left
+      primary: 97
+      secondary: 276
     right:
       displayName: right
+      primary: 100
+      secondary: 275
     rotateLeft:
       displayName: rotateLeft
+      primary: 113
+      secondary: 0
     rotateRight:
       displayName: rotateRight
+      primary: 101
+      secondary: 0
     slow:
       displayName: slow
+      primary: 32
+      secondary: 0
     release:
       displayName: release
+      primary: 114
+      secondary: 325
     hook:
       displayName: hook
+      primary: 102
+      secondary: 324
     shoot:
-      displayName: hook
+      displayName: shoot
+      primary: 99
+      secondary: 323
     zoomIn:
       displayName: zoomIn
+      primary: 43
+      secondary: 0
     zoomOut:
       displayName: zoomOut
+      primary: 45
+      secondary: 0
   defaultInputActions:
     up:
       displayName: up
+      primary: 119
+      secondary: 273
     down:
       displayName: down
+      primary: 115
+      secondary: 274
     left:
       displayName: left
+      primary: 97
+      secondary: 276
     right:
       displayName: right
+      primary: 100
+      secondary: 275
     rotateLeft:
       displayName: rotateLeft
+      primary: 113
+      secondary: 0
     rotateRight:
       displayName: rotateRight
+      primary: 101
+      secondary: 0
     slow:
       displayName: slow
+      primary: 32
+      secondary: 0
     release:
       displayName: release
+      primary: 114
+      secondary: 325
     hook:
       displayName: hook
+      primary: 102
+      secondary: 324
     shoot:
-      displayName: hook
+      displayName: shoot
+      primary: 99
+      secondary: 323
     zoomIn:
       displayName: zoomIn
+      primary: 43
+      secondary: 0
     zoomOut:
       displayName: zoomOut
-  actionList: []
+      primary: 45
+      secondary: 0
   assignKey: 0
   assignPrimaryKey: 0
   assignAction:
     displayName: 
+    primary: 0
+    secondary: 0
 --- !u!4 &849330487
 Transform:
   m_ObjectHideFlags: 0
@@ -7934,6 +7983,7 @@ MonoBehaviour:
   playerOptions: {fileID: 0}
   canvus: {fileID: 0}
   keybindTable: {fileID: 1980632263}
+  inputManager: {fileID: 0}
   minArrowSizeSlider: {fileID: 336477921}
   maxArrowSizeSlider: {fileID: 77598391}
   maxJunkCountSlider: {fileID: 740806103}

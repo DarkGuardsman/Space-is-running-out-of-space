@@ -54,14 +54,14 @@ public class PlayerMovement : PlayerControls
             rigidBody2D.AddForce (movement);
         }
         
-        if(Input.GetButton("Breaks"))
+        if(ShouldSlow())
         {
             rigidBody2D.velocity = rigidBody2D.velocity * breakingPower;
         }
         
         if(!playerOptions.currentSettings.enableMouseAim)
         {
-            float aimMove = -Input.GetAxis ("Aim") * rotationKeyboardMultiplier;
+            float aimMove = GetAim() * rotationKeyboardMultiplier;
             
             //Convert vector to angle
             float angle = rigidBody2D.rotation + (aimMove * rotationSpeed);              
@@ -80,6 +80,24 @@ public class PlayerMovement : PlayerControls
         }
     }
     
+    bool ShouldSlow()
+    {
+        return inputManager.getInputActions().slow.IsKeyDown() || Input.GetButton("Slow");
+    }
+    
+    float GetAim()
+    {
+        if(inputManager.getInputActions().rotateLeft.IsKeyDown())
+        {
+            return 1;
+        }
+        else if(inputManager.getInputActions().rotateRight.IsKeyDown())
+        {
+            return -1;
+        }
+        return -Input.GetAxis ("Aim");
+    }
+    
     float GetHorizontal()
     {
         if(inputManager.getInputActions().left.IsKeyDown())
@@ -90,8 +108,7 @@ public class PlayerMovement : PlayerControls
         {
             return 1;
         }
-        //return Input.GetAxis ("Horizontal");
-        return 0;
+        return Input.GetAxis ("Horizontal");
     }
     
      float GetVertical()
@@ -104,7 +121,6 @@ public class PlayerMovement : PlayerControls
         {
             return 1;
         }
-        //return Input.GetAxis ("Vertical");
-        return 0;
+        return Input.GetAxis ("Vertical");
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCollectJunk : MonoBehaviour 
+public class PlayerCollectJunk : PlayerControls
 {
     public float ropeConnectionDistance = 5;
     
@@ -20,12 +20,12 @@ public class PlayerCollectJunk : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if(Input.GetButton("Fire2") && currentLoad <= maxLoad)
+        if(ShouldHook() && currentLoad <= maxLoad)
         {
             CollectJunk();
         }
         
-        if(Input.GetButton("Release"))
+        if(ShouldRelease())
         {
             ReleaseJunk();
         }
@@ -45,6 +45,16 @@ public class PlayerCollectJunk : MonoBehaviour
             }
         }
 	}
+    
+    bool ShouldHook()
+    {
+        return inputManager.getInputActions().hook.IsKeyDown() || Input.GetButton("Fire2");
+    }
+    
+    bool ShouldRelease()
+    {
+        return inputManager.getInputActions().release.IsKeyDown() || Input.GetButton("Release");
+    }
     
     void CollectJunk()
     {

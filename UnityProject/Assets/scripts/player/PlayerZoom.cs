@@ -25,7 +25,7 @@ public class PlayerZoom : PlayerControls
 	void Update () 
     {
         //Get input
-        float zoom = Input.GetAxis("Zoom");
+        float zoom = GetZoom();
         
         //Do zoom
         cinemachineCamera.m_Lens.OrthographicSize -= playerOptions.currentSettings.zoomSpeed * zoom;
@@ -40,4 +40,17 @@ public class PlayerZoom : PlayerControls
             cinemachineCamera.m_Lens.OrthographicSize = minZoom;
         }
 	}
+    
+    float GetZoom()
+    {
+        if(inputManager.getInputActions().zoomIn.IsKeyDown())
+        {
+            return 1;
+        }
+        else if(inputManager.getInputActions().zoomOut.IsKeyDown())
+        {
+            return -1;
+        }
+        return Input.GetAxis("Zoom");
+    }
 }
