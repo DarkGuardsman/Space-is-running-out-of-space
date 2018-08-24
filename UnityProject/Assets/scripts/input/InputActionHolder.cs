@@ -26,7 +26,9 @@ public class InputActionHolder
     public InputAction zoomIn = new InputAction("zoomIn", KeyCode.Plus, KeyCode.None);
     public InputAction zoomOut = new InputAction("zoomOut", KeyCode.Minus, KeyCode.None);
     
-    //Make sure to add new actions to PlayerInputManager list
+    private bool hadIssues = false;
+    
+    //Make sure to add new actions to CollectActionInputs(List) method
     
     //Copies keybinds into other holder
     public void CopyInto(InputActionHolder holder)
@@ -50,8 +52,27 @@ public class InputActionHolder
         holder.zoomOut = zoomOut.Copy();
     }
     
-    public void CheckForIssues(InputActionHolder defaultSettings)
+    public List<InputAction> CollectActionInputs(List<InputAction> list)
     {
+        list.Add(up);
+        list.Add(down);
+        list.Add(left);
+        list.Add(right);
+        list.Add(rotateLeft);
+        list.Add(rotateRight);    
+        list.Add(slow);    
+        list.Add(release);
+        list.Add(hook);    
+        list.Add(shoot);    
+        list.Add(zoomIn);
+        list.Add(zoomOut);
+        return list;
+    }
+    
+    public bool CheckForIssues(InputActionHolder defaultSettings)
+    {
+        hadIssues = false;
+        
         up = CheckForIssues(up, defaultSettings.up);
         down = CheckForIssues(down, defaultSettings.down);
         left = CheckForIssues(left, defaultSettings.left);
@@ -69,20 +90,31 @@ public class InputActionHolder
     
         zoomIn = CheckForIssues(zoomIn, defaultSettings.zoomIn);
         zoomOut = CheckForIssues(zoomOut, defaultSettings.zoomOut);
+        
+        return hadIssues;
     }
     
     InputAction CheckForIssues(InputAction currentInput, InputAction defaultInput)
     {
+        Debug.Log("InputActionHolder: Checking " + currentInput + " against default " + defaultInput);
+        
         //Check for null
         if(currentInput == null)
         {
+            hadIssues = true;
+            Debug.Log("InputActionHolder: missing action input for " + defaultInput.displayName);
             return defaultInput.Copy();
         }
         
         //Force name
         currentInput.displayName = defaultInput.displayName;
         
-        //TODO check keys?
+        if(currentInput.primary == null && currentInput.secondary == null)
+        {
+            Debug.Log("InputActionHolder: missing keybinds for " + defaultInput.displayName);
+            defaultInput.CopyKeysInto(currentInput);
+            hadIssues = true;
+        }
         
         return currentInput;
     }

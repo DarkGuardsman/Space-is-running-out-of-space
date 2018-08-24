@@ -56,4 +56,9 @@ public class InputAction
         }
         return secondary.ToString();
     }
+    
+    public override string ToString()
+    {
+        return "InputAction[" + displayName + ", " + primary + ", " + secondary + "]";
+    }
 }

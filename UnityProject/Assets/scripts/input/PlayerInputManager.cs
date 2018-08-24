@@ -10,8 +10,10 @@ public class PlayerInputManager : MonoBehaviour
     public static PlayerInputManager instance;
 
     //Reference object for action keys
-    public InputActionHolder currentInputActions = new InputActionHolder(); 
-    public InputActionHolder defaultInputActions = new InputActionHolder(); 
+    [SerializeField]
+    private InputActionHolder currentInputActions = new InputActionHolder(); 
+    [SerializeField]
+    private InputActionHolder defaultInputActions = new InputActionHolder(); 
     
     //List of action keys (mainly used for UI)
     public List<InputAction> actionList = new List<InputAction>();	
@@ -52,24 +54,6 @@ public class PlayerInputManager : MonoBehaviour
     {
         //Load from disc
         LoadFromDisc();
-        
-        //Fix any issues with loaded key set
-        currentInputActions.CheckForIssues(defaultInputActions);
-        
-        //Build action key list
-        actionList.Clear();
-        actionList.Add(currentInputActions.up);
-        actionList.Add(currentInputActions.down);
-        actionList.Add(currentInputActions.left);
-        actionList.Add(currentInputActions.right);
-        actionList.Add(currentInputActions.rotateLeft);
-        actionList.Add(currentInputActions.rotateRight);    
-        actionList.Add(currentInputActions.slow);    
-        actionList.Add(currentInputActions.release);
-        actionList.Add(currentInputActions.hook);    
-        actionList.Add(currentInputActions.shoot);    
-        actionList.Add(currentInputActions.zoomIn);
-        actionList.Add(currentInputActions.zoomOut);
     }
 	
 	// Update is called once per frame
@@ -120,6 +104,40 @@ public class PlayerInputManager : MonoBehaviour
         }
 	}
     
+    public void SetCurrentKeybindHolder(InputActionHolder inputActions)
+    {
+        Debug.Log("PlayerInputManager: Setting current input action holder '" + inputActions + "'");
+        currentInputActions = inputActions;
+        
+        //Fix any issues
+        Debug.Log("PlayerInputManager: Checking for issues");
+        bool hadIssues = currentInputActions.CheckForIssues(defaultInputActions);
+        if(!hadIssues)
+        {
+            Debug.Log("PlayerInputManager: No issues found with input action holder");
+        }
+        
+        //Build action key list
+        actionList.Clear();
+        currentInputActions.CollectActionInputs(actionList);
+        
+        //Save a new copy to disk if we had issues that were fixed
+        if(hadIssues)
+        {
+            Debug.Log("PlayerInputManager: Due to issues found saving new player_controls copy to disk");
+            SaveToDisc();
+        }
+    }
+    
+    public InputActionHolder getInputActions()
+    {
+        if(currentInputActions == null)
+        {
+            currentInputActions = new InputActionHolder();
+        }
+        return currentInputActions;
+    }
+    
     public bool StartAssignKey(InputAction assignAction, bool assignPrimaryKey)
     {
         if(!assignKey && assignAction != null)
@@ -135,41 +153,56 @@ public class PlayerInputManager : MonoBehaviour
     //Loads game data
     public void LoadFromDisc()
     {
-        //Create folder
-        string saveFolder = DataSaveHandler.getMainFolder();
-        if(File.Exists(saveFolder))
-        {        
-            //Find save
-            string filePath = DataSaveHandler.getPlayerControlsFile();        
-            if (File.Exists (filePath)) 
-            {
-                //Read JSON
-                string dataAsJson = File.ReadAllText (filePath);
+        Debug.Log("PlayerInputManager: Loading data from disk, " + DataSaveHandler.getPlayerControlsFile());
+        CheckIfMainFolderExists();           
+            
+        //Find save
+        string filePath = DataSaveHandler.getPlayerControlsFile();        
+        if (File.Exists (filePath)) 
+        {
+            Debug.Log("PlayerInputManager: Data file exists " + filePath);
                 
-                //Convert JSON to data object
-                currentInputActions = JsonUtility.FromJson<InputActionHolder> (dataAsJson);
-            } 
-            else 
-            {
-                currentInputActions = new InputActionHolder();
-            }
-        }
+            //Read JSON
+            string dataAsJson = File.ReadAllText (filePath);
+            
+            Debug.Log(dataAsJson);
+                
+            //Convert JSON to data object
+            SetCurrentKeybindHolder(JsonUtility.FromJson<InputActionHolder> (dataAsJson));
+        } 
+        else 
+        {
+            Debug.Log("PlayerInputManager: Data file not found, creating new and saving to: " + DataSaveHandler.getPlayerControlsFile());
+            SetCurrentKeybindHolder(new InputActionHolder());
+            SaveToDisc();
+        }        
     }
     
     //Saves game data
     public void SaveToDisc()
     {
-        //Create folder
-        string saveFolder = DataSaveHandler.getMainFolder();
-        if(!File.Exists(saveFolder))
-        {
-            Directory.CreateDirectory(saveFolder); 
-        }
+        Debug.Log("PlayerInputManager: Saving data from disk, " + DataSaveHandler.getPlayerControlsFile());
+        CheckIfMainFolderExists();
         
         //Convert to JSON
-        string dataAsJson = JsonUtility.ToJson (currentInputActions, true);
+        string dataAsJson = JsonUtility.ToJson (getInputActions(), true);
         
         //Save data
         File.WriteAllText (DataSaveHandler.getPlayerControlsFile(), dataAsJson);
+    }
+    
+    void CheckIfMainFolderExists()
+    {
+        //Create folder
+        string saveFolder = DataSaveHandler.getMainFolder();
+        if(Directory.Exists(saveFolder))
+        {            
+            Debug.Log("PlayerInputManager: Main folder exists " + saveFolder);
+        }
+        else
+        {
+            Debug.Log("PlayerInputManager: Couldn't find main file '" + saveFolder + "' creating");
+            Directory.CreateDirectory (saveFolder);
+        }     
     }
 }
