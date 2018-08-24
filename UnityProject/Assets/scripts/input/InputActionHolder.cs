@@ -52,22 +52,51 @@ public class InputActionHolder
         holder.zoomOut = zoomOut.Copy();
     }
     
-    public List<InputAction> CollectActionInputs(List<InputAction> list)
+    public void CopyKeysInto(InputActionHolder holder)
     {
-        list.Add(up);
-        list.Add(down);
-        list.Add(left);
-        list.Add(right);
-        list.Add(rotateLeft);
-        list.Add(rotateRight);    
-        list.Add(slow);    
-        list.Add(release);
-        list.Add(hook);    
-        list.Add(shoot);    
-        list.Add(zoomIn);
-        list.Add(zoomOut);
-        return list;
+        up.CopyKeysInto(holder.up);
+        down.CopyKeysInto(holder.down);
+        left.CopyKeysInto(holder.left);
+        right.CopyKeysInto(holder.right);
+	
+        slow.CopyKeysInto(holder.slow);
+    
+        rotateLeft.CopyKeysInto(holder.rotateLeft);
+        rotateRight.CopyKeysInto(holder.rotateRight);
+    
+        release.CopyKeysInto(holder.release);
+        hook.CopyKeysInto(holder.hook);
+    
+        shoot.CopyKeysInto(holder.shoot);
+    
+        zoomIn.CopyKeysInto(holder.zoomIn);
+        zoomOut.CopyKeysInto(holder.zoomOut);
     }
+    
+    public InputAction Get(int index)
+    {
+        switch(index)
+        {
+            case 0: return up;
+            case 1: return down;
+            case 2: return left;
+            case 3: return right;
+            case 4: return rotateLeft;
+            case 5: return rotateRight;    
+            case 6: return slow;    
+            case 7: return release;
+            case 8: return hook;    
+            case 9: return shoot;    
+            case 10: return zoomIn;
+            case 11: return zoomOut;
+            default: return null;
+        }
+    }
+    
+    public int NumberOfActions()
+    {
+        return 12;
+    }    
     
     public bool CheckForIssues(InputActionHolder defaultSettings)
     {

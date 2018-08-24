@@ -20,15 +20,15 @@ public class UIKeyBindTable : MonoBehaviour
     
     public void GenerateEntries()
     {        
-        int entries = inputManager.actionList.Count;
+        int entries = inputManager.getInputActions().NumberOfActions();
         int entryPerCol = entries / columnPositions.Length;
         if(entries % 2 == 1)
         {
             entryPerCol += 1;
         }
         
-        int index = 0;
-        foreach(InputAction action in inputManager.actionList)
+        //Loop over all actions
+        for(int index = 0; index < entries; index++)
         {
             int col = index / entryPerCol;
             int row = index % entryPerCol;
@@ -36,14 +36,14 @@ public class UIKeyBindTable : MonoBehaviour
             
             UIKeyBind keyBind = entry.GetComponent<UIKeyBind>();
             generatedObjects.Add(keyBind);
-            keyBind.AssignActionInput(action);
             
-            index += 1;
+            keyBind.AssignActionInput(index);
         }
     } 
     
     public void ApplyChanges()
     {
+        Debug.Log("UIKeyBindTable: Checking for keybind changes...");
         bool hasChanged = false;
         foreach(UIKeyBind keybind in generatedObjects)
         {
@@ -55,6 +55,10 @@ public class UIKeyBindTable : MonoBehaviour
         if(hasChanged)
         {
             inputManager.SaveToDisc();
+        }
+        else
+        {
+            Debug.Log("UIKeyBindTable: No changes to apply");
         }
     }
 

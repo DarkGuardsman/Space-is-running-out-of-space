@@ -14,7 +14,7 @@ public class UIKeyBind : MonoBehaviour
     public Button primaryButton;
     public Button secondaryButton;
     
-    public InputAction actionInput = new InputAction("test", KeyCode.W, KeyCode.S);
+    public int actionInputIndex;
     
     public InputAction actionInputCopy;
     
@@ -27,16 +27,21 @@ public class UIKeyBind : MonoBehaviour
     void Start()
     {
         inputManager = FindObjectOfType<PlayerInputManager>();
-        ResetButtons();            
+        ResetButtons();
+        
+        if(inputManager != null && inputManager.getInputActions().Get(actionInputIndex) != null)
+        {
+            this.actionInputCopy = inputManager.getInputActions().Get(actionInputIndex).Copy();    
+        }                
     }
 
     public void Update()
     {
-        if(actionInput != null)
+        if(actionInputCopy != null)
         {
-            keybindLabel.text = actionInput.displayName;            
-            primaryLabel.text = actionInput.GetPrimaryText();
-            secondaryLabel.text = actionInput.GetSecondaryText();
+            keybindLabel.text = actionInputCopy.displayName;            
+            primaryLabel.text = actionInputCopy.GetPrimaryText();
+            secondaryLabel.text = actionInputCopy.GetSecondaryText();
         }
 
         if(!inputManager.assignKey)
@@ -62,24 +67,19 @@ public class UIKeyBind : MonoBehaviour
         secondaryButton.interactable = true;
     }
     
-    public void AssignActionInput(InputAction actionInput)
+    public void AssignActionInput(int index)
     {
-        this.actionInput = actionInput;
-        if(actionInput == null)
-        {
-            this.actionInputCopy = null;
-        }
-        else
-        {       
-            this.actionInputCopy = actionInput.Copy();
-        }
+        this.actionInputIndex = index;
     }
     
     public bool ApplyChanges()
     {
-        if(actionInput != null && !actionInput.DoKeysMatch(actionInputCopy))
+        InputAction inputAction = inputManager.getInputActions().Get(actionInputIndex);
+        Debug.Log("UIKeyBind: Checking for changes " + actionInputCopy + " from " + inputAction);
+        if(actionInputCopy != null && !actionInputCopy.DoKeysMatch(inputAction))
         {
-            actionInputCopy.CopyKeysInto(actionInput);
+            Debug.Log("UIKeyBind: Has changed");
+            actionInputCopy.CopyKeysInto(inputAction);
             return true;
         }
         return false;
@@ -87,9 +87,9 @@ public class UIKeyBind : MonoBehaviour
 
     public void StartAssignPrimaryKey()
     {
-        if(actionInput != null)
+        if(actionInputCopy != null)
         {
-            if(inputManager.StartAssignKey(actionInput, true))
+            if(inputManager.StartAssignKey(actionInputCopy, true))
             {
                 primaryButton.SetButtonNormalColor(buttonAssignColor);
                 primaryButton.SetButtonDisabledColor(buttonDisabledAssignColor);
@@ -99,9 +99,9 @@ public class UIKeyBind : MonoBehaviour
     
     public void StartAssignSecondaryKey()
     {
-        if(actionInput != null)
+        if(actionInputCopy != null)
         {
-            if(inputManager.StartAssignKey(actionInput, false))
+            if(inputManager.StartAssignKey(actionInputCopy, false))
             {
                 secondaryButton.SetButtonNormalColor(buttonAssignColor);
                 secondaryButton.SetButtonDisabledColor(buttonDisabledAssignColor);

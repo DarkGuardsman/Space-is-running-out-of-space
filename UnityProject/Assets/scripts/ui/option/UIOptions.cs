@@ -9,6 +9,7 @@ public class UIOptions : UIDisplay
     public Canvas canvus;
     
     public UIKeyBindTable keybindTable;
+    public PlayerInputManager inputManager;
     
     public Slider minArrowSizeSlider;
     public Slider maxArrowSizeSlider;
@@ -38,6 +39,12 @@ public class UIOptions : UIDisplay
         canvus = gameObject.GetComponent<Canvas>();
     }
     
+    public override void Start()
+    {
+        base.Start();
+        inputManager = FindObjectOfType<PlayerInputManager>();
+    }
+    
     //Load options from data into UI elements
     public void LoadOptions()
     {
@@ -58,16 +65,19 @@ public class UIOptions : UIDisplay
     
     public void ButtonApply()
     {
+        Debug.Log("UIOptions: Apply Clicked");
         SaveSettings();
     }
     
     public void ButtonSave()
     {
+        Debug.Log("UIOptions: Save clicked");
         SaveSettings();
     }
     
     public void SaveSettings()
     {
+        Debug.Log("UIOptions: Saving settings");
         playerOptions.currentSettings.arrowMinScale = float.Parse(minArrowSizeInput.text);
         playerOptions.currentSettings.arrowMaxScale = float.Parse(maxArrowSizeInput.text);
         playerOptions.currentSettings.maxJunkSpawn = int.Parse(maxJunkCountInput.text);
@@ -85,8 +95,11 @@ public class UIOptions : UIDisplay
     
     public void ButtonResetDefaults()
     {
+        Debug.Log("UIOptions: Resetting to defults");
+        inputManager.ResetToDefaults();
         playerOptions.defaultSettings.CopyInto(playerOptions.currentSettings);
-        LoadOptions();
+      
+        LoadOptions();        
     }
     
     public void OnSliderChanged()

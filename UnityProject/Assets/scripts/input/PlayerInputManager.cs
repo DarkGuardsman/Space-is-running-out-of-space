@@ -11,12 +11,9 @@ public class PlayerInputManager : MonoBehaviour
 
     //Reference object for action keys
     [SerializeField]
-    private InputActionHolder currentInputActions = new InputActionHolder(); 
+    private InputActionHolder currentInputActions; 
     [SerializeField]
     private InputActionHolder defaultInputActions = new InputActionHolder(); 
-    
-    //List of action keys (mainly used for UI)
-    public List<InputAction> actionList = new List<InputAction>();	
     
     //Are we assigning a key?
     public bool assignKey = false;
@@ -104,28 +101,34 @@ public class PlayerInputManager : MonoBehaviour
         }
 	}
     
+    public void ResetToDefaults()
+    {
+        defaultInputActions.CopyKeysInto(getInputActions());
+        getInputActions().CheckForIssues(defaultInputActions);
+        SaveToDisc();
+    }
+    
     public void SetCurrentKeybindHolder(InputActionHolder inputActions)
     {
         Debug.Log("PlayerInputManager: Setting current input action holder '" + inputActions + "'");
         currentInputActions = inputActions;
         
-        //Fix any issues
-        Debug.Log("PlayerInputManager: Checking for issues");
-        bool hadIssues = currentInputActions.CheckForIssues(defaultInputActions);
-        if(!hadIssues)
+        if(currentInputActions != null)
         {
-            Debug.Log("PlayerInputManager: No issues found with input action holder");
-        }
-        
-        //Build action key list
-        actionList.Clear();
-        currentInputActions.CollectActionInputs(actionList);
-        
-        //Save a new copy to disk if we had issues that were fixed
-        if(hadIssues)
-        {
-            Debug.Log("PlayerInputManager: Due to issues found saving new player_controls copy to disk");
-            SaveToDisc();
+            //Fix any issues
+            Debug.Log("PlayerInputManager: Checking for issues");
+            bool hadIssues = currentInputActions.CheckForIssues(defaultInputActions);
+            if(!hadIssues)
+            {
+                Debug.Log("PlayerInputManager: No issues found with input action holder");
+            }
+            
+            //Save a new copy to disk if we had issues that were fixed
+            if(hadIssues)
+            {
+                Debug.Log("PlayerInputManager: Due to issues found saving new player_controls copy to disk");
+                SaveToDisc();
+            }
         }
     }
     
@@ -181,7 +184,7 @@ public class PlayerInputManager : MonoBehaviour
     //Saves game data
     public void SaveToDisc()
     {
-        Debug.Log("PlayerInputManager: Saving data from disk, " + DataSaveHandler.getPlayerControlsFile());
+        Debug.Log("PlayerInputManager: Saving data to disk, " + DataSaveHandler.getPlayerControlsFile());
         CheckIfMainFolderExists();
         
         //Convert to JSON
