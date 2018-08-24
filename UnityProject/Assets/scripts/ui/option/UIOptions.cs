@@ -8,6 +8,8 @@ public class UIOptions : UIDisplay
 {
     public Canvas canvus;
     
+    public UIKeyBindTable keybindTable;
+    
     public Slider minArrowSizeSlider;
     public Slider maxArrowSizeSlider;
     public Slider maxJunkCountSlider;    
@@ -77,6 +79,8 @@ public class UIOptions : UIDisplay
         playerOptions.currentSettings.enableMouseAim = enableMouseAimToggle.isOn;           
         
         playerOptions.SaveOptions();
+        
+        keybindTable.ApplyChanges();
     }
     
     public void ButtonResetDefaults()

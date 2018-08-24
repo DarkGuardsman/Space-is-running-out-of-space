@@ -127,6 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d056858f857954fb34652d18113d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonNormalColor: {r: 1, g: 1, b: 1, a: 1}
+  buttonAssignColor: {r: 1, g: 0.920817, b: 0, a: 1}
+  buttonDisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
+  buttonDisabledAssignColor: {r: 1, g: 0.9215687, b: 0, a: 1}
   primaryButton: {fileID: 114652255998822994}
   secondaryButton: {fileID: 114297210051895480}
   actionInput:
@@ -134,6 +138,7 @@ MonoBehaviour:
   keybindLabel: {fileID: 114905987806683446}
   primaryLabel: {fileID: 114434779065449674}
   secondaryLabel: {fileID: 114349870017278270}
+  inputManager: {fileID: 0}
 --- !u!114 &114297210051895480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,7 +177,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114394906036551152}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114215668957640976}
+        m_MethodName: StartAssignSecondaryKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114349870017278270
@@ -491,7 +507,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114949238826579564}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114215668957640976}
+        m_MethodName: StartAssignPrimaryKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114905987806683446
@@ -766,7 +793,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: 100}
+  m_AnchoredPosition: {x: 245, y: -23}
   m_SizeDelta: {x: 450, y: 40}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224862106394766606

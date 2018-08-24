@@ -9,13 +9,17 @@ public class UIKeyBindTable : MonoBehaviour
     public float rowYStart = 50f;
     
     public GameObject prefabUI;
+    public PlayerInputManager inputManager;
     
-    private List<GameObject> generatedObjects = new List<GameObject>();
+    private List<UIKeyBind> generatedObjects = new List<UIKeyBind>();
+    
+    void Start()
+    {
+        inputManager = FindObjectOfType<PlayerInputManager>();
+    }
     
     public void GenerateEntries()
-    {
-        PlayerInputManager inputManager = FindObjectOfType<PlayerInputManager>();
-        
+    {        
         int entries = inputManager.actionList.Count;
         int entryPerCol = entries / columnPositions.Length;
         if(entries % 2 == 1)
@@ -31,17 +35,34 @@ public class UIKeyBindTable : MonoBehaviour
             GameObject entry = GenerateEntry(col, row);
             
             UIKeyBind keyBind = entry.GetComponent<UIKeyBind>();
+            generatedObjects.Add(keyBind);
             keyBind.AssignActionInput(action);
             
             index += 1;
         }
     } 
+    
+    public void ApplyChanges()
+    {
+        bool hasChanged = false;
+        foreach(UIKeyBind keybind in generatedObjects)
+        {
+            if(keybind.ApplyChanges())
+            {
+                hasChanged = true;
+            }
+        }
+        if(hasChanged)
+        {
+            inputManager.SaveToDisc();
+        }
+    }
 
     public void DestroyEntries()
     {
-        foreach(GameObject entry in generatedObjects)
+        foreach(UIKeyBind keybind in generatedObjects)
         {
-            Destroy(entry);
+            Destroy(keybind.gameObject);
         }        
     }    
     
@@ -51,7 +72,6 @@ public class UIKeyBindTable : MonoBehaviour
         float y = rowYStart + row * rowSpacing;
         
         GameObject uiEntry = Instantiate(prefabUI, transform);
-        generatedObjects.Add(uiEntry);
         
         uiEntry.transform.localPosition = new Vector3(x, y, 0);
         

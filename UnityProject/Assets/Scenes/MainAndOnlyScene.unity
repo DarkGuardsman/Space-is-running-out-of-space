@@ -6083,12 +6083,12 @@ MonoBehaviour:
       displayName: left
     right:
       displayName: right
-    slow:
-      displayName: slow
     rotateLeft:
       displayName: rotateLeft
     rotateRight:
       displayName: rotateRight
+    slow:
+      displayName: slow
     release:
       displayName: release
     hook:
@@ -6108,12 +6108,12 @@ MonoBehaviour:
       displayName: left
     right:
       displayName: right
-    slow:
-      displayName: slow
     rotateLeft:
       displayName: rotateLeft
     rotateRight:
       displayName: rotateRight
+    slow:
+      displayName: slow
     release:
       displayName: release
     hook:
@@ -7933,6 +7933,7 @@ MonoBehaviour:
   gameController: {fileID: 0}
   playerOptions: {fileID: 0}
   canvus: {fileID: 0}
+  keybindTable: {fileID: 1980632263}
   minArrowSizeSlider: {fileID: 336477921}
   maxArrowSizeSlider: {fileID: 77598391}
   maxJunkCountSlider: {fileID: 740806103}
@@ -11182,7 +11183,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.07058811, g: 1, b: 0, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -11227,7 +11228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.019607844, g: 0.8196079, b: 0.027450982, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -13638,6 +13639,7 @@ MonoBehaviour:
   rowSpacing: -50
   rowYStart: 100
   prefabUI: {fileID: 1161128356033260, guid: fcc01164ae045124db8f3de6268897b2, type: 2}
+  inputManager: {fileID: 0}
 --- !u!1 &1981498010
 GameObject:
   m_ObjectHideFlags: 0

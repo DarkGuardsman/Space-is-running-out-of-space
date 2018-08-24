@@ -120,6 +120,18 @@ public class PlayerInputManager : MonoBehaviour
         }
 	}
     
+    public bool StartAssignKey(InputAction assignAction, bool assignPrimaryKey)
+    {
+        if(!assignKey && assignAction != null)
+        {
+            assignKey = true;
+            this.assignAction = assignAction;
+            this.assignPrimaryKey = assignPrimaryKey;
+            return true;
+        }
+        return false;
+    }    
+    
     //Loads game data
     public void LoadFromDisc()
     {

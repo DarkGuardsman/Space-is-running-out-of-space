@@ -7,8 +7,9 @@ public class InputAction
 {
     public string displayName;
     
-    public KeyCode primary {get; set;}
-    public KeyCode secondary {get; set;}
+    public KeyCode primary;
+    
+    public KeyCode secondary;
     
     public InputAction(string name, KeyCode primary, KeyCode secondary)
     {
@@ -20,6 +21,17 @@ public class InputAction
     public bool IsKeyDown()
     {
         return Input.GetKey(primary) || Input.GetKey(secondary);
+    }
+    
+    public void CopyKeysInto(InputAction other)
+    {
+        other.primary = primary;
+        other.secondary = secondary;
+    }
+    
+    public bool DoKeysMatch(InputAction other)
+    {
+        return other.primary == primary && other.secondary == secondary;
     }
     
     public InputAction Copy()
