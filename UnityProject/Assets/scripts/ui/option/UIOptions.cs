@@ -9,6 +9,7 @@ public class UIOptions : UIDisplay
     public Canvas canvus;
     
     public UIKeyBindTable keybindTable;
+    public UIScreenSize screenSizeUI;
     public PlayerInputManager inputManager;
     
     public Slider minArrowSizeSlider;
@@ -60,7 +61,9 @@ public class UIOptions : UIDisplay
 
         minArrowSizeInput.text = String.Format("{0}", playerOptions.currentSettings.arrowMinScale);
         maxArrowSizeInput.text = String.Format("{0}", playerOptions.currentSettings.arrowMaxScale);
-        maxJunkCountInput.text = String.Format("{0:0}", playerOptions.currentSettings.maxJunkSpawn);        
+        maxJunkCountInput.text = String.Format("{0:0}", playerOptions.currentSettings.maxJunkSpawn);
+
+        screenSizeUI.LoadScreenSize();        
     }
     
     public void ButtonApply()
@@ -91,6 +94,7 @@ public class UIOptions : UIDisplay
         playerOptions.SaveOptions();
         
         keybindTable.ApplyChanges();
+        screenSizeUI.ApplyChanges();
     }
     
     public void ButtonResetDefaults()

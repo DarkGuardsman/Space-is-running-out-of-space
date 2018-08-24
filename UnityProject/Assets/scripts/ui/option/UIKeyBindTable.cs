@@ -13,14 +13,9 @@ public class UIKeyBindTable : MonoBehaviour
     
     private List<UIKeyBind> generatedObjects = new List<UIKeyBind>();
     
-    void Start()
-    {
-        inputManager = FindObjectOfType<PlayerInputManager>();
-    }
-    
     public void GenerateEntries()
     {        
-        int entries = inputManager.getInputActions().NumberOfActions();
+        int entries = PlayerInputManager.instance.getInputActions().NumberOfActions();
         int entryPerCol = entries / columnPositions.Length;
         if(entries % 2 == 1)
         {
@@ -54,7 +49,7 @@ public class UIKeyBindTable : MonoBehaviour
         }
         if(hasChanged)
         {
-            inputManager.SaveToDisc();
+            PlayerInputManager.instance.SaveToDisc();
         }
         else
         {

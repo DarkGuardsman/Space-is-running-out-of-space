@@ -23,3 +23,5 @@ sysinfo.txt
 builds/
 
 *.zip
+
+build_test/
