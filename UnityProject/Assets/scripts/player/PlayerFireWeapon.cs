@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFireWeapon : MonoBehaviour 
+public class PlayerFireWeapon : PlayerControls
 {
     public float weaponCooldown = 0.5f;
     public float destroyBulletTimer = 2f;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class PlayerZoom : MonoBehaviour 
+public class PlayerZoom : PlayerControls
 {    
     public float minZoom = 5;
     public float maxZoom = 20;
@@ -13,8 +13,9 @@ public class PlayerZoom : MonoBehaviour
     private CinemachineVirtualCamera cinemachineCamera;
     
     // Use this for initialization
-	void Start () 
+	public override void Start () 
     {
+        base.Start();
 		gameController = FindObjectOfType<GameController>();
         playerOptions = FindObjectOfType<PlayerOptions>();
         cinemachineCamera = FindObjectOfType<CinemachineVirtualCamera>();

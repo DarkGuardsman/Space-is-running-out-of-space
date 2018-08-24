@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Handles movement, works without care for direction of ship to simulate thrusters
-public class PlayerMovement : MonoBehaviour 
+public class PlayerMovement : PlayerControls 
 {	
     public float rotationSpeed = 20f;
     public float rotationKeyboardMultiplier = 3f;
@@ -16,8 +16,9 @@ public class PlayerMovement : MonoBehaviour
     
     private float lastAngle;
     
-    void Start()
+    public override void Start()
     {
+        base.Start();
         rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
         playerOptions = FindObjectOfType<PlayerOptions>();
     }
@@ -26,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
 	void Update () 
     {
         //Get user input
-        float moveHorizontal = Input.GetAxis ("Horizontal");
-        float moveVertical = Input.GetAxis ("Vertical");
+        float moveHorizontal = GetHorizontal();
+        float moveVertical = GetVertical();
         
         //Get force scale for frame
         float moveForce = movePower * Time.deltaTime;
@@ -77,5 +78,33 @@ public class PlayerMovement : MonoBehaviour
                 rigidBody2D.MoveRotation(angle); 
             }
         }
+    }
+    
+    float GetHorizontal()
+    {
+        if(inputManager.getInputActions().left.IsKeyDown())
+        {
+            return -1;
+        }
+        else if(inputManager.getInputActions().right.IsKeyDown())
+        {
+            return 1;
+        }
+        //return Input.GetAxis ("Horizontal");
+        return 0;
+    }
+    
+     float GetVertical()
+    {
+        if(inputManager.getInputActions().down.IsKeyDown())
+        {
+            return -1;
+        }
+        else if(inputManager.getInputActions().up.IsKeyDown())
+        {
+            return 1;
+        }
+        //return Input.GetAxis ("Vertical");
+        return 0;
     }
 }
