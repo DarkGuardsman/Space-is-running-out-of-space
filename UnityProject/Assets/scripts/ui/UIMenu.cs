@@ -5,7 +5,9 @@ using UnityEngine;
 public class UIMenu : UIDisplay 
 {
 	public UISwitcher uiSwitcher;
+    
     public UITabSelector menuSelector;
+    
     public Canvas canvus;
     
     public GameObject mainUIPanel;
