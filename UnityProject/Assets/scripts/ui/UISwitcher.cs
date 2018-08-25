@@ -89,13 +89,11 @@ public class UISwitcher : UIDisplay
             {                
                 if(showInfo)
                 {
-                    showInfo = false;
-                    showMenu = true;
+                    ButtonShowMenu();
                 }
                 else if(showOptions)
                 {
-                    showOptions = false;
-                    showMenu = true;
+                    ButtonShowMenu();
                 }
                 else if(showMenu)
                 {                  
