@@ -28,7 +28,8 @@ public class UITabSelector : MonoBehaviour
     {
         shouldFunction = true;
         currentSelector = this;
-        OnSelectionChanged(selectedRow, selectedCol);
+        selectedRow = 0;
+        selectedCol = -1;
     }
     
     public void Update()
@@ -55,7 +56,7 @@ public class UITabSelector : MonoBehaviour
             {
                 if(GetSelected().OnActived(this))
                 {
-                    shouldFunction = false;
+                    DisableSelector();
                 }
             }
         }
@@ -117,7 +118,7 @@ public class UITabSelector : MonoBehaviour
         bool canBeSelected = GetSelected().CanBeSelected(this);
         if(canBeSelected && GetSelected().OnSelected(this))
         {
-            shouldFunction = false;
+            DisableSelector();
         }
         return canBeSelected;
     }
@@ -156,5 +157,6 @@ public class UITabSelector : MonoBehaviour
     public void DisableSelector()
     {
         shouldFunction = false;
+        GetSelected().OnUnSelected(this);
     }
 }

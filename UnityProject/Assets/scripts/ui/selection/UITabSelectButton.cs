@@ -32,20 +32,29 @@ public class UITabSelectButton : UISelectionObject
     
     public override void OnUnSelected(UITabSelector selector)
     {
-        if(hasBeenSelected && oldColor != null)
+        if(hasBeenSelected)
         {
-            button.SetButtonNormalColor(oldColor);
+            ResetButtonColor();
         }
         hasBeenSelected = false;
     }
     
     public override bool OnActived(UITabSelector selector)
-    {
-        button.onClick.Invoke();
+    {      
         if(disableOnEnter)
         {
-             hasBeenSelected = false;
+            ResetButtonColor();
+            hasBeenSelected = false;
         }
+        button.onClick.Invoke();
         return disableOnEnter;
+    }
+    
+    void ResetButtonColor()
+    {
+        if(oldColor != null)
+        {
+            button.SetButtonNormalColor(oldColor);
+        }
     }
 }
