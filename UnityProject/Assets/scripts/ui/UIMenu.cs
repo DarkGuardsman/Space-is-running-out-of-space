@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIMenu : UIDisplay 
 {
 	public UISwitcher uiSwitcher;
+    public UITabSelector menuSelector;
     public Canvas canvus;
     
     public GameObject mainUIPanel;
@@ -16,18 +17,17 @@ public class UIMenu : UIDisplay
     public GameObject resumeButton;
     public GameObject worldObject;
     
-    void Awake ()
-    {
-        ButtonReturnMain();
-        canvus = gameObject.GetComponent<Canvas>();
-    }
-    
     public override void Start()
     {
         base.Start();
+        canvus = gameObject.GetComponent<Canvas>();
+        menuSelector = gameObject.GetComponent<UITabSelector>();
+        
         worldObject.SetActive(false);
         restartButton.SetActive(false);
         resumeButton.SetActive(false);
+        
+        ButtonReturnMain();        
     }
     
     IEnumerator WatchForMenuCancel()
@@ -91,5 +91,6 @@ public class UIMenu : UIDisplay
         mainUIPanel.SetActive(true);
         confirmRestartPanel.SetActive(false);
         confirmExitPanel.SetActive(false);
+        menuSelector.SetAsPrimarySelector();
     }
 }

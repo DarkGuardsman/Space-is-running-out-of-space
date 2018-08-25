@@ -97,9 +97,13 @@ public class UISwitcher : UIDisplay
                     showOptions = false;
                     showMenu = true;
                 }
-                else if(menuUI.mainUIPanel.active)
+                else if(showMenu)
+                {                  
+                    ButtonResumeGame();
+                }
+                else
                 {
-                    showMenu = !showMenu;
+                    ButtonShowMenu();
                 }
             }
             yield return null;
@@ -111,6 +115,7 @@ public class UISwitcher : UIDisplay
         showMenu = true;
         showInfo = false;
         showOptions = false;
+        menuUI.ButtonReturnMain();
     }
     
     public void ButtonResumeGame()

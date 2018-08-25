@@ -8,11 +8,11 @@ public class UIOptions : UIDisplay
 {
     public Canvas canvus;
     
-    public UIKeyBindTable keybindTable;
-    public UIScreenSize screenSizeUI;
-    public PlayerInputManager inputManager;
+    public UIKeyBindTable keybindTable; //TODO create array of options UIs driven by interface, to save space & reduce need for a field per UI
+    public UIScreenSize screenSizeUI; //TODO create array of graphics UIs driven by interface, to save space & reduce need for a field per UI
+    public UIScreenMode screenModeUI;  
     
-    public Slider minArrowSizeSlider;
+    public Slider minArrowSizeSlider; //TODO consider breaking each option out into its own reusable script
     public Slider maxArrowSizeSlider;
     public Slider maxJunkCountSlider;    
     
@@ -34,6 +34,8 @@ public class UIOptions : UIDisplay
     
     public int minJunkSpawn = 20;
     public int maxJunkSpawn = 1000;
+    
+    private PlayerInputManager inputManager;
     
     void Awake ()
     {       
@@ -63,7 +65,8 @@ public class UIOptions : UIDisplay
         maxArrowSizeInput.text = String.Format("{0}", playerOptions.currentSettings.arrowMaxScale);
         maxJunkCountInput.text = String.Format("{0:0}", playerOptions.currentSettings.maxJunkSpawn);
 
-        screenSizeUI.LoadScreenSize();        
+        screenSizeUI.LoadScreenSize(); 
+        screenModeUI.LoadScreenModes();
     }
     
     public void ButtonApply()
@@ -94,7 +97,14 @@ public class UIOptions : UIDisplay
         playerOptions.SaveOptions();
         
         keybindTable.ApplyChanges();
-        screenSizeUI.ApplyChanges();
+        
+        //TODO store previous screen settings, so we can reset in UI below
+        if(screenSizeUI.ApplyChanges() || screenModeUI.ApplyChanges())
+        {
+            Debug.Log("UIOptions: Screen settings have changed. " + screenSizeUI.selectedResolution + "  " + screenModeUI.selectedMode);
+             Screen.SetResolution(screenSizeUI.selectedResolution.width, screenSizeUI.selectedResolution.height, screenModeUI.selectedMode, screenSizeUI.selectedResolution.refreshRate);
+            //TODO show timer UI to reset if something goes wrong
+        }
     }
     
     public void ButtonResetDefaults()

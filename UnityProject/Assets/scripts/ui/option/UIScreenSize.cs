@@ -7,7 +7,8 @@ public class UIScreenSize : MonoBehaviour {
 
     private TMP_Dropdown dropDownMenu;
     
-    private  Resolution resolution;
+    public Resolution currentResolution;
+    public Resolution selectedResolution;
     
     void Start()
     {
@@ -18,9 +19,10 @@ public class UIScreenSize : MonoBehaviour {
     public void LoadScreenSize()
     {     
         //Get current screen size
-        resolution = Screen.currentResolution;
+        selectedResolution = Screen.currentResolution;
+        currentResolution = Screen.currentResolution;
         
-        //Collect resolutions
+        //Collect selectedResolutions
         List<string> list = new List<string>();
         int currentResolutionIndex = 0;        
         
@@ -30,8 +32,8 @@ public class UIScreenSize : MonoBehaviour {
             Resolution res = resolutions[i];
             list.Add(res.width + "x" + res.height + " @" + res.refreshRate + "Hz");
             
-            //Check if is current resolution so we can get index
-            if(res.width == resolution.width && res.height == resolution.height)
+            //Check if is current selectedResolution so we can get index
+            if(res.width == selectedResolution.width && res.height == selectedResolution.height)
             {
                 currentResolutionIndex = i;
             }
@@ -49,16 +51,13 @@ public class UIScreenSize : MonoBehaviour {
     
     public void OnValueChanged(int index)
     {       
-        resolution = Screen.resolutions[index];
+        selectedResolution = Screen.resolutions[index];
     }
     
-    public void ApplyChanges()
+    public bool ApplyChanges()
     {
-        Resolution current = Screen.currentResolution;
-        if(current.width != resolution.width || current.height != resolution.height)
-        {
-            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen, resolution.refreshRate);
-            //TODO show timer UI to reset if something goes wrong
-        }
+        return currentResolution.width != selectedResolution.width 
+            || currentResolution.height != selectedResolution.height 
+            || currentResolution.refreshRate != selectedResolution.refreshRate;
     }
 }
