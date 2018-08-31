@@ -38,6 +38,9 @@ public class ArrowObjective : UIDisplay
             //Check if visible
             if (pos.x >= 0.0f && pos.x <= 1.0f && pos.y >= 0.0f && pos.y <= 1.0f)
                 return;
+            
+            //Calculate scale
+            float scale = playerOptions.currentSettings.arrowMinScale + (playerOptions.currentSettings.arrowMaxScale - Mathf.Min(distance * scaleGrowth, playerOptions.currentSettings.arrowMaxScale));
                      
             //Enable render
             spriteRenderer.enabled = true; 
@@ -54,7 +57,7 @@ public class ArrowObjective : UIDisplay
             //Set position near edge of screen
             pos.x = circleSize * Mathf.Sin (fAngle);  // Place on ellipse touching 
             pos.y = circleSize * Mathf.Cos (fAngle);  //   side of viewport
-            pos.z = Camera.main.nearClipPlane + 0.01f;  // Looking from neg to pos Z;
+            pos.z = Camera.main.nearClipPlane + 0.01f * scale;  // Looking from neg to pos Z;
             
             //Get camera size
             float height = Camera.main.orthographicSize * 2f;
@@ -67,8 +70,7 @@ public class ArrowObjective : UIDisplay
             //Set position
             transform.localPosition = pos;
             
-            //Scale based on distance
-            float scale = playerOptions.currentSettings.arrowMinScale + (playerOptions.currentSettings.arrowMaxScale - Mathf.Min(distance * scaleGrowth, playerOptions.currentSettings.arrowMaxScale));
+            //Scale based on distance            
             transform.localScale = new Vector3( scale, scale, 1);
         }
 	}
