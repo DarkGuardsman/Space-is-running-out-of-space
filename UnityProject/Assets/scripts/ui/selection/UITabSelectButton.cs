@@ -14,19 +14,25 @@ public class UITabSelectButton : UISelectionObject
     private Color oldColor;
     private bool hasBeenSelected = false;
     
-    void Start()
+    protected Button GetButton()
     {
         if(button == null)
         {
             button = gameObject.GetComponent<Button>();
+            oldColor = button.colors.normalColor;
         }
+        return button;
+    }
+    
+    public override void OnSelectorEnabled(UITabSelector selector, bool enabled)
+    {
+        ResetButtonColor();
     }
     
     public override bool OnSelected(UITabSelector selector)
     {
-        hasBeenSelected = true;
-        oldColor = button.colors.normalColor;
-        button.SetButtonNormalColor(selectionColor);
+        hasBeenSelected = true;        
+        GetButton().SetButtonNormalColor(selectionColor);
         return false;
     }
     
@@ -42,11 +48,11 @@ public class UITabSelectButton : UISelectionObject
     public override bool OnActived(UITabSelector selector)
     {      
         if(disableOnEnter)
-        {
-            ResetButtonColor();
+        {           
             hasBeenSelected = false;
         }
-        button.onClick.Invoke();
+        ResetButtonColor();
+        GetButton().onClick.Invoke();
         return disableOnEnter;
     }
     
@@ -54,7 +60,7 @@ public class UITabSelectButton : UISelectionObject
     {
         if(oldColor != null)
         {
-            button.SetButtonNormalColor(oldColor);
+            GetButton().SetButtonNormalColor(oldColor);
         }
     }
 }
