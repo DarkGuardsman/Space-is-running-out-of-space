@@ -14,7 +14,15 @@ public class PlayerFireWeapon : PlayerControls
     
     public GameObject bulletPrefab;
     
+    private AudioSource weaponAudio;
+    
     private float weaponTimer = 0f;
+    
+    public override void Start () 
+    {
+        base.Start();
+        weaponAudio = gameObject.GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -55,5 +63,8 @@ public class PlayerFireWeapon : PlayerControls
 
         // Destroy the bullet after a set time
         Destroy(bullet, destroyBulletTimer);
+        
+        //Play audio
+        weaponAudio.Play(0);
     }
 }
