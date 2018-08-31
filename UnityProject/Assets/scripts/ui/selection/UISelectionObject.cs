@@ -4,6 +4,14 @@ using UnityEngine;
 
 public abstract class UISelectionObject : MonoBehaviour 
 {
+    /**
+    * Called when the selector is enabled/disabled to allow reseting state
+    */
+    public virtual void OnSelectorEnabled(UITabSelector selector, bool enabled)
+    {
+        
+    }
+    
     /** 
     * Called when selector moves to object.
     * Can disable if another selector needs to run

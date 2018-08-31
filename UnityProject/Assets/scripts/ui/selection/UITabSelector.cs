@@ -26,10 +26,17 @@ public class UITabSelector : MonoBehaviour
     
     public void SetAsPrimarySelector()
     {
-        shouldFunction = true;
+        //Disable last selector
+        if(currentSelector != null)
+        {
+            currentSelector.DisableSelector();
+        }
+        
+        //Enable selft
+        EnableSelector();
+        
+        //Set current
         currentSelector = this;
-        selectedRow = 0;
-        selectedCol = -1;
     }
     
     public void Update()
@@ -151,12 +158,36 @@ public class UITabSelector : MonoBehaviour
     
     public void EnableSelector()
     {
-        shouldFunction = true;
+        //Toggle
+        shouldFunction = true;    
+        
+        //Reset state
+        selectedRow = 0;
+        selectedCol = -1;
+        
+        //Toggle all components
+        foreach (SelectionRow row in rows)
+        {
+            foreach(UISelectionObject selection in row.selectObjects)
+            {
+                selection.OnSelectorEnabled(this, true);
+            }
+        }
     }
     
     public void DisableSelector()
     {
+        //Toggle
         shouldFunction = false;
-        GetSelected().OnUnSelected(this);
+        
+         //Toggle all components
+        foreach (SelectionRow row in rows)
+        {
+            foreach(UISelectionObject selection in row.selectObjects)
+            {
+                selection.OnSelectorEnabled(this, false);
+                selection.OnUnSelected(this);
+            }
+        }
     }
 }
