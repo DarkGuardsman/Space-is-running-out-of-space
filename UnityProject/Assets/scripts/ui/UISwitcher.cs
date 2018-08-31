@@ -89,18 +89,22 @@ public class UISwitcher : UIDisplay
             {                
                 if(showInfo)
                 {
+                    Debug.Log("UISwitcher: esc from info UI");
                     ButtonShowMenu();
                 }
                 else if(showOptions)
                 {
+                    Debug.Log("UISwitcher: esc from options UI");
                     ButtonShowMenu();
                 }
                 else if(showMenu)
                 {                  
+                    Debug.Log("UISwitcher: esc from menu UI");
                     ButtonResumeGame();
                 }
                 else
                 {
+                    Debug.Log("UISwitcher: esc default");
                     ButtonShowMenu();
                 }
             }
