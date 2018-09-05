@@ -32,6 +32,8 @@ class MakeBuilds : MonoBehaviour
 
         try 
         {
+            File.Delete(@"..\version.txt");
+            
             StreamWriter sw = new StreamWriter(@"..\version.txt");
 
             //Write a line of text
