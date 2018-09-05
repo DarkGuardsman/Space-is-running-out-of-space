@@ -30,10 +30,11 @@ public class ReverseIfOutOfMap : MonoBehaviour
                 
                 //Get distance from center
                 Vector3 center = gameController.centerOfWorld.position;
-                float distance = Mathf.Abs(Vector3.Distance(center, transform.position));
+                float distanceX = Mathf.Abs(transform.position.x - center.x);
+                float distanceY = Mathf.Abs(transform.position.y - center.y);
                 
                 //If outside map reverse motion
-                isOutOfMap = distance > gameController.sizeOfWorld;
+                isOutOfMap = distanceX > gameController.sizeOfWorld || distanceY > gameController.sizeOfWorld;
                 if(isOutOfMap)
                 {
                     //Only bounce once to prevent getting stuck on edge
