@@ -1,3 +1,6 @@
+## Version 0.2.5
+
+* Improved camera follow
 
 ## Version 0.2.4
 
