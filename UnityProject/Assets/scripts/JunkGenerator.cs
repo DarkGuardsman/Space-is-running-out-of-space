@@ -84,7 +84,14 @@ public class JunkGenerator : MonoBehaviour
     
     void OnDrawGizmosSelected() 
     {
-        Gizmos.color = Color.red;
+        DrawBox(Color.red, size);
+        DrawBox(Color.blue, spawnCenterDeadZone);
+        DrawBox(Color.blue, initSpawnAreaSize);
+    }
+    
+    void DrawBox(Color color, float size)
+    {
+        Gizmos.color = color;
         
         Vector3 center = transform.position;
         

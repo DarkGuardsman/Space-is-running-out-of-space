@@ -1,6 +1,7 @@
 ## Version 0.2.5
 
 * Improved camera follow
+* Decreased play field from 150 to 75
 
 ## Version 0.2.4
 
