@@ -38,8 +38,21 @@ public class CollisionDamage : SceneObject
                 //Only spawn if the player will see it
                 if(IsInView(point))
                 {
-                    Instantiate(collisionSpawnPrefab, point, Quaternion.identity); //TODO see if we can get a rotation vector
+                    GameObject spawnedObject = Instantiate(collisionSpawnPrefab, point, Quaternion.identity); //TODO see if we can get a rotation vector
+                    OnCollisionObjectSpawned(spawnedObject, collision.gameObject, collisionSpeed);
                 }
+            }
+        }
+    }
+    
+    protected virtual void OnCollisionObjectSpawned(GameObject spawnedObject, GameObject collisionObject, float collisionSpeed)
+    {
+        SpawnedEffect[] effects = spawnedObject.GetComponents<SpawnedEffect>();
+        if(effects != null)
+        {
+            foreach (SpawnedEffect effect in effects)
+            {
+                effect.OnSpawnedCollision(gameObject, collisionObject, this, collisionSpeed);
             }
         }
     }
