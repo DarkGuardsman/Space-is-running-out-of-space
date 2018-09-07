@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 61690698801983136}
   - component: {fileID: 114850905215623514}
   - component: {fileID: 114616796877899102}
+  - component: {fileID: 114616254137916284}
   m_Layer: 10
   m_Name: Junk-Small
   m_TagString: Untagged
@@ -164,10 +165,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDamage: 1
   maxDamage: 2
-  collisionMinSpeed: 2
-  collisionMaxSpeed: 10
+  collisionMinSpeed: 7
+  collisionMaxSpeed: 15
   collisionSpawnPrefab: {fileID: 1971044156993510, guid: 5f2f3f3f815f5604788dae74d12c8161,
     type: 2}
+--- !u!114 &114616254137916284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438971585180728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c32d7c8d1d44b45876d1d46a238053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomMovementEnergy: 100
+  randomRotationEnergy: 50
 --- !u!114 &114616796877899102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f36eaeedbe1d974b8047df82eba2343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkDelay: 5
+  checkDelay: 0.5
 --- !u!114 &114949856637136458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefca3495182f1648a89e16dcd99594e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedLimit: {x: 8, y: 8}
+  speedLimit: {x: 5, y: 5}
 --- !u!120 &120679967796791502
 LineRenderer:
   m_ObjectHideFlags: 1

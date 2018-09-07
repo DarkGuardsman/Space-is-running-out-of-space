@@ -37,4 +37,10 @@ public class SpeedLimiter : MonoBehaviour
         
         rigidBody2D.velocity = velocity;
     }
+    
+    public void SetSpeed(float speed)
+    {
+        speedLimit.x = speed;
+        speedLimit.y = speed;
+    }
 }

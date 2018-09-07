@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefca3495182f1648a89e16dcd99594e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedLimit: {x: 8, y: 8}
+  speedLimit: {x: 5, y: 5}
 --- !u!114 &114651887628526980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomMovementEnergy: 100
-  randomRotationEnergy: 5
+  randomRotationEnergy: 50
 --- !u!114 &114870439139578106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f36eaeedbe1d974b8047df82eba2343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkDelay: 5
+  checkDelay: 0.5
 --- !u!114 &114894442028171730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,8 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDamage: 1
   maxDamage: 2
-  collisionMinSpeed: 2
-  collisionMaxSpeed: 10
+  collisionMinSpeed: 7
+  collisionMaxSpeed: 15
   collisionSpawnPrefab: {fileID: 1971044156993510, guid: 5f2f3f3f815f5604788dae74d12c8161,
     type: 2}
 --- !u!120 &120345807529406882

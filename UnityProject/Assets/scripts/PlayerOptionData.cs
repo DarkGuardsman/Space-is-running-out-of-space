@@ -13,6 +13,7 @@ public class PlayerOptionData
     public float zoomSpeed = 0.1f;
     
     public int maxJunkSpawn = 1000;
+    public float maxJunkSpeed = 4f;
     
     public bool enableEffects = true;
     public bool enableShipTrail = true;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionDamage : MonoBehaviour 
+public class CollisionDamage : SceneObject
 {    
     public float minDamage = 1f;
     public float maxDamage = 5f;
@@ -29,14 +29,14 @@ public class CollisionDamage : MonoBehaviour
         onHit(collision.gameObject, collisionSpeed);
         
         //Spawn effects for collision
-        if(collisionSpawnPrefab != null && FindObjectOfType<PlayerOptions>().currentSettings.enableEffects)
+        if(collisionSpawnPrefab != null && AreEffectsEnabled())
         {
             foreach (ContactPoint2D hit in collision.contacts)
             {
                 Vector3 point = new Vector3(hit.point.x, hit.point.y, 0);
                 
                 //Only spawn if the player will see it
-                if(FindObjectOfType<GameController>().IsInView(point))
+                if(IsInView(point))
                 {
                     Instantiate(collisionSpawnPrefab, point, Quaternion.identity); //TODO see if we can get a rotation vector
                 }
@@ -55,7 +55,7 @@ public class CollisionDamage : MonoBehaviour
         if(collisionSpeed > collisionMinSpeed)
         {            
             float damage = ScaleDamageForSpeed(collisionSpeed);
-            Debug.Log("CollisionDamage: Impacting '" + damageData.gameObject + "' for '" + damage +"' damage points");
+            Debug.Log("CollisionDamage: Impacting '" + damageData.gameObject + "' for '" + damage +"' damage points with a speed of " + collisionSpeed);
             //Attack entity
             damageData.Attack(damage, gameObject);
         }

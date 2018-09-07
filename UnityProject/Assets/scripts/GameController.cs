@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using Cinemachine;
 
 //Handles game logic
-public class GameController : MonoBehaviour 
+public class GameController : SceneObject
 {
     public float sizeOfWorld = 250f;
     
@@ -99,12 +99,12 @@ public class GameController : MonoBehaviour
         }
     }
     
-    public void SpawnJunk(GameObject prefab, float x, float y)
+    public GameObject SpawnJunk(GameObject prefab, float x, float y)
     {
-        SpawnJunk(prefab, ToGamePosition(x, y));
+        return SpawnJunk(prefab, ToGamePosition(x, y));
     }
     
-    public void SpawnJunk(GameObject prefab, Vector3 position)
+    public GameObject SpawnJunk(GameObject prefab, Vector3 position)
     {
         //Create
         GameObject junkObject = (GameObject)Instantiate(prefab);
@@ -116,12 +116,16 @@ public class GameController : MonoBehaviour
         junkSpawnedList.Add(junkObject);
         
         //Generator arrow
-        GenerateArrow(junkObject, arrowPrefabJunk);        
+        GenerateArrow(junkObject, arrowPrefabJunk);    
         
-        //TODO scale random
-        //TODO color random
-        //TODO set into motion with random direction and rotation
-        //TODO set to destroy or bounce if goes out of map
+        //Set max speed limit
+        SpeedLimiter speedScript = gameObject.GetComponent<SpeedLimiter>();
+        if(speedScript != null)
+        {
+            speedScript.SetSpeed(GetPlayerOptions().currentSettings.maxJunkSpeed);
+        }
+        
+        return junkObject;
     }
     
     public Vector3 ToGamePosition(float x, float y)

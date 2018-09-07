@@ -3,6 +3,8 @@
 * Improved camera follow
 * Decreased play field from 150 to 75
 * Fixed world border distance check
+* Decreased max junk speed from 8 to 4
+* Increase min collision speed from 3 to 7
 
 ## Version 0.2.4
 

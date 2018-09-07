@@ -90,18 +90,4 @@ public class PlayerOptions : MonoBehaviour
         //Update settings
         cinemachineCamera.m_Lens.OrthographicSize = currentSettings.cameraZoom;
     }
-    
-    bool GetBool(string key, bool defaultValue)
-    {
-        if(PlayerPrefs.HasKey(key))
-        {
-            return PlayerPrefs.GetInt(key) == 1 ? true : false;
-        }
-        return defaultValue;
-    }
-    
-    void SetBool(string key, bool value)
-    {
-        PlayerPrefs.SetInt(key, value ? 1 : 0);
-    }
 }
