@@ -15527,6 +15527,7 @@ MonoBehaviour:
     cameraZoom: 8
     zoomSpeed: 0.1
     maxJunkSpawn: 1000
+    maxJunkSpeed: 4
     enableEffects: 1
     enableShipTrail: 1
     enableBulletTrail: 1
@@ -15538,6 +15539,7 @@ MonoBehaviour:
     cameraZoom: 8
     zoomSpeed: 0.1
     maxJunkSpawn: 1000
+    maxJunkSpeed: 4
     enableEffects: 1
     enableShipTrail: 1
     enableBulletTrail: 1
