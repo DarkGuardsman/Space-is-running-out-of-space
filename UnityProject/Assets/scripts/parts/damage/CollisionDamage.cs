@@ -77,6 +77,11 @@ public class CollisionDamage : SceneObject
     //Scale damage to speed
     protected float ScaleDamageForSpeed(float collisionSpeed)
     {
-        return minDamage + (Mathf.Min(1, collisionSpeed / collisionMaxSpeed) * (maxDamage - minDamage));
+        return minDamage + (ScaleForSpeed(collisionSpeed) * (maxDamage - minDamage));
+    }
+    
+    public float ScaleForSpeed(float collisionSpeed)
+    {
+        return Mathf.Min(1, collisionSpeed / collisionMaxSpeed);
     }
 }

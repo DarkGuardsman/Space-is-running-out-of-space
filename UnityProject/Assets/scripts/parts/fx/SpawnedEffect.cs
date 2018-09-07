@@ -6,6 +6,6 @@ public class SpawnedEffect : MonoBehaviour
 {
 	public virtual void OnSpawnedCollision(GameObject host, GameObject collisionObject, CollisionDamage collisionDamage,  float collisionSpeed)
     {
-        
+       
     }
 }
