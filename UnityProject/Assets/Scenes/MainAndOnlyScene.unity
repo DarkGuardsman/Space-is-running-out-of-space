@@ -4927,6 +4927,7 @@ GameObject:
   - component: {fileID: 600508959}
   - component: {fileID: 600508958}
   - component: {fileID: 600508957}
+  - component: {fileID: 600508960}
   m_Layer: 0
   m_Name: InputField-MinArrow
   m_TagString: Untagged
@@ -5051,6 +5052,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 600508955}
   m_CullTransparentMesh: 0
+--- !u!114 &600508960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 600508955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde43ee0e34795b4196e2e890ea03ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 0}
 --- !u!1 &607157152
 GameObject:
   m_ObjectHideFlags: 0
@@ -14706,6 +14719,12 @@ MonoBehaviour:
     - {fileID: 665798396}
     - {fileID: 784413441}
   - selectObjects:
+    - {fileID: 600508960}
+  - selectObjects:
+    - {fileID: 1850612214}
+  - selectObjects:
+    - {fileID: 1846189351}
+  - selectObjects:
     - {fileID: 1080170808}
   shouldFunction: 1
   resetPositionWhenEnabled: 1
@@ -15798,6 +15817,7 @@ GameObject:
   - component: {fileID: 1846189350}
   - component: {fileID: 1846189349}
   - component: {fileID: 1846189348}
+  - component: {fileID: 1846189351}
   m_Layer: 0
   m_Name: InputField-Junk
   m_TagString: Untagged
@@ -15922,6 +15942,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1846189346}
   m_CullTransparentMesh: 0
+--- !u!114 &1846189351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1846189346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde43ee0e34795b4196e2e890ea03ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 0}
 --- !u!1 &1850612209
 GameObject:
   m_ObjectHideFlags: 0
@@ -15933,6 +15965,7 @@ GameObject:
   - component: {fileID: 1850612213}
   - component: {fileID: 1850612212}
   - component: {fileID: 1850612211}
+  - component: {fileID: 1850612214}
   m_Layer: 0
   m_Name: InputField-MaxArrow
   m_TagString: Untagged
@@ -16057,6 +16090,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1850612209}
   m_CullTransparentMesh: 0
+--- !u!114 &1850612214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1850612209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde43ee0e34795b4196e2e890ea03ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 0}
 --- !u!1 &1857346944
 GameObject:
   m_ObjectHideFlags: 0
