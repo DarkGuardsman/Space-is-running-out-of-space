@@ -29,7 +29,7 @@ public class UITabSelectButton : UISelectionObject
         ResetButtonColor();
     }
     
-    public override bool OnSelected(UITabSelector selector)
+    public override bool OnSelected(UITabSelector selector, bool forward)
     {
         hasBeenSelected = true;        
         GetButton().SetButtonNormalColor(selectionColor);

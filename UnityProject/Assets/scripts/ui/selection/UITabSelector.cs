@@ -6,12 +6,15 @@ public class UITabSelector : MonoBehaviour
 {
     public static UITabSelector currentSelector;
     
+    public string selectorName = "tab-selector";
+    
     public int selectedRow = 0;
     public int selectedCol = -1;
     
     public SelectionRow[] rows;
     
     public bool shouldFunction = true;
+    public bool resetPositionWhenEnabled = true;
     
     [System.Serializable]
     public class SelectionRow
@@ -26,6 +29,8 @@ public class UITabSelector : MonoBehaviour
     
     public void SetAsPrimarySelector()
     {
+        Debug.Log("UITabSelector: Making '" + this + "' as primary selector");
+        
         //Disable last selector
         if(currentSelector != null)
         {
@@ -37,6 +42,25 @@ public class UITabSelector : MonoBehaviour
         
         //Set current
         currentSelector = this;
+    }
+    
+    /** Called from objects that disable the selector   
+    * but enable it again in a return style. Should mainly
+    * be used by sub-selectors that contain selection groups.
+    *
+    * row & col - index of the sub-selector. Will index to next object.
+    */
+    public void ReturnFromSubSelector(int row, int col)
+    {
+        //Enable this selector
+        SetAsPrimarySelector();
+        
+        //Restore previous selection
+        selectedRow = row;
+        selectedCol = col;
+        
+        //Move to next selection
+        NextSelection();
     }
     
     public void Update()
@@ -89,7 +113,7 @@ public class UITabSelector : MonoBehaviour
             }
         }
         
-        return OnSelectionChanged(prev_row, prev_col);
+        return OnSelectionChanged(prev_row, prev_col, true);
     }
     
     public bool PrevSelection()
@@ -107,14 +131,33 @@ public class UITabSelector : MonoBehaviour
                 selectedRow = rows.Length - 1;
             }
         }
-        return OnSelectionChanged(prev_row, prev_col);
+        return OnSelectionChanged(prev_row, prev_col, false);
     }
     
-    bool OnSelectionChanged(int prev_row, int prev_col)
+    public int MaxRows()
+    {
+        return rows.Length;
+    }
+    
+    public int MaxColumns()
+    {
+        return MaxColumns(selectedRow);
+    }
+    
+    public int MaxColumns(int row)
+    {
+        if(row >= 0 && row <= MaxRows())
+        {
+            return rows[row].selectObjects.Length;
+        }
+        return 0;
+    }
+    
+    bool OnSelectionChanged(int prev_row, int prev_col, bool forward)
     {
         Debug.Log("Selection changed to " + selectedRow + "x" + selectedCol);
         
-        if(prev_row >= 0 && prev_row < rows.Length && prev_col >= 0 && prev_col < rows[prev_row].selectObjects.Length)
+        if(prev_row >= 0 && prev_row < rows.Length && prev_col >= 0 && prev_col < MaxColumns(prev_row))
         {
             if(GetSelected(prev_row, prev_col).CanBeSelected(this))
             {
@@ -123,7 +166,7 @@ public class UITabSelector : MonoBehaviour
         }
         
         bool canBeSelected = GetSelected().CanBeSelected(this);
-        if(canBeSelected && GetSelected().OnSelected(this))
+        if(canBeSelected && GetSelected().OnSelected(this, forward))
         {
             DisableSelector();
         }
@@ -161,9 +204,11 @@ public class UITabSelector : MonoBehaviour
         //Toggle
         shouldFunction = true;    
         
-        //Reset state
-        selectedRow = 0;
-        selectedCol = -1;
+        if(resetPositionWhenEnabled)
+        {
+            //Reset state
+            ResetSelectionState();
+        }
         
         //Toggle all components
         foreach (SelectionRow row in rows)
@@ -173,6 +218,12 @@ public class UITabSelector : MonoBehaviour
                 selection.OnSelectorEnabled(this, true);
             }
         }
+    }
+    
+    public void ResetSelectionState()
+    {
+        selectedRow = 0;
+        selectedCol = -1;
     }
     
     public void DisableSelector()
@@ -189,5 +240,10 @@ public class UITabSelector : MonoBehaviour
                 selection.OnUnSelected(this);
             }
         }
+    }
+    
+    public override string ToString()
+    {
+       return "UITabSelector[" + selectorName + "]";
     }
 }

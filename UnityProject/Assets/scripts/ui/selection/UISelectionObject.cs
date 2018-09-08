@@ -16,9 +16,11 @@ public abstract class UISelectionObject : MonoBehaviour
     * Called when selector moves to object.
     * Can disable if another selector needs to run
     *
+    * @param forward - was the object selected in a forward motion
+    *
     * @return true if should disable selector
     */
-    public virtual bool OnSelected(UITabSelector selector)
+    public virtual bool OnSelected(UITabSelector selector, bool forward) //TODO replace forward with more detailed data once arrow keys are implemented
     {
         return false;
     }
