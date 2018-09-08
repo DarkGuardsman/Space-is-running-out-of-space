@@ -21,6 +21,13 @@ public static class UIHelpers
         button.colors = cb;
     }
     
+    public static void SetToggleNormalColor(this Toggle button, Color newColor)
+    {
+        ColorBlock cb = button.colors;
+        cb.normalColor = newColor;
+        button.colors = cb;
+    }
+    
     public static void SetButtonDisabledColor(this Button button, Color newColor)
     {
         ColorBlock cb = button.colors;

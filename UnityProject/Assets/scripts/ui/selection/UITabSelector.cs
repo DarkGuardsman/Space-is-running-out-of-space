@@ -5,6 +5,8 @@ using UnityEngine;
 public class UITabSelector : MonoBehaviour 
 {
     public static UITabSelector currentSelector;
+    public static float tabClickDelay = 0.1f;
+    private static float tabClickCooldown = 0f;
     
     public string selectorName = "tab-selector";
     
@@ -66,21 +68,40 @@ public class UITabSelector : MonoBehaviour
     public void Update()
     {    
         if(shouldFunction && currentSelector == this)
-        {                
+        {        
+            //Cooldown on click to prevent double click
+            if(tabClickCooldown > 0)
+            {
+                tabClickCooldown -= Time.unscaledDeltaTime;
+            }
+                
             if((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKeyDown(KeyCode.Tab))
-            {                
-                int i = 0;
-                while(!PrevSelection() && i < 5)
+            {      
+                //Cooldown on click to prevent double click
+                if(tabClickCooldown <= 0)
                 {
-                    i++;
+                    Debug.Log("UITabSelector: Reverse tab clicked");                 
+                    
+                    int i = 0;
+                    while(!PrevSelection() && i < 5)
+                    {
+                        i++;
+                    }
                 }
             }
             else if(Input.GetKeyDown(KeyCode.Tab))
             {
-                int i = 0;
-                while(!NextSelection() && i < 5)
+                //Cooldown on click to prevent double click
+                if(tabClickCooldown <= 0)
                 {
-                    i++;
+                    //Reset cooldown
+                    tabClickCooldown = tabClickDelay;                 
+                
+                    int i = 0;
+                    while(!NextSelection() && i < 5)
+                    {
+                        i++;
+                    }
                 }
             }
             else if(Input.GetButtonDown("Submit"))
@@ -102,6 +123,14 @@ public class UITabSelector : MonoBehaviour
         int prev_col = selectedCol;
         int prev_row = selectedRow;
         
+        //If set to -1, reset to zero
+        if(prev_col < 0 || prev_row < 0)
+        {
+            selectedCol=0;
+            selectedRow=0;
+            return OnSelectionChanged(prev_row, prev_col, true);
+        }
+        
         selectedCol++;
         if(selectedCol >= rows[selectedRow].Size())
         {
@@ -120,6 +149,15 @@ public class UITabSelector : MonoBehaviour
     {
         int prev_col = selectedCol;
         int prev_row = selectedRow;
+        
+        //If set to -1, reset to max limit
+        if(prev_col < 0 || prev_row < 0)
+        {
+            selectedRow = MaxRows() - 1;
+            selectedCol = MaxColumns() - 1;
+            
+            return OnSelectionChanged(prev_row, prev_col, true);
+        }
         
         selectedCol--;
         if(selectedCol < 0)
@@ -153,11 +191,30 @@ public class UITabSelector : MonoBehaviour
         return 0;
     }
     
+    public void SelectElement(int row, int col, bool forward)
+    {
+        int prev_col = selectedCol;
+        int prev_row = selectedRow;
+        
+        //Set
+        selectedRow = row;
+        selectedCol = col;
+        
+        if(IsValidSelection(row, col))
+        {
+            //Trigger
+            OnSelectionChanged(prev_row, prev_col, forward);
+        }
+    }
+    
     bool OnSelectionChanged(int prev_row, int prev_col, bool forward)
     {
+        //Reset cooldown
+        tabClickCooldown = tabClickDelay;
+                    
         Debug.Log("Selection changed to " + selectedRow + "x" + selectedCol);
         
-        if(prev_row >= 0 && prev_row < rows.Length && prev_col >= 0 && prev_col < MaxColumns(prev_row))
+        if(IsValidSelection(prev_row, prev_col))
         {
             if(GetSelected(prev_row, prev_col).CanBeSelected(this))
             {
@@ -166,11 +223,17 @@ public class UITabSelector : MonoBehaviour
         }
         
         bool canBeSelected = GetSelected().CanBeSelected(this);
+        Debug.Log("Selection can be selected:" + canBeSelected);
         if(canBeSelected && GetSelected().OnSelected(this, forward))
         {
             DisableSelector();
         }
         return canBeSelected;
+    }
+    
+    public bool IsValidSelection(int row, int col)
+    {
+        return row >= 0 && row < MaxRows() && col >= 0 && col < MaxColumns(row);
     }
     
     public UISelectionObject GetSelected(int row, int col)
@@ -184,17 +247,17 @@ public class UITabSelector : MonoBehaviour
         {
             selectedRow = 0;
         }
-        if(selectedRow >= rows.Length)
+        if(selectedRow >= MaxRows())
         {
-            selectedRow = rows.Length - 1;
+            selectedRow = MaxRows() - 1;
         }
         if(selectedCol < 0)
         {
             selectedCol = 0;
         }
-        if(selectedCol >= rows[selectedRow].selectObjects.Length)
+        if(selectedCol >= MaxColumns(selectedRow))
         {
-            selectedCol = rows[selectedRow].selectObjects.Length - 1;
+            selectedCol = MaxColumns(selectedRow) - 1;
         }
         return GetSelected(selectedRow, selectedCol);
     }
@@ -222,7 +285,7 @@ public class UITabSelector : MonoBehaviour
     
     public void ResetSelectionState()
     {
-        selectedRow = 0;
+        selectedRow = -1;
         selectedCol = -1;
     }
     

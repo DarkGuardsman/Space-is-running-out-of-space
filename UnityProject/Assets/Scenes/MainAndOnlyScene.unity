@@ -2009,11 +2009,11 @@ MonoBehaviour:
     lineCount: 0
     pageCount: 0
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2192,6 +2192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 266146791}
   - component: {fileID: 266146792}
+  - component: {fileID: 266146793}
   m_Layer: 0
   m_Name: Toggle-Effects
   m_TagString: Untagged
@@ -2264,6 +2265,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
+--- !u!114 &266146793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 266146790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a3581aff988234d94a6fd2f1c98c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggle: {fileID: 0}
+  selectionColor: {r: 0.10277772, g: 1, b: 0, a: 1}
 --- !u!1 &266371508
 GameObject:
   m_ObjectHideFlags: 0
@@ -5193,11 +5207,11 @@ MonoBehaviour:
     lineCount: 0
     pageCount: 0
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -7266,13 +7280,15 @@ GameObject:
   - component: {fileID: 795473420}
   - component: {fileID: 795473422}
   - component: {fileID: 795473421}
+  - component: {fileID: 795473423}
+  - component: {fileID: 795473424}
   m_Layer: 0
   m_Name: Panel-Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &795473420
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7331,6 +7347,43 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 795473419}
   m_CullTransparentMesh: 0
+--- !u!114 &795473423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 795473419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05e11b1ff5f3d044b9b6a79bfe40299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tabSelector: {fileID: 0}
+--- !u!114 &795473424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 795473419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95bc8ffb0ffa47445a6aacb5f212aab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectorName: tab-selector
+  selectedRow: -1
+  selectedCol: -1
+  rows:
+  - selectObjects:
+    - {fileID: 266146793}
+  - selectObjects:
+    - {fileID: 873882626}
+  - selectObjects:
+    - {fileID: 822990687}
+  - selectObjects:
+    - {fileID: 1080170808}
+  shouldFunction: 1
+  resetPositionWhenEnabled: 1
 --- !u!1 &808226462
 GameObject:
   m_ObjectHideFlags: 0
@@ -7410,6 +7463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 822990685}
   - component: {fileID: 822990686}
+  - component: {fileID: 822990687}
   m_Layer: 0
   m_Name: Toggle-Bullet Trail
   m_TagString: Untagged
@@ -7482,6 +7536,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
+--- !u!114 &822990687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 822990684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a3581aff988234d94a6fd2f1c98c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggle: {fileID: 0}
+  selectionColor: {r: 0.10277772, g: 1, b: 0, a: 1}
 --- !u!1 &823132818
 GameObject:
   m_ObjectHideFlags: 0
@@ -7892,6 +7959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 873882624}
   - component: {fileID: 873882625}
+  - component: {fileID: 873882626}
   m_Layer: 0
   m_Name: Toggle-Drone Trail
   m_TagString: Untagged
@@ -7964,6 +8032,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
+--- !u!114 &873882626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 873882623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a3581aff988234d94a6fd2f1c98c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggle: {fileID: 0}
+  selectionColor: {r: 0.10277772, g: 1, b: 0, a: 1}
 --- !u!1 &900418775
 GameObject:
   m_ObjectHideFlags: 0
@@ -9733,6 +9814,7 @@ MonoBehaviour:
     - {fileID: 1630893232}
   - selectObjects:
     - {fileID: 1728676851}
+    - {fileID: 795473423}
   - selectObjects:
     - {fileID: 1609079363}
     - {fileID: 311806906}
@@ -11932,11 +12014,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -14061,11 +14143,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -14643,7 +14725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1728676847
 RectTransform:
   m_ObjectHideFlags: 0

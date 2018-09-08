@@ -24,15 +24,11 @@ public class UITabSubSelector : UISelectionObject
         {   
             if(forward)
             {
-                tabSelector.NextSelection();
+                tabSelector.SelectElement(0, 0, true);
             }
             else
-            {
-                //Do not select last, as sub selectors use last element to return to parent selector
-                tabSelector.selectedRow = tabSelector.MaxRows() - 2;
-                tabSelector.selectedCol = tabSelector.MaxColumns();
-                //Trigger move next to get selection
-                tabSelector.PrevSelection();
+            {                
+                tabSelector.SelectElement(tabSelector.MaxRows() - 2, tabSelector.MaxColumns() - 1, false);
             }
         }
         
