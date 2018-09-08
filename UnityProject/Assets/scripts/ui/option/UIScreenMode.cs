@@ -18,21 +18,24 @@ public class UIScreenMode : MonoBehaviour
 	
 	public void LoadScreenModes()
     {
-        List<string> list = new List<string>();
-		foreach(FullScreenMode mode in Enum.GetValues(typeof(FullScreenMode)))
+        if(dropDownMenu != null)
         {
-            list.Add(mode.ToString());
+            List<string> list = new List<string>();
+            foreach(FullScreenMode mode in Enum.GetValues(typeof(FullScreenMode)))
+            {
+                list.Add(mode.ToString());
+            }
+            
+             //Reset old data
+            dropDownMenu.ClearOptions();
+            
+            //Add entries to list
+            dropDownMenu.AddOptions(list);
+            
+            //Set current index
+            selectedMode = Screen.fullScreenMode;
+            dropDownMenu.value = (int)selectedMode;
         }
-        
-         //Reset old data
-        dropDownMenu.ClearOptions();
-        
-        //Add entries to list
-        dropDownMenu.AddOptions(list);
-        
-        //Set current index
-        selectedMode = Screen.fullScreenMode;
-        dropDownMenu.value = (int)selectedMode;
 	}
     
     public void OnValueChanged(int index)
