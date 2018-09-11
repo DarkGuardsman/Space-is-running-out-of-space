@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UITabSelectButton : UISelectionObject
-{
+{    
     public bool disableOnEnter = false;
     
     public Button button;
@@ -47,6 +47,7 @@ public class UITabSelectButton : UISelectionObject
     
     public override bool OnActived(UITabSelector selector)
     {      
+        Debug.Log("UITabSelectButton: triggering click action for " + button.name);
         if(disableOnEnter)
         {           
             hasBeenSelected = false;

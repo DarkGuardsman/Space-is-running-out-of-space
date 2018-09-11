@@ -5,8 +5,12 @@ using UnityEngine;
 public class UITabSelector : MonoBehaviour 
 {
     public static UITabSelector currentSelector;
+    
     public static float tabClickDelay = 0.1f;
     private static float tabClickCooldown = 0f;
+    
+    public static float actionClickDelay = 0.1f;
+    private static float actionClickCooldown = 0f;
     
     public string selectorName = "tab-selector";
     
@@ -74,6 +78,11 @@ public class UITabSelector : MonoBehaviour
             {
                 tabClickCooldown -= Time.unscaledDeltaTime;
             }
+            
+            if(actionClickCooldown > 0)
+            {
+                actionClickCooldown -= Time.unscaledDeltaTime;
+            }
                 
             if((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKeyDown(KeyCode.Tab))
             {      
@@ -106,9 +115,16 @@ public class UITabSelector : MonoBehaviour
             }
             else if(Input.GetButtonDown("Submit"))
             {
-                if(GetSelected().OnActived(this))
+                //Delay between clicks to prevent double click actions
+                if(actionClickCooldown <= 0)
                 {
-                    DisableSelector();
+                    actionClickCooldown = actionClickDelay;
+                    
+                    //Call activate and disable self if return is true
+                    if(GetSelected().OnActived(this))
+                    {
+                        DisableSelector();
+                    }
                 }
             }
         }
