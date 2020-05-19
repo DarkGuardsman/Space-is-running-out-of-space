@@ -23,5 +23,5 @@ For those that live in the orbital junk fields, we call it home. A place that ex
 
 * LemADEC for providing excellent feedback and suggestions
 * Graugger for play testing and encouraging development
-* Poke for sparking the idea to make this game
+* Poke for sparking the idea to make this game https://discordapp.com/channels/176780432371744769/197165501741400064/477668512047955979
 * My brother for providing a negative but important criticism base line
